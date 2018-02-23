@@ -1,5 +1,882 @@
 <!DOCTYPE HTML>
 
 <html>
+<head>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+		body
+		{
+			color: #EDEDED;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			margin: 0px;
+			padding: 0px;
+		}
+		.application
+		{
+			display: block;
+			height: 100%;
+			position: absolute;
+			overflow: hidden;
+			width: 100%;
+		}
+	</style>
+	<script type="text/javascript" src="./fontawesome-all.min.js"></script>
+</head>
+<body>
+	<!-- component.static { component.identity } -->
+	<div class='component' id='identity'>
+		<!-- component.static { component.identity.background } -->
+		<div class='component' id='identity-background'>
+			
+			<!-- MY ACCOUNT: Default-->
+			<div class='component' id='identity-account'>
+				<div class='identity-header'>
+					<div class='release-state'><a href="client.html"> <</a> </div>
+					<div class='identity-title'>My Account</div>
+				</div>
+				<div class='identity-content-wrap'>	
+					<ul class='identity-content-menu'>
+						<li id='menu-personal-info' onclick="open_content('personal-info','menu-personal-info')">Personal Information</li>
+						<li id='menu-products' onclick="open_content('products','menu-products')">Products</li>
+						<li id='menu-billing' onclick="open_content('billing','menu-billing')">Billing</li>
+						<li id='menu-setting' onclick="open_content('setting','menu-setting')">Setting</li>
+					</ul>
+					<div class='divider'></div>
+					<div id="default">
+						<!-- MY ACCOUNT: Personal Info-->
+						<div class='identity-content' id='personal-info'>
+							<div class='component-form-input-text'>
+								<div class='component-form-input-text-wrap'>
+									<span>name</span>
+									<input autocapitalize='off' autocomplete='given-name' autocorrect='off' title='First Name' type='text' placeholder= 'First Name' style="width:180px">
+									<input autocapitalize='off' autocomplete='last-name' autocorrect='off' title='Last Name' type='text' placeholder= 'Last Name' style="width:110px">
+								</div>
+								<div class='component-form-input-text-wrap' style="padding-bottom:80px">
+									<span>user name</span>
+									<input autocapitalize='off' autocomplete='' autocorrect='off' title='User Name' type='text' placeholder= 'User Name'>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>email address</span>
+									<input autocapitalize='off' autocomplete='email' autocorrect='off' title='Email Address' type='text' placeholder= 'Email'>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>current password</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='Current Password' type='text' placeholder= 'Password'>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>new password</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='New Password' type='text' placeholder= 'Password'>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>confirm new password</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='Confirm New Password' type='text' placeholder= 'Password'>
+								</div>
 
+								<div class='component-form-input-button' id='space-personal-content-wrap-box-content-form-input-button'>
+									<a href="#">
+										<button>
+											<span>Save</span>
+										</button>
+									</a>
+								</div>
+								<style>
+									div.component-form-input-button a 
+									{
+										text-decoration: none;
+									}
+								</style>
+								Trouble? tell us at info@madewithstella.com
+							</div>
+						</div>
+						<!-- MY ACCOUNT: Products-->
+						<div class='identity-content' id='products'>
+							<div class='product-option'>basic</div>
+							<div id="divider"></div>
+							<div class='product-option'>pro</div>
+
+							<div class='component-form-input-button' id='product-upgrade-button'>
+								<a href="#">
+									<button>
+										<span>Current</span>
+									</button>
+								</a>
+								<a href="#">
+									<button>
+										<span>Upgrade</span>
+									</button>
+								</a>
+							</div>
+							<style>
+								div.component-form-input-button a 
+								{
+									text-decoration: none;
+								}
+							</style>
+						</div>
+						<style>
+							.product-option{
+								background: rgba(20, 20, 20, 0.2);
+								width:150PX;
+								height:100px;
+								display: inline-block;
+								text-align: center;
+								margin:8px; 
+								line-height: 100px;
+								text-transform: uppercase;
+								border-radius: 5%;
+
+							}
+						</style>
+						<!-- MY ACCOUNT: Billing-->
+						<div class='identity-content' id='billing'>
+							<div class='component-form-input-text'>
+								<div class='component-form-input-text-wrap'>
+									<span>name</span>
+									<input autocapitalize='off' autocomplete='given-name' autocorrect='off' title='First Name' type='text' placeholder= 'First Name' style="width:180px">
+									<input autocapitalize='off' autocomplete='last-name' autocorrect='off' title='Last Name' type='text' placeholder= 'Last Name' style="width:110px">
+								</div>
+								<div class='component-form-input-text-wrap' >
+									<span>address</span>
+									<input autocapitalize='off' autocomplete='' autocorrect='off' title='Address' type='text' placeholder= 'Address'>
+									<input autocapitalize='off' autocomplete='' autocorrect='off' title=' Address' type='text' placeholder= 'Address'>
+								</div>
+								<div class='component-form-input-text-wrap' style="display:inline-block">
+									<span>city</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='City' type='text' placeholder= 'City' style="width:80px">
+								</div>
+								<div class='component-form-input-text-wrap' style="display:inline-block">
+									<span>state</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='State'' type='text' placeholder= 'State' style="width:80px">
+								</div>
+								<div class='component-form-input-text-wrap' style="display:inline-block">
+									<span>Country</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='Country' type='text' placeholder= 'Country' style="width:80px">
+								</div>
+								<div class='component-form-input-text-wrap' style="padding-top:80px">
+									<span>Credit card information</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='Card Information' type='text' placeholder= 'Card Information'>
+								</div>
+								<button class='astext' id='download_invoice'>Download Invoice</button>
+
+								<div class='component-form-input-button' id='space-personal-content-wrap-box-content-form-input-button'>
+									<a href="#">
+										<button>
+											<span>Save</span>
+										</button>
+									</a>
+								</div>
+								<style>
+									div.component-form-input-button a 
+									{
+										text-decoration: none;
+									}
+								</style>
+								Trouble? tell us at info@madewithstella.com
+							</div>
+						</div>
+						<!-- MY ACCOUNT: Setting-->
+						<div class='identity-content' id='setting'>
+							<div class='component-form-input-text'>
+								<div class='component-form-input-text-wrap'>
+									<span>language</span>
+									<div class='select-style'>
+										<select id="language" name="language">
+											<option value="English">English</option>
+											<option value="Spanish">Spanish</option>
+											<option value="Korean">Korean</option>
+											<option value="Japanese">Japanese</option>
+											<option value="Chinese">Chinese</option>  
+										</select>          
+									</div>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>time zone</span>
+									<select name="DropDownTimezone" id="DropDownTimezone">
+										<option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
+										<option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
+										<option value="-10.0">(GMT -10:00) Hawaii</option>
+										<option value="-9.0">(GMT -9:00) Alaska</option>
+										<option value="-8.0">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+										<option value="-7.0">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+										<option value="-6.0">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+										<option value="-5.0">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+										<option value="-4.0">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+										<option value="-3.5">(GMT -3:30) Newfoundland</option>
+										<option value="-3.0">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+										<option value="-2.0">(GMT -2:00) Mid-Atlantic</option>
+										<option value="-1.0">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+										<option value="0.0">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+										<option value="1.0">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+										<option value="2.0">(GMT +2:00) Kaliningrad, South Africa</option>
+										<option value="3.0">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+										<option value="3.5">(GMT +3:30) Tehran</option>
+										<option value="4.0">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+										<option value="4.5">(GMT +4:30) Kabul</option>
+										<option value="5.0">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+										<option value="5.5">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+										<option value="5.75">(GMT +5:45) Kathmandu</option>
+										<option value="6.0">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+										<option value="7.0">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+										<option value="8.0">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+										<option value="9.0">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+										<option value="9.5">(GMT +9:30) Adelaide, Darwin</option>
+										<option value="10.0">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+										<option value="11.0">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+										<option value="12.0">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+									</select>
+								</div>
+								<div class='component-form-input-text-wrap'>
+									<span>date format</span>
+									<input autocapitalize='off' autocomplete='off' autocorrect='off' title='date-format' type='text' placeholder= 'MM/DD/YYYY'>
+								</div>
+								<div class='component-form-input-button' id='space-personal-content-wrap-box-content-form-input-button'>
+									<a href="#">
+										<button>
+											<span>Save</span>
+										</button>
+									</a>
+								</div>
+								<style>
+									div.component-form-input-button a 
+									{
+										text-decoration: none;
+									}
+								</style>
+								Trouble? tell us at info@madewithstella.com
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Hide Divs -->
+			<style>
+				#default{
+					display: inline;
+				}
+				#personal-info{
+					display: inline-block;
+				}
+				#products{
+					display: none;
+				}
+				#billing{
+					display: none;
+				}
+				#setting{
+					display: none;
+				}
+			</style>
+			<!-- Form: identity-content -->
+			<style>
+				.identity-header{
+					/*background-color: salmon;*/
+					width:300px;
+					margin-left:50px;
+					margin-top:50px;
+					display: block;
+
+				}
+				.release-state{
+					/*background-color: teal;*/
+					position: relative;
+					width:50px;
+					text-align: center;
+					display: inline-block;
+					padding: 20px 5px;
+					font-size: 18px;
+					font-weight: 600;
+					cursor:pointer;
+				}
+				.release-state a{
+					text-decoration: none;
+					color: white;
+				}
+				.identity-title{
+					/*background-color: yellow;*/
+					position: relative;
+					display: inline-block;
+					padding: 20px 10px;
+					font-size: 20px;
+					font-weight: 800;	
+				}
+				.identity-content-wrap{
+					position: relative;
+					display: block;
+					/*background-color: white;*/
+					max-width:800px;
+					margin:50px;
+				}
+				.identity-content-menu{
+					/*background-color: green;*/
+					display: inline-block;
+					list-style-type: none;
+					padding-left: 0;
+					margin-right: 30px;
+					width:25%;
+					vertical-align: top;
+					text-align: right;
+					margin-top: 0; 
+				}
+				.identity-content-menu li{
+					/*background-color: maroon;*/
+					color:#4C4C4C;
+					padding-bottom: 30px;
+					font-size: 14px;
+					font-weight: 600;
+					cursor: pointer;
+				}
+				.identity-content-menu li:hover{
+					color:#ededed;
+					font-size: 15px;
+					font-weight: 700;
+				}
+				.divider{
+					background-color: #EDEDED;
+					position: relative;
+					display: inline-block;
+					width:1px;
+					height:550px;	
+				}
+				.identity-content
+				{
+					/*background-color: pink;*/
+					display: inline-block;
+					position: relative;
+					text-align: left;
+					width:50%;
+					vertical-align: top;
+					margin-left:30px;
+					margin-top: 0; 
+					font-size: 13px;
+					font-weight: 500;
+					font-family: 'Roboto', sans-serif;
+				}	
+			</style>
+
+		<!-- NAVIGATION FOOTER -->                   
+		<div id='client-navigation-footer'>
+			<!-- USER PERSONAL-->
+			<div class='client-navigation-float-right'>
+				<div id="user-identity-nav">
+					<a href="user-identity-personal.html">
+						<button class='button-text' id='user-identity-personal'>
+							NB
+						</button>
+					</a>
+					<div id='wrap-identity-option'>
+						<div onclick="">PROFILE</div>
+						<div onclick="open_content('personal-info','menu-personal-info')">MY ACCOUNT</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Style: NAVIGATION FOOTER -->
+<style>        
+	div#client-navigation-footer
+	{
+		background: transparent;                 
+		bottom: 0px;
+		display: block;
+		height: 52px;
+		overflow: visible;
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+
+	}
+	div.client-navigation-float-right a 
+	{
+		text-decoration: none;
+	}
+	#user-identity-personal{
+		float:right;
+	}
+	#wrap-identity-option{
+		display: none;
+		position: absolute;
+		float:right;
+		text-align: left;
+		width:200px;
+		bottom:17px;
+		right:0px;
+		z-index: 1;
+	}
+	#wrap-identity-option div{
+		color: #4C4C4C;
+		font-size: 12px;
+		font-weight: 600;
+		padding: 6px;
+		display: inline;
+	}
+	#wrap-identity-option div:hover{
+		color:#EDEDED;
+		font-weight: 700;
+		cursor: pointer;
+	}
+	#user-identity-nav:hover #wrap-identity-option{
+		display: inline;
+		color:red;
+	}
+	#user-identity-nav:hover #user-identity-personal{
+		background-color: #ffffff;
+		opacity: 1;
+		color: black;
+		font-weight: 700;
+		transform: scale(1.2);
+		-webkit-transition-duration: 0.1s; /* Safari */
+		transition-duration: 0.1s;
+	}
+</style>
+<!-- Style: NAVIGATION -->
+<style>
+	div.client-navigation-float-left
+	{
+		display: block;
+		float: left;
+		width: auto;
+		padding: 10px;
+	}
+
+	div.client-navigation-float-right
+	{
+		display: block;
+		float: right;
+		width: auto;
+		padding: 10px;
+	}
+</style>
+<!-- Script -->
+<script>
+
+	var tempContent='personal-info';
+	var tempInspector='menu-personal-info';
+
+	function open_content(content,inspector) {
+		console.log(tempContent);
+		var con = document.getElementById(content);
+		var menu = document.getElementById(inspector);
+		var tempCon=document.getElementById(tempContent);
+		var tempMenu = document.getElementById(tempInspector);
+		
+		if(tempCon.style.display!=="none")
+		{
+			tempCon.style.display="none";
+		}
+		if(tempInspector!==inspector){
+			tempMenu.style.color="#4c4c4c";
+			tempMenu.style.fontSize="14px";
+			tempMenu.style.fontWeight="600";
+		}		
+		if(con.style.display="none"){
+			con.style.display="inline-block";
+		}
+		if(con.style.display === "inline-block"){
+			menu.style.color="#ededed";
+			menu.style.fontSize="15px";
+			menu.style.fontWeight="700";
+		}
+
+		tempContent=content;
+		tempInspector=inspector;
+	}
+</script>
+
+<!-- Style: FRAME -->
+<style>
+	#identity
+	{
+		background: #1D1D1D;
+		height: 100%;
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+	}
+
+	.space-content
+	{   
+		background-image: url("./07.jpg"); 
+
+		padding: 0px 0px 0px 0px;
+		height: 100%;
+		width: 100%;
+	}
+	.space-content-wrap
+	{
+		height: auto;
+		width: 100%;
+		vertical-align: middle;
+	}
+	.space-content-wrap-box
+	{
+		background-color: transparent;
+		border-right: .1px solid #FFFFFF;
+		height: 100%;
+		display: block;
+		width: 33%;
+		float: left;
+		height: 400px;
+		margin: 10% 1.5px;
+	}
+	.space-content-wrap-box-third
+	{
+		background-color: transparent;
+		/*border-right: .1px solid #FFFFFF;*/
+
+		display: block;
+		width: 33%;
+		float: left;
+		height: 400px;
+		margin: 10% 1.5px;
+	}
+	div.space-content-wrap-box:last-child
+	{
+		border: none;
+	}
+
+	.space-content-wrap-box-content
+	{
+		height: 100%;
+		display: flex;
+		justify-content: center; /* align horizontal */
+		align-items: center; /* align vertical */
+
+	}
+
+
+	.space-content-personal-wrap-box-form
+	{
+		background-color: transparent;
+		border-right: none;
+		height: 100%;
+		display: block;
+		width: 33%;
+		float: left;
+		height: 400px;
+		margin: 10% 1.5px;
+		text-align: left;
+		font-weight: 500;
+		font-size: 12px;
+	}
+
+
+	div.space-content-wrap-box-content
+	{
+		height: 100%;
+		display: flex;
+		justify-content: center; /* align horizontal */
+		align-items: center; /* align vertical */
+
+	}
+
+
+
+
+	.inspector
+	{
+		width: 32px;
+		padding: 20px 10px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+
+	.center
+	{
+		margin: 0px auto;
+		width: 32px;
+		height: auto;
+	}
+
+	.button
+	{
+		background-color: black;
+		opacity: .6;
+		border: 0;
+		border-radius: 50%;
+		color: white;
+		float: right;
+		text-align: center;
+		text-decoration: none;
+		display: block;
+		font-size: 15px;
+		margin: 0px 0px 8px 0px;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		padding: 0px;
+		box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	}
+	.button:hover
+	{
+		background-color: #ffffff;
+		opacity: 1;
+		color: black;
+		transform: scale(1.2);
+		-webkit-transition-duration: 0.1s; /* Safari */
+		transition-duration: 0.1s;
+	}
+
+	.button-text {
+		background-color: black;
+		opacity: .6;
+		border: 0;
+		border-radius: 50%;
+		color: white;
+		text-align: center;
+		display: block;
+		font-size: 12px;
+		margin: 0px 0px 0px 0px;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		padding: 0px;
+		box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+
+	}
+	.button-text:hover{
+		background-color: #ffffff;
+		opacity: 1;
+		color: black;
+		font-weight: 600;
+		transform: scale(1.2);
+		text-decoration: none;
+
+		-webkit-transition-duration: 0.1s; /* Safari */
+		transition-duration: 0.1s;
+	}
+
+	.tooltip {
+		position: relative;
+		display: inline-block;
+		border-bottom: 1px dotted black;
+	}
+	.tooltip .tooltiptext {
+		visibility: hidden;
+		width: auto;
+		background-color:black;
+		color:white;
+		opacity: .3;
+		text-align: center;
+		border-radius: 3px;
+		padding: 4px 4px;
+		position: absolute;
+		z-index: 1;
+		top: -5px;
+		right: 110%;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+	.tooltip .tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		margin-top: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent transparent black;
+	}
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+	}
+
+	h1
+	{
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 12px;
+		text-align: center;
+	}
+	.space-content-wrap-box-form
+	{
+		background-color: transparent;
+		border-right: none;
+		height: 100%;
+		display: block;
+		width: 33%;
+		float: left;
+		height: 400px;
+		margin: 10% 1.5px;
+		text-align: left;
+		font-weight: 500;
+		font-size: 12px;
+	}
+
+
+	.component-form
+	{
+		display: block;
+		position: relative;
+	}
+
+	.component-form-input-text
+	{
+		display: block;
+		margin: 0px 0px 10px 0px;
+		position: relative;
+		width: 100%;
+	}
+
+	.component-form-input-text input
+	{
+		background-color: transparent;
+		border: none;
+		border-bottom: solid 1px #EDEDED;
+		color: #EDEDED;
+		font-size: 14px;
+
+		height: 32px;
+		line-height: 24px;
+		outline: none;
+		width: 100%;
+	}
+
+	.component-form-input-text input:focus
+	{
+		border-bottom: solid 1px #98E5F3;
+	}
+
+	.component-form-input-text-wrap
+	{
+		display: block;
+		position: relative;
+		margin: 0px 0px 20px 0px;
+
+	}
+
+	.component-form-input-text-wrap span
+	{
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: uppercase;
+		display: block;
+
+	}
+
+	.component-form-input-text-title
+	{
+		display: block;
+		margin: 0px 0px 10px 0px;
+		position: relative;
+		width: auto;
+		padding: 10px;
+
+	}
+
+	.component-form-input-text-title input
+	{
+		background-color: transparent;
+		border: none;
+		border-bottom: solid 1px #EDEDED;
+		color: #EDEDED;
+		font-size: 15px;
+
+
+		height: 32px;
+		line-height: 24px;
+		outline: none;
+		width: auto;
+	}
+
+	::-webkit-credentials-auto-fill-button, ::-webkit-contacts-auto-fill-button
+	{
+		background-color: #98E5F3;
+
+		color: #98E5F3;
+	}
+
+	.component-form-input-button
+	{	
+		cursor: default;
+		margin: 20px 0px 10px 0px;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+	}
+
+	.component-form-input-button button
+	{
+		background: #EDEDED;
+		border: solid 1px #EDEDED;
+		color: #222222;
+		display: block;
+		font-size: 12px;
+		font-weight: 700;
+		height: 35px;
+		outline: none;
+		padding: 0px 10px 0px 10px;
+		transition: background-color 0.3s;
+		width: 100%;
+	}
+
+	.component-form-input-button button > *
+	{
+		position: relative;
+	}
+
+	.component-form-input-button button:before
+	{
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;     
+		display: block;
+		width: 0;
+		padding-top: 0;       
+		border-radius: 100%;
+		background-color: #98E5F3;     
+		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+	}
+
+	.component-form-input-button button:active:before
+	{
+		width: 120%;
+		padding-top: 120%;
+		transition: width 0.25s ease-out, padding-top 0.25s ease-out;
+	}
+	.astext{
+		background:none;
+		border:none;
+		margin:10px 0 10px 0;
+		padding:0;
+		color: #EDEDED;
+		text-decoration: underline; 
+	}
+	::-webkit-input-placeholder {
+		font-style: italic;
+		opacity: .5;
+
+	}
+	:-moz-placeholder {
+		font-style: italic;  
+		opacity: .5;
+	}
+
+	:-ms-input-placeholder {  
+		font-style: italic; 
+		opacity: .5;
+	}
+</style>
+</body>
 </html>
+
+
+
+			<!-- PROFILE -->
+			<!-- <div class='component' id='identity-profile'>
+				<div class='identity-header'>
+					<div class='release-state'> < </div>
+					<div class='identity-title'>Profile</div>
+				</div>
+				<div class='identity-content-wrap'>
+					<div class='identity-content-menu'></div>
+					<div class='identity-content'></div>
+				</div>
+			</div>
+		-->			

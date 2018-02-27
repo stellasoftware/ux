@@ -1,11 +1,17 @@
 <div class="component" id="button">
 
     <button id='button'>
-        <!--
-        <i class="fas fa-eye"></i>
-        <span class="tooltiptext">Change view</span>
-        -->
+        <i class="fas fa-eye">{ context('name') }</i>
 
+        { require(component.tooltip, tooltip) }
+        <!--
+            {
+                name: string
+
+                    tooltip: string
+            }
+        -->
+    
     </button>  
 
     <style>

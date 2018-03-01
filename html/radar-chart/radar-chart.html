@@ -1,0 +1,100 @@
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+
+<div class="component" id="radarchart">
+  <div id="chart-container"></div>
+</div>
+
+<!-- div style -->
+<style>
+  #chart-container{
+    display: inline-block;
+    text-align: center;
+  }
+</style>
+
+<!-- chart style -->
+<style>
+  .radar-chart .area {
+    fill-opacity: 0.7;
+  }
+  .radar-chart.focus .area {
+    fill-opacity: 0.3;
+  }
+  .radar-chart.focus .area.focused {
+    fill-opacity: 0.9;
+  }
+  .area.target-graph, .target-graph .color {
+    fill: #008000;
+    stroke: none;
+  }
+  .area.my-graph, .my-graph .color{
+    fill: #666666;
+    stroke: none;
+  }
+  .radar-chart .axis .legend{
+    fill:#ededed;
+    font-family:'Roboto', sans-serif;
+    font-weight: 500;
+    font-size:10px;
+  }
+  .radar-chart .axis .legend.left{text-anchor:middle}
+  .radar-chart .axis .legend.middle{text-anchor:middle}
+  .radar-chart .axis .legend.right{text-anchor:middle}
+  .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+  .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+</style>
+
+<script>
+  var data = [
+  {
+    className: 'my-graph',
+    axes: [
+    {axis: "Producing", value: 3}, 
+    {axis: "Editing", value: 2}, 
+    {axis: "Screenwriting", value: 10},  
+    {axis: "Cinematography", value: 10},  
+    {axis: "Directing", value: 2},
+    {axis: "Sound Design", value: 1 }
+    ]
+  },
+  {
+    className: 'target-graph',
+    axes: [
+    {axis: "producing", value: 13}, 
+    {axis: "Editing", value: 6}, 
+    {axis: "Screenwriting", value: 5},  
+    {axis: "Cinematography", value: 9},  
+    {axis: "Directing", value: 2},
+    {axis: "Sound Design", value: 2}
+    ]
+  },
+  ];
+</script>
+
+<script>
+  var w=450, h=450;
+
+  RadarChart.defaultConfig.color = function() {};
+
+  var chart = RadarChart.chart();
+  var cfg = chart.config();
+
+  chart.config({
+    w: w,
+    h: h,
+    factor: 0.7,
+    factorLegend:0.85,
+    levels:5,
+    circles:false,
+  });
+
+  var svg = d3.select('#chart-container').append('svg')
+  // .attr('x',50)
+  // .attr('y',0)
+  .attr('width', w)
+  .attr('height', h)
+
+  svg.append('g').classed('single', 1).datum(data).call(chart);
+</script>

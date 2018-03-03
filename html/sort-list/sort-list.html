@@ -1,52 +1,56 @@
-<!DOCTYPE html>
-<html>
-
-    <body>
-
-        <p>Alphabetical</p>
-        <button onclick="sortList()">Sort</button>
-
-        <ul id="id01">
-            <li>project-name-04</li>
-            <li>project-name-05</li>
-            <li>project-name-06</li>
-            <li>project-name-01</li>
-            <li>project-name-02</li>
-            <li>project-name-03</li>
-        </ul>
-        <script>
-            function sortList() {
-                var list, i, switching, b, shouldSwitch;
-                list = document.getElementById("id01");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    b = list.getElementsByTagName("LI");
-                    //Loop through all list-items:
-                    for (i = 0; i < (b.length - 1); i++) {
-                    //start by saying there should be no switching:
-                    shouldSwitch = false;
-                    /*check if the next item should
-                    switch place with the current item:*/
-                    if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-                        /*if next item is alphabetically
-                        lower than current item, mark as a switch
-                        and break the loop:*/
-                        shouldSwitch= true;
-                        break;
-                    }
-                    }
-                    if (shouldSwitch) {
-                    /*If a switch has been marked, make the switch
-                    and mark the switch as done:*/
-                    b[i].parentNode.insertBefore(b[i + 1], b[i]);
-                    switching = true;
-                    }
-                }
+<div class="component" id="sort-list">
+    <ul id="list">
+        <li>Oslo</li>
+        <li>Stockholm</li>
+        <li>Helsinki</li>
+        <li>Berlin</li>
+        <li>Rome</li>
+        <li>Madrid</li>
+    </ul>
+    <button onclick="sortList()">Sort</button>
+    <style>
+            /*To Delete - Font for testing*/
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            #list 
+            {
+            /*To Delete - Font for testing*/
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                font-size: 12px;
             }
-        </script>
-    </body>
-</html>
+    </style>
+    <script>
+        function sortList() {
+        var list, i, switching, b, shouldSwitch;
+        list = document.getElementById("list");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            b = list.getElementsByTagName("LI");
+            //Loop through all list-items:
+            for (i = 0; i < (b.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*check if the next item should
+            switch place with the current item:*/
+            if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+                /*if next item is alphabetically
+                lower than current item, mark as a switch
+                and break the loop:*/
+                shouldSwitch= true;
+                break;
+            }
+            }
+            if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark the switch as done:*/
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            }
+        }
+        }
+    </script>
+</div>

@@ -3,7 +3,7 @@
  import { ReferenceInterface } from 'reference/reference.interface';
  
  
- class ReferenceFunctionSort extends Reference
+ class ReferenceListCity extends Reference
  {
  
     constructor(a: object, b: object, c: (a: string, b: any) => any)
@@ -24,4 +24,4 @@
  }
  
  
- export { ReferenceFunctionSort };
+ export { ReferenceListCity };

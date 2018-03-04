@@ -13,7 +13,7 @@ class ComponentList extends Component
 
     public render(a: string, b: object) : object
     {
-        return '<ul class="list">
+        return `<ul class="list">
                     <li>{ require('reference.list.city') }</li>
                 </ul>
                 <button onclick="{ require('reference.function.sort') }">Sort</button>
@@ -24,7 +24,7 @@ class ComponentList extends Component
                         font-weight: 300;
                         font-size: 12px;
                     }
-                </style>';
+                </style>`;
     }
 
 }

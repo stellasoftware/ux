@@ -17,8 +17,8 @@
                 
         switching = true;
         
-        while (switching) {
-
+        while (switching)
+        {
             switching = false;
             
             c = b.getElementsByTagName('li');

@@ -13,7 +13,7 @@
     
     public select(a: string, b: object) : object
     {
-        return [ 'Oslo', 'Stockholm', 'Helsinki', 'Berlin', 'Rome', 'Madrid' ];
+        return this.reference = (b) ? (b as object) : [ 'Oslo', 'Stockholm', 'Helsinki', 'Berlin', 'Rome', 'Madrid' ];
     }
     
     public update(a: string, b: object) : object

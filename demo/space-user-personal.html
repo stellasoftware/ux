@@ -1,0 +1,664 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <style>
+            
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            body
+            {
+                color: #EDEDED;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                padding: 0px;
+            }
+            .application
+            {
+                display: block;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+            }
+        </style>
+        <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script src="http://d3js.org/d3.v3.js"></script>
+        <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+    </head>
+
+    <body>
+        <!-- component.static { component.client } -->
+        <div class='component' id='client'>
+
+            <!-- component.static { component.client.background } -->
+            <div class='component' id='client-background'>
+
+                <!-- Application Space --> 
+                <div class='application' id=application-space>
+
+                <!-- Space Personal--> 
+                <div class='space' id='space-personal'>
+                    <!-- Space Content--> 
+                    <div class='space-content' id='project-management-personal'>
+
+                        <div class="space-header">
+                            <h0>
+                                Sara Belot   
+                            </h0>
+                        </div>
+
+                        <div class="space-navigation">
+                        </div>
+                        <div class="space-row"> 
+                        <div class='space-column-left'>
+                             <h2>About</h2>
+                             <h2>Portfolio</h2> 
+                             <h2>Experience</h2>
+                             <h2>Collaborators</h2>     
+                        </div>
+                        <div class='space-column-center'>
+                            <h2>Previous Roles</h2>
+                            <h2>Types of Projects</h2>    
+                        </div>
+
+                        <div class='space-column-right'>
+                            <!-- Spider Chart -->
+                            <div class=space-column-right-box> 
+                                <h2>
+                                    Previous Roles
+                                </h2>
+                                <div id="chart-container">
+                                </div>
+                                <style>
+                                    #chart-container{
+                                    display: inline-block;
+                                    text-align: center;
+                                    }
+
+                                    .radar-chart .area {
+                                    fill-opacity: 0.7;
+                                    }
+                                    .radar-chart.focus .area {
+                                    fill-opacity: 0.3;
+                                    }
+                                    .radar-chart.focus .area.focused {
+                                    fill-opacity: 0.9;
+                                    }
+                                    .area.target-graph, .target-graph .color {
+                                    fill: #01afff;
+                                    stroke: none;
+                                    }
+                                    .area.my-graph, .my-graph .color{
+                                    fill: #3a3a3a;
+                                    stroke: none;
+                                    }
+                                    .radar-chart .axis .legend{
+                                    fill:#ededed;
+                                    font-family:'Roboto', sans-serif;
+                                    font-weight: 500;
+                                    font-size:10px;
+                                    }
+                                    .radar-chart .axis .legend.left{text-anchor:middle}
+                                    .radar-chart .axis .legend.middle{text-anchor:middle}
+                                    .radar-chart .axis .legend.right{text-anchor:middle}
+                                    .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                    .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                </style>
+                                <script>
+                                    var data = [
+                                    {
+                                        className: 'my-graph',
+                                        axes: [
+                                        {axis: "Producing", value: 3}, 
+                                        {axis: "Editing", value: 2}, 
+                                        {axis: "Screenwriting", value: 10},  
+                                        {axis: "Cinematography", value: 10},  
+                                        {axis: "Directing", value: 2},
+                                        {axis: "Sound Design", value: 1 }
+                                        ]
+                                    },
+                                    {
+                                        className: 'target-graph',
+                                        axes: [
+                                        {axis: "Oroducing", value: 4}, 
+                                        {axis: "Editing", value: 6}, 
+                                        {axis: "Screenwriting", value: 8},  
+                                        {axis: "Cinematography", value: 4},  
+                                        {axis: "Directing", value: 9},
+                                        {axis: "Sound Design", value: 2}
+                                        ]
+                                    },
+                                    ];
+
+                                    var w=450, h=450;
+                                    
+                                    RadarChart.defaultConfig.color = function() {};
+                                    
+                                    var chart = RadarChart.chart();
+                                    var cfg = chart.config();
+                                    
+                                    chart.config({
+                                        w: w,
+                                        h: h,
+                                        factor: 0.7,
+                                        factorLegend:0.85,
+                                        levels:5,
+                                        circles:false,
+                                    });
+                                    
+                                    var svg = d3.select('#chart-container').append('svg')
+                                    // .attr('x',50)
+                                    // .attr('y',0)
+                                    .attr('width', w)
+                                    .attr('height', h)
+                                    
+                                    svg.append('g').classed('single', 1).datum(data).call(chart);
+                                </script>
+                            </div>
+                            <!-- Spider Chart -->
+                            <div class=space-column-right-box> 
+                                <h2>
+                                    Types of Projects
+                                </h2>
+                                <div id="chart-container-02">
+                                </div>
+
+                                <style>
+                                    #chart-container-02{
+                                    display: inline-block;
+                                    text-align: center;
+                                    }
+
+                                    .radar-chart .area {
+                                    fill-opacity: 0.7;
+                                    }
+                                    .radar-chart.focus .area {
+                                    fill-opacity: 0.3;
+                                    }
+                                    .radar-chart.focus .area.focused {
+                                    fill-opacity: 0.9;
+                                    }
+                                    .area.target-graph, .target-graph .color {
+                                    fill: #01afff;
+                                    stroke: none;
+                                    }
+                                    .area.my-graph, .my-graph .color{
+                                    fill: #3a3a3a;
+                                    stroke: none;
+                                    }
+                                    .radar-chart .axis .legend{
+                                    fill:#ededed;
+                                    font-family:'Roboto', sans-serif;
+                                    font-weight: 500;
+                                    font-size:10px;
+                                    }
+                                    .radar-chart .axis .legend.left{text-anchor:middle}
+                                    .radar-chart .axis .legend.middle{text-anchor:middle}
+                                    .radar-chart .axis .legend.right{text-anchor:middle}
+                                    .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                    .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                </style>
+                                <script>
+                                    var data = [
+                                    {
+                                        className: 'my-graph',
+                                        axes: [
+                                        {axis: "Branded Content", value: 10}, 
+                                        {axis: "Commercial", value: 7}, 
+                                        {axis: "Scripted Feature", value: 6},  
+                                        {axis: "Music Video", value: 5},  
+                                        {axis: "Music Video", value: 9},
+                                        {axis: "Scripted Short", value: 7}
+                                        ]
+                                    },
+                                    {
+                                        className: 'target-graph',
+                                        axes: [
+                                        {axis: "Branded Content", value: 4}, 
+                                        {axis: "Commercial", value: 3}, 
+                                        {axis: "Scripted Feature", value:10},  
+                                        {axis: "Music Video", value: 3},  
+                                        {axis: "Music Video", value: 1},
+                                        {axis: "Scripted Short", value: 12}
+                                        ]
+                                    },
+                                    ];
+
+                                    var w=450, h=450;
+                                    
+                                    RadarChart.defaultConfig.color = function() {};
+                                    
+                                    var chart = RadarChart.chart();
+                                    var cfg = chart.config();
+                                    
+                                    chart.config({
+                                        w: w,
+                                        h: h,
+                                        factor: 0.7,
+                                        factorLegend:0.85,
+                                        levels:5,
+                                        circles:false,
+                                    });
+                                    
+                                    var svg = d3.select('#chart-container-02').append('svg')
+                                    // .attr('x',50)
+                                    // .attr('y',0)
+                                    .attr('width', w)
+                                    .attr('height', h)
+                                    
+                                    svg.append('g').classed('single', 1).datum(data).call(chart);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-footer">
+                        <h1>
+                        </h1>
+                    </div>
+
+
+                    <style>
+                        .space
+                        {   
+                            /*background-image: url("./07.jpg"); */
+                            height: 100%;
+                            width: 100%;
+                        }
+
+
+                        .space-content
+                        {   
+                            height: 100%;
+                            width: 100%;
+                            padding: 30px;
+                            box-sizing: border-box;
+                            overflow:scroll;
+                        }
+
+                        .space-header 
+                        {
+                            background:transparent;
+                            padding: 5px;
+                            text-align: left;
+                        }
+
+                        .space-footer 
+                        {
+                            padding: 20px;
+                            text-align: center;
+                            background: transparent;
+                            margin-top: 20px;
+                        }
+
+                        .space-navigation 
+                        {
+                            overflow: hidden;
+                            background-color: transparent;
+                        }
+
+                        .space-navigation a 
+                        {
+                            float: left;
+                            display: block;
+                            color: #f2f2f2;
+                            text-align: center;
+                            padding: 5px;
+                            text-decoration: none;
+                        }
+
+                        .space-navigation a:hover 
+                        {
+                            background-color: #ddd;
+                            color: black;
+                        }
+
+                        .space-column
+                        {
+                            padding: 0 6px;
+                            float: left;
+                            width: 20%;
+                        }
+                        .space-column-left
+                        {
+                            padding: 0 20px;
+                            float: left;
+                            width: 10%;
+                            text-align: right;
+                            border-right: .1px solid #FFFFFF;
+                        }
+
+                        .space-column-left h2{
+                        opacity: .5;
+
+                        }
+                        .space-column-left h2:hover
+                        {
+                        opacity: 1;
+                        }
+                        
+
+                        .space-column-center
+                        {
+                            padding: 0 0 0 20px;
+                            float: left;
+                            width: 10%;
+                        }
+                        .space-column-center h2{
+                        opacity: .5;
+
+                        }
+                        .space-column-center h2:hover
+                        {
+                        opacity: 1;
+                        }
+
+                        .space-column-right
+                        {
+                            padding: 0 0 0 20px;
+                            float: left;
+                            width: 60%;
+                            text-align: center;
+
+                        }
+                        .space-column-right-box
+                        {
+                            border-bottom: 1px solid rgb(53, 53, 53);
+                        }
+
+                        
+                    
+                        .space-card 
+                        {
+                            padding: 20px;
+                        }
+                        
+                        .space-row:after 
+                            {
+                                content: "";
+                                display: table;
+                                clear: both;
+                            }
+                        
+                        </style>
+
+                    <!-- Space INSPECTOR --> 
+                    <div class='inspector' id='inspector-personal'>
+                        <div class='center'>
+                            <button class='button tooltip'id='button-search'>
+                                <i class="fas fa-search"></i>
+                                <span class="tooltiptext">Search</span>
+                            </button>
+                            <button class='button tooltip'id='button-add'onclick="open_create_options()">
+                                <i class="fas fa-plus"></i>
+                                <span class="tooltiptext">Create</span>
+                            </button>
+                            <button class='button tooltip' id='button-change-view'>
+                                <i class="fas fa-eye"></i>
+                                <span class="tooltiptext">Change view</span>
+                            </button>                        
+                            <button class='button tooltip' id='button-more'>
+                                <i class="fas fa-ellipsis-h"></i>
+                                <span class="tooltiptext">More</span>
+                            </button>
+                        </div>
+                        <style>
+                            .inspector
+                                {
+                                    width: 32px;
+                                    padding: 20px 10px;
+                                    position: absolute;
+                                    top: 0px;
+                                    right: 0px;
+                                }
+
+                            .center
+                                {
+                                    margin: 0px auto;
+                                    width: 32px;
+                                    height: auto;
+                                }
+
+                            .button
+                                {
+                                background-color: black;
+                                opacity: .6;
+                                border: 0;
+                                border-radius: 50%;
+                                color: white;
+                                float: right;
+                                text-align: center;
+                                text-decoration: none;
+                                display: block;
+                                font-size: 15px;
+                                margin: 0px 0px 8px 0px;
+                                cursor: pointer;
+                                width: 30px;
+                                height: 30px;
+                                padding: 0px;
+                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                }
+                            .button:hover
+                                {
+                                background-color: #ffffff;
+                                opacity: 1;
+                                color: black;
+                                transform: scale(1.2);
+                                -webkit-transition-duration: 0.1s; /* Safari */
+                                transition-duration: 0.1s;
+                                }
+
+                            .button-text 
+                                {
+                                background-color: black;
+                                opacity: .6;
+                                border: 0;
+                                border-radius: 50%;
+                                color: white;
+                                text-align: center;
+                                display: block;
+                                font-size: 12px;
+                                margin: 0px 0px 0px 0px;
+                                cursor: pointer;
+                                width: 30px;
+                                height: 30px;
+                                padding: 0px;
+                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                }
+                            .button-text:hover
+                                {
+                                background-color: #ffffff;
+                                opacity: 1;
+                                color: black;
+                                font-weight: 600;
+                                transform: scale(1.2);
+                                text-decoration: none;
+
+                                -webkit-transition-duration: 0.1s; /* Safari */
+                                transition-duration: 0.1s;
+                                }
+
+                            .tooltip 
+                                {
+                                position: relative;
+                                display: inline-block;
+                                border-bottom: 1px dotted black;
+                                }
+                            .tooltip .tooltiptext 
+                                {
+                                visibility: hidden;
+                                width: auto;
+                                background-color:black;
+                                color:white;
+                                opacity: .3;
+                                text-align: center;
+                                border-radius: 3px;
+                                padding: 4px 4px;
+                                position: absolute;
+                                z-index: 1;
+                                top: -5px;
+                                right: 110%;
+                                font-size: 10px;
+                                text-transform: uppercase;
+                                }
+                            .tooltip .tooltiptext::after 
+                                {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                left: 100%;
+                                margin-top: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: transparent transparent transparent black;
+                                }
+                            .tooltip:hover .tooltiptext 
+                                {
+                                visibility: visible;
+                                }
+                        </style>
+                    </div>
+                </div>
+
+                </div>
+                <style>
+                    div#space-personal-content-default
+                    {
+                        display: block;
+                        padding: 0px 0px 0px 0px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                    div#space-personal-content-create-options
+                    {
+                        display: none;
+                        padding: 0px 0px 0px 0px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                </style>
+
+                <script>
+                </script>
+            </div>
+
+            <!-- component.static { component.client.foreground } -->
+            <div class='component' id='client-foreground'>
+                <!-- COMPASS SHORTCUT -->
+            </div>
+
+            <!-- component.static { component.client.navigation } -->
+            <div class='component' id='client-navigation'>
+                <!-- NAVIGATION FOOTER -->                   
+                <div id='client-navigation-footer'>
+                    <!-- COMPASS-->
+                    <div class='client-navigation-float-left'>
+                        <button class='button' id='button-compass'>
+                            <i class="far fa-compass"></i>
+                        </button>
+                    </div>
+                    <!--<h2>
+                            My Stella
+                    </h2>-->
+                    <!-- USER PERSONAL-->
+                    <div class='client-navigation-float-right'>
+                        <a href="space-user-personal.html">
+                            <button class='button-text' id='user-identity-personal'>
+                                SB
+                            </button>
+                        </a>
+                    </div>
+                    <style>        
+                        div#client-navigation-footer
+                        {
+                            background: transparent;                 
+                            bottom: 0px;
+                            display: block;
+                            height: 52px;
+                            overflow: visible;
+                            position: fixed;
+                            width: 100%;
+                            z-index: 10;
+
+                        }
+                        div.client-navigation-float-right a 
+                        {
+                            text-decoration: none;
+                        }
+                    </style>
+                </div>
+
+                <!-- NAVIGATION HEADER -->
+                <div id='client-navigation-header'>
+                    <div></div>
+                    <style> 
+                        div#client-navigation-header
+                        {
+                            background: transparent;                
+                            display: block;                  
+                            height: 32px;
+                            overflow: visible;
+                            position: fixed;
+                            top: 0px;
+                            width: 100%;
+                            z-index: 10;
+                        }
+                    </style>
+                </div>
+
+                <style>
+                    div.client-navigation-float-left
+                    {
+                        display: block;
+                        float: left;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                    div.client-navigation-float-right
+                    {
+                        display: block;
+                        float: right;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                </style>
+            </div>
+
+            <style>
+                /* CLIENT */
+                div#client
+                    {
+                        background: #1D1D1D;
+                        height: 100%;
+                        position: fixed;
+                        width: 100%;
+                        z-index: 10;
+                    }
+                h0
+                    {
+
+                        font-weight: 100;
+                        font-size: 50px;
+                        padding: 0px;
+                    }
+                h1
+                    {
+
+                        font-weight: 200;
+                        font-size: 20px;
+                        padding: 0px;
+                        text-align: left;
+                    }
+                h2
+                    {
+                        text-transform: uppercase;
+                        font-weight: 700;
+                        font-size: 12px;
+                    }
+            </style>
+        </div>
+    </body>
+</html>

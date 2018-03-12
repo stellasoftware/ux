@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+body
+{
+	color: #EDEDED;
+
+	font-family: 'Roboto', sans-serif;
+
+	font-weight: 300;
+
+	margin: 0px;
+
+	padding: 0px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- component.static { component.client } -->
+
+<div class='component' id='client'>
+
+<!-- component.static { component.client.background } -->
+
+<div class='component' id='client-background'>
+
+<!-- component.static { component.user.authentication } -->
+
+<div class='component' id='user-authentication'>
+
+	<div id='user-authentication-form'>
+
+		<div id='user-authentication-form-brand'>
+
+		</div>
+
+		<!-- component.form { user.authentication.form.input } -->
+
+		<div class='component-form' id='user-authentication-form-input'>
+
+		<div id='user-authentication-form-input-instruction'>
+
+		<p></p>
+
+		</div>
+
+		<div class='component-form-input-text' id='user-authentication-form-input-text'>
+
+
+			
+			<img src="image/logo_stella_small.png" >
+
+            <div class='component-form-input-text-wrap'>
+
+            <span>USERNAME</span>
+                        
+            <input autocapitalize='off' autocorrect='off' title='Stella ID' type='text'>
+                        
+            </div>
+
+            <div class='component-form-input-text-wrap'>
+
+            <span>PASSWORD</span>
+                                
+            <input autocapitalize='off' autocorrect='off' title='Stella ID' type='password'>
+                                
+            </div>
+
+
+        
+        </div>
+
+		<div class='component-form-input-button' id='user-authentication-form-input-button'>
+			<a href="space-personal.html">
+					<button>
+						<span>ENTER</span>
+					</button>
+			</a>
+		</div>
+
+		</div>
+
+		<div id='user-authentication-form-legal'>
+
+		</div>
+
+	</div>
+
+	<style>
+
+	div#user-authentication
+	{
+		color: #EDEDED;
+
+		display: block;
+
+		margin: 140px 40px 40px 40px;
+
+		position: relative;
+	}
+
+	div#user-authentication-form
+	{		
+		display: block;
+
+		margin: 0px auto;
+
+		width: 240px;
+	}
+
+	div#user-authentication-form-input-instruction p
+	{		
+		font-size: 20px;
+
+		width: 100%;
+	}
+
+	.component-form
+	{
+		display: block;
+
+		position: relative;
+	}
+
+	.component-form-input-text
+	{
+		display: block;
+
+        margin: 0px 0px 10px 0px;
+		
+		position: relative;
+		
+		width: 100%;
+	}
+
+	.component-form-input-text input
+	{
+		background-color: transparent;
+
+		border: none;
+
+		border-bottom: solid 1px #EDEDED;
+
+		color: #EDEDED;
+		
+		font-size: 16px;
+
+		height: 32px;
+
+		line-height: 24px;
+
+		outline: none;
+
+		width: 100%;
+	}
+
+	.component-form-input-text input:focus
+	{
+		border-bottom: solid 1px #98E5F3;
+	}
+
+	.component-form-input-text-wrap
+	{
+		display: block;
+
+		position: relative;
+
+        margin: 0px 0px 10px 0px
+	}
+
+	.component-form-input-text-wrap span
+	{
+		font-size: 12px;
+
+		font-weight: 400;
+
+		margin-bottom: 5px;
+
+        text-transform: uppercase;
+	}
+
+    ::-webkit-credentials-auto-fill-button, ::-webkit-contacts-auto-fill-button
+    {
+        background-color: #98E5F3;
+        
+        color: #98E5F3;
+    }
+
+	.component-form-input-button
+	{	
+		cursor: default;
+
+		margin: 20px 0px 10px 0px;
+
+        overflow: hidden;
+		
+		position: relative;
+
+		width: 100%;
+	}
+
+
+	.component-form-input-button a 
+	{
+		text-decoration: none;
+	}
+
+	.component-form-input-button button
+	{
+		background: #EDEDED;
+
+		border: solid 1px #EDEDED;
+
+		color: #222222;
+		
+		display: block;
+
+		font-size: 14px;
+
+		font-weight: 700;
+
+		height: 35px;
+
+		outline: none;
+
+		padding: 0px 20px 0px 20px;
+
+        transition: background-color 0.3s;
+
+		width: 100%;
+	}
+
+    .component-form-input-button button > *
+    {
+        position: relative;
+    }
+
+    .component-form-input-button button:before
+    {
+        content: "";
+  
+        position: absolute;
+
+        top: 50%;
+
+        left: 50%;
+        
+        display: block;
+
+        width: 0;
+
+        padding-top: 0;
+            
+        border-radius: 100%;
+        
+        background-color: #98E5F3;
+                
+        transform: translate(-50%, -50%);
+
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .component-form-input-button button:active:before
+    {
+        width: 120%;
+
+        padding-top: 120%;
+  
+        transition: width 0.25s ease-out, padding-top 0.25s ease-out;
+    }
+
+	div#user-authentication-form-legal
+	{		
+		color: #8D8D8D;
+		
+		display: block;
+
+		line-height: 19px;
+		
+		font-size: 11px;
+
+		margin-top: 20px;
+
+		position: relative;
+
+		width: 100%;
+	}
+
+	</style>
+
+</div>
+
+<style>
+
+div#client-background
+{
+	bottom: 32px;
+
+	height: 100%;
+
+	pointer-events: all;
+
+	position: fixed;
+
+	top: 32px;
+
+	width: 100%;
+}
+
+</style>
+
+</div>
+
+<!-- component.static { component.client.foreground } -->
+
+<div class='component' id='client-foreground'>
+
+
+<style>
+
+div#client-foreground
+{
+	display: none;
+
+	flex-direction: column;
+
+	height: 100%;
+
+	pointer-events: auto;
+
+	position: fixed;
+
+	width: 100%;
+}
+
+</style>
+
+</div>
+
+<!-- component.static { component.client.navigation } -->
+
+<div class='component' id='client-navigation'>
+
+</div>
+
+<style>
+
+div#client
+{
+	background: #1D1D1D;
+
+	height: 100%;
+
+	position: fixed;
+
+	width: 100%;
+
+	z-index: 10;
+}
+
+</style>
+
+</div>
+
+</body>
+
+</html>

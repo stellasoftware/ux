@@ -1,0 +1,745 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <style>
+            
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            body
+            {
+                color: #EDEDED;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                padding: 0px;
+            }
+            .application
+            {
+                display: block;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+            }
+        </style>
+        <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+    </head>
+
+    <body>
+        <!-- component.static { component.client } -->
+        <div class='component' id='client'>
+            <!-- component.static { component.client.background } -->
+            <div class='component' id='client-background'>
+                
+                <!-- SPACE PERSONAL --> 
+                <div class='application' id=space-personal>
+                    <!-- SPACE CONTENT --> 
+                    <div class='space-content' id='space-personal-content'>
+
+                        <!-- SPACE CONTENT DEFAULT -->
+                        <div class='space-content'id='space-personal-content-default'>
+                            <div class='space-content-wrap' id='space-personal-content-default-wrap'>
+                                <div class='space-content-wrap-box' id='space-personal-content-default-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-default-wrap-box-content'>
+                                            <h1>Projects Here Here and Here</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <!-- SPACE CONTENT CREATE OPTIONS -->
+                        <div class='space-content' id='space-personal-content-create-options'>
+                            <div class='space-content-wrap' id='space-personal-content-create-options-wrap'>
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-options-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-create-options-wrap-box-content' onclick="open_create_form()">
+                                        <h1>Project</h1>
+                                    </div>
+                                </div>
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-options-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-create-options-wrap-box-content'>
+                                        <h1>Space</h1>
+                                    </div>
+                                </div>
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-options-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-create-options-wrap-box-content'>
+                                        <h1>Organization</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> 
+
+
+                        <!-- SPACE CONTENT CREATE PROJECT FORM -->
+                        <div class='space-content' id='space-personal-content-create-project-form'>
+                            <div class='space-content-wrap' id='space-personal-content-create-project-form-wrap'>
+
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-project-form-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-create-project-form-wrap-box-content'>
+                                        <h1></h1>
+                                    </div>
+                                </div>
+
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-project-form-wrap-box'>
+                                    <div class='space-personal-content-wrap-box-content'id='space-personal-content-create-project-form-wrap-box-content'>
+                                        <div class='component-form-input-text' id='space-personal-content-wrap-box-content-form-input-text'>
+                                            
+                                            <div class='component-form-input-text-wrap'>
+                                                <span>Title</span>
+                                                <input autocapitalize='off' autocomplete='given-name' autocorrect='off' title='Title' type='text' placeholder= 'My new project'>
+                                            </div>
+        
+                                            <button class='astext' id='add_details' onclick='add_details()'>Add details</button>
+                                            
+                                            <div id='space-personal-content-wrap-box-content-form-input-text-add-details'> 
+                                                <div class='component-form-input-text-wrap'>
+                                                    <span>Short Description</span>
+                                                    <input autocapitalize='off' autocomplete='given-name' autocorrect='off' title='Short Description' type='text' placeholder= 'This is optional.'>
+                                                </div>
+                                                
+                                                <div class='component-form-input-text-wrap'>
+                                                    <span>TYPE</span>      
+                                                    <div class='select-style'>
+                                                        <select id="project-type" name="project-type">
+                                                            <option value="feature">Feature</option>
+                                                            <option value="short">Short</option>
+                                                            <option value="music-video">Music Video</option>
+                                                            <option value="commercial">Commercial</option>
+                                                            <option value="photography">Photography</option>
+                                                            <option value="live-event">Live Event</option>
+                                                            <option value="others">Others</option>		
+                                                        </select>          
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class='component-form-input-text-wrap'>
+                                                    <span>Stage</span>
+                                                    <div class='select-style'>
+                                                        <select id="project-stage" name="project-stage">
+                                                            <option value="development">Development</option>
+                                                            <option value="pre-production">Pre-production</option>
+                                                            <option value="production">Production</option>
+                                                            <option value="post-production">Post-production</option>
+                                                            <option value="distribution">Distribution</option>
+                                                            <option value="NA">N/A</option>		
+                                                        </select>          
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='component-form-input-text-wrap'>
+                                                <span>TEAM</span>	
+                                                <input autocapitalize='off' autocomplete='email' autocorrect='off' title='TEAM' type='text' placeholder= 'Send invites to'>
+                                            </div>
+        
+                                            <div class='component-form-input-button' id='space-personal-content-wrap-box-content-form-input-button'>
+                                                <a href="space-project.html">
+                                                    <button>
+                                                        <span>Create Project</span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <style>
+                                                div.component-form-input-button a 
+                                                    {
+                                                        text-decoration: none;
+                                                    }
+                                            </style>
+
+                                            <button class='astext' id='cancel' onclick="cancel_create_form()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class='space-content-wrap-box-third' id='space-personal-content-create-project-form-wrap-box'>
+                                    <div class='space-content-wrap-box-content' id='space-personal-content-create-project-form-wrap-box-content'>
+                                        <h1></h1>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <style>
+                            div#space-personal-content-create-project-form
+                            {
+                                display: none ;
+                                padding: 0px 0px 0px 0px;
+                                height: 100%;
+                                width: 100%;
+                            }
+                            div#space-personal-content-wrap-box-content-form-input-text-add-details
+                            {
+                                display: none ;
+                                padding: 0px 0px 0px 0px;
+                                height: 100%;
+                                width: 100%;
+                            }
+                        </style>
+
+
+
+                    <!-- SPACE INSPECTOR --> 
+                    <div class='inspector' id='inspector-personal'>
+                        <div class='center'>
+                            <button class='button tooltip'id='button-search'>
+                                <i class="fas fa-search"></i>
+                                <span class="tooltiptext">Search</span>
+                            </button>
+                            <button class='button tooltip'id='button-add'onclick="open_create_options()">
+                                <i class="fas fa-plus"></i>
+                                <span class="tooltiptext">Create</span>
+                            </button>
+                            <button class='button tooltip' id='button-change-view'>
+                                <i class="fas fa-eye"></i>
+                                <span class="tooltiptext">Change view</span>
+                            </button>                        
+                            <button class='button tooltip' id='button-more'>
+                                <i class="fas fa-ellipsis-h"></i>
+                                <span class="tooltiptext">More</span>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <style>
+                    div#space-personal-content-default
+                    {
+                        display: block;
+                        padding: 0px 0px 0px 0px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                    div#space-personal-content-create-options
+                    {
+                        display: none;
+                        padding: 0px 0px 0px 0px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                </style>
+
+                <script>
+                    function open_create_options() {
+                            var x = document.getElementById('space-personal-content-default');
+                                if (x.style.display === "none") {
+                                    x.style.display = "block";
+                                } else {
+                                    x.style.display = "none";
+                                }
+                            var x = document.getElementById('space-personal-content-create-options');
+                            if (x.style.display === "block") {
+                                x.style.display = "none";
+                                return;
+                            }
+                            x.style.display = "block";
+                        }
+                    function open_create_form() {
+                        var x = document.getElementById('space-personal-content-create-options');
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        var x = document.getElementById('space-personal-content-create-project-form');
+                        if (x.style.display === "block") {
+                            x.style.display = "none";
+                            return;
+                        }
+                        x.style.display = "block";
+                    }
+                    function cancel_create_form() {
+                        var x = document.getElementById('space-personal-content-create-project-form');
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        var x = document.getElementById('space-personal-content-default');
+                        if (x.style.display === "block") {
+                            x.style.display = "none";
+                            return;
+                        }
+                        x.style.display = "block";
+                    }
+
+                    function add_details() {
+                        var x = document.getElementById('space-personal-content-wrap-box-content-form-input-text-add-details');
+                        if (x.style.display === "block") {
+                            x.style.display = "none";
+                            return;
+                        }
+                        x.style.display = "block";
+                    }
+                </script>
+            </div>
+
+            <!-- component.static { component.client.foreground } -->
+            <div class='component' id='client-foreground'>
+                <!-- COMPASS SHORTCUT -->
+            </div>
+
+            <!-- component.static { component.client.navigation } -->
+            <div class='component' id='client-navigation'>
+
+                <!-- NAVIGATION FOOTER -->                   
+                <div id='client-navigation-footer'>
+                    <!-- COMPASS-->
+                    <div class='client-navigation-float-left'>
+                        <button class='button' id='button-compass'>
+                            <i class="far fa-compass"></i>
+                        </button>
+                    </div>
+                    <!-- USER PERSONAL-->
+                    <div class='client-navigation-float-right'>
+                        <a href="user-identity-personal.html">
+                            <button class='button-text' id='user-identity-personal'>
+                                NB
+                            </button>
+                        </a>
+
+                    </div>
+
+                    <style>        
+                        div#client-navigation-footer
+                        {
+                            background: transparent;                 
+                            bottom: 0px;
+                            display: block;
+                            height: 52px;
+                            overflow: visible;
+                            position: fixed;
+                            width: 100%;
+                            z-index: 10;
+
+                        }
+                        div.client-navigation-float-right a 
+                        {
+                            text-decoration: none;
+                        }
+                        
+                    </style>
+                </div>
+
+                <!-- NAVIGATION HEADER -->
+                <div id='client-navigation-header'>
+                    <div></div>
+                    <style> 
+                        div#client-navigation-header
+                        {
+                            background: transparent;                
+                            display: block;                  
+                            height: 32px;
+                            overflow: visible;
+                            position: fixed;
+                            top: 0px;
+                            width: 100%;
+                            z-index: 10;
+                        }
+                    </style>
+                </div>
+
+                <style>
+                    div.client-navigation-float-left
+                    {
+                        display: block;
+                        float: left;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                    div.client-navigation-float-right
+                    {
+                        display: block;
+                        float: right;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                </style>
+            </div>
+
+            <style>
+                /* CLIENT */
+                div#client
+                    {
+                        background: #1D1D1D;
+                        height: 100%;
+                        position: fixed;
+                        width: 100%;
+                        z-index: 10;
+                    }
+                /* SPACE CONTENT */
+                    .space-content
+                    {   
+                        /*background-image: url("./07.jpg"); */
+
+                        padding: 0px 0px 0px 0px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                    .space-content-wrap
+                    {
+                        height: auto;
+                        width: 100%;
+                        vertical-align: middle;
+                    }
+                    .space-content-wrap-box
+                    {
+                        background-color: transparent;
+                        border-right: .1px solid #FFFFFF;
+                        height: 100%;
+                        display: block;
+                        width: 33%;
+                        float: left;
+                        height: 400px;
+                        margin: 10% 1.5px;
+                    }
+                    .space-content-wrap-box-third
+                    {
+                        background-color: transparent;
+                        /*border-right: .1px solid #FFFFFF;*/
+
+                        display: block;
+                        width: 33%;
+                        float: left;
+                        height: 400px;
+                        margin: 10% 1.5px;
+                    }
+                    div.space-content-wrap-box:last-child
+                    {
+                        border: none;
+                    }
+                    
+                    .space-content-wrap-box-content
+                    {
+                        height: 100%;
+                        display: flex;
+                        justify-content: center; /* align horizontal */
+                        align-items: center; /* align vertical */
+
+                    }
+
+                    .space-content-personal-wrap-box-form
+                        {
+                            background-color: transparent;
+                            border-right: none;
+                            height: 100%;
+                            display: block;
+                            width: 33%;
+                            float: left;
+                            height: 400px;
+                            margin: 10% 1.5px;
+                            text-align: left;
+                            font-weight: 500;
+                            font-size: 12px;
+                        }
+
+
+                    div.space-content-wrap-box-content
+                    {
+                        height: 100%;
+                        display: flex;
+                        justify-content: center; /* align horizontal */
+                        align-items: center; /* align vertical */
+
+                    }
+
+
+
+                /* INSPECTOR */
+                    .inspector
+                    {
+                        width: 32px;
+                        padding: 20px 10px;
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                    }
+
+                    .center
+                    {
+                        margin: 0px auto;
+                        width: 32px;
+                        height: auto;
+                    }
+
+                    .button
+                    {
+                        background-color: black;
+                        opacity: .6;
+                        border: 0;
+                        border-radius: 50%;
+                        color: white;
+                        float: right;
+                        text-align: center;
+                        text-decoration: none;
+                        display: block;
+                        font-size: 15px;
+                        margin: 0px 0px 8px 0px;
+                        cursor: pointer;
+                        width: 30px;
+                        height: 30px;
+                        padding: 0px;
+                        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                        }
+                    .button:hover
+                    {
+                        background-color: #ffffff;
+                        opacity: 1;
+                        color: black;
+                        transform: scale(1.2);
+                        -webkit-transition-duration: 0.1s; /* Safari */
+                        transition-duration: 0.1s;
+                    }
+
+                    .button-text {
+                        background-color: black;
+                        opacity: .6;
+                        border: 0;
+                        border-radius: 50%;
+                        color: white;
+                        text-align: center;
+                        display: block;
+                        font-size: 12px;
+                        margin: 0px 0px 0px 0px;
+                        cursor: pointer;
+                        width: 30px;
+                        height: 30px;
+                        padding: 0px;
+                        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+
+                    }
+                    .button-text:hover{
+                        background-color: #ffffff;
+                        opacity: 1;
+                        color: black;
+                        font-weight: 600;
+                        transform: scale(1.2);
+                        text-decoration: none;
+
+                        -webkit-transition-duration: 0.1s; /* Safari */
+                        transition-duration: 0.1s;
+                    }
+
+                    .tooltip {
+                        position: relative;
+                        display: inline-block;
+                        border-bottom: 1px dotted black;
+                    }
+                    .tooltip .tooltiptext {
+                        visibility: hidden;
+                        width: auto;
+                        background-color:black;
+                        color:white;
+                        opacity: .3;
+                        text-align: center;
+                        border-radius: 3px;
+                        padding: 4px 4px;
+                        position: absolute;
+                        z-index: 1;
+                        top: -5px;
+                        right: 110%;
+                        font-size: 10px;
+                        text-transform: uppercase;
+                    }
+                    .tooltip .tooltiptext::after {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        left: 100%;
+                        margin-top: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent transparent transparent black;
+                    }
+                    .tooltip:hover .tooltiptext {
+                        visibility: visible;
+                    }
+
+                    h1
+                    {
+                        text-transform: uppercase;
+                        font-weight: 500;
+                        font-size: 12px;
+                        text-align: center;
+                    }
+
+                    /* SPACE CONTENT WRAP BOX FORM */
+                    .space-content-wrap-box-form
+                    {
+                        background-color: transparent;
+                        border-right: none;
+                        height: 100%;
+                        display: block;
+                        width: 33%;
+                        float: left;
+                        height: 400px;
+                        margin: 10% 1.5px;
+                        text-align: left;
+                        font-weight: 500;
+                        font-size: 12px;
+                    }
+
+                    
+                    .component-form
+                        {
+                            display: block;
+                            position: relative;
+                        }
+
+                    .component-form-input-text
+                    {
+                        display: block;
+                        margin: 0px 0px 10px 0px;
+                        position: relative;
+                        width: 100%;
+                    }
+
+                    .component-form-input-text input
+                    {
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: solid 1px #EDEDED;
+                        color: #EDEDED;
+                        font-size: 14px;
+
+                        height: 32px;
+                        line-height: 24px;
+                        outline: none;
+                        width: 100%;
+                    }
+
+                    .component-form-input-text input:focus
+                    {
+                        border-bottom: solid 1px #98E5F3;
+                    }
+
+                    .component-form-input-text-wrap
+                    {
+                        display: block;
+                        position: relative;
+                        margin: 0px 0px 10px 0px
+                    }
+
+                    .component-form-input-text-wrap span
+                    {
+                        font-size: 12px;
+                        font-weight: 500;
+                        margin-bottom: 10px;
+                        text-transform: uppercase;
+                    }
+
+                    .component-form-input-text-title
+                    {
+                        display: block;
+                        margin: 0px 0px 10px 0px;
+                        position: relative;
+                        width: auto;
+                        padding: 10px;
+
+                    }
+
+                    .component-form-input-text-title input
+                    {
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: solid 1px #EDEDED;
+                        color: #EDEDED;
+                        font-size: 15px;
+
+
+                        height: 32px;
+                        line-height: 24px;
+                        outline: none;
+                        width: auto;
+                    }
+
+                    ::-webkit-credentials-auto-fill-button, ::-webkit-contacts-auto-fill-button
+                    {
+                        background-color: #98E5F3;
+                    
+                        color: #98E5F3;
+                    }
+
+                    .component-form-input-button
+                    {	
+                        cursor: default;
+                        margin: 20px 0px 10px 0px;
+                        overflow: hidden;
+                        position: relative;
+                        width: 100%;
+                    }
+
+                    .component-form-input-button button
+                    {
+                        background: #EDEDED;
+                        border: solid 1px #EDEDED;
+                        color: #222222;
+                        display: block;
+                        font-size: 12px;
+                        font-weight: 700;
+                        height: 35px;
+                        outline: none;
+                        padding: 0px 10px 0px 10px;
+                        transition: background-color 0.3s;
+                        width: 100%;
+                    }
+
+                    .component-form-input-button button > *
+                    {
+                        position: relative;
+                    }
+
+                    .component-form-input-button button:before
+                    {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;     
+                        display: block;
+                        width: 0;
+                        padding-top: 0;       
+                        border-radius: 100%;
+                        background-color: #98E5F3;     
+                        transform: translate(-50%, -50%);
+                        -webkit-transform: translate(-50%, -50%);
+                    }
+
+                    .component-form-input-button button:active:before
+                    {
+                        width: 120%;
+                        padding-top: 120%;
+                        transition: width 0.25s ease-out, padding-top 0.25s ease-out;
+                    }
+                    .astext{
+                        background:none;
+                        border:none;
+                        margin:10px 0 10px 0;
+                        padding:0;
+                        color: #EDEDED;
+                        text-decoration: underline; 
+                    }
+                    ::-webkit-input-placeholder {
+                        font-style: italic;
+                        opacity: .5;
+                        
+                    }
+                    :-moz-placeholder {
+                        font-style: italic;  
+                        opacity: .5;
+                    }
+
+                    :-ms-input-placeholder {  
+                        font-style: italic; 
+                        opacity: .5;
+                    }
+
+                
+            </style>
+        </div>
+    </body>
+</html>

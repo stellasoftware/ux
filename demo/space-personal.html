@@ -3,7 +3,6 @@
 <html>
     <head>
         <style>
-            
             @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
             body
             {
@@ -12,6 +11,7 @@
                 font-weight: 300;
                 margin: 0px;
                 padding: 0px;
+                
             }
             .application
             {
@@ -23,7 +23,6 @@
             }
             h1
             {
-
                 font-weight: 300;
                 font-size: 17px;
                 padding: 0px;
@@ -33,6 +32,15 @@
                 text-transform: uppercase;
                 font-weight: 400;
                 font-size: 11px;
+            }
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
             }
         </style>
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
@@ -205,8 +213,18 @@
                                     </h2> 
                                 </div>
                             </div>
-                            <!--<div class="clearfix">
+                            <!--<div class='space-column'>
+                                <div class='gallery'>
+                                    <div class="image-placeholder"width="600" height="400">
+                                        Image</div>
+                                    <h1>Netflix: Code 97</h1>
+                                    <h2>
+                                            Developmemt I TV Series
+                                    </h2> 
+                                </div>
                             </div>-->
+                            <div class="clearfix">
+                            </div>
 
                         </div>
                         
@@ -231,7 +249,7 @@
                                 width: 100%;
                                 padding: 30px;
                                 box-sizing: border-box;
-                                overflow:scroll;
+                                overflow: auto;
                             }
 
                             .space-header 
@@ -288,13 +306,13 @@
                                 text-decoration: none;
                             }
 
-                            div.gallery 
+                            .gallery 
                             {
                                 padding: 10px;
                                 margin: 0;
                             }
 
-                            div.gallery:hover 
+                            .gallery:hover 
                             {
                                 box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
                                 background: white;
@@ -304,30 +322,31 @@
 
                             }
 
-                            div.gallery img 
+                            .gallery img 
                             {
                                 width: 100%;
                                 height: auto;
                             }
+
                             .clearfix:after {
                                 content: "";
                                 display: table;
                                 clear: both;
                             }
 
-                            
-
-                            .space-card 
-                            {
-                                padding: 20px;
+                            .image-placeholder {
+                                background-color: #aaa;
+                                width: 100%;
+                                height: auto;
                             }
+
                             
-                            /*.space-row:after 
+                            .space-row:after 
                                 {
                                     content: "";
                                     display: table;
                                     clear: both;
-                                }*/
+                                }
                             @media only screen and (max-width: 700px) {
                                 .space-column {
                                     width: 49.99999%;
@@ -494,24 +513,27 @@
             <div class='component' id='client-navigation'>
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
-                    <!-- COMPASS-->
-                    <div class='client-navigation-float-left'>
-                        <button class='button' id='button-compass'>
-                            <i class="far fa-compass"></i>
-                        </button>
-                    </div>
-                    <!--<h2>
-                            My Stella
-                    </h2>-->
-                    <!-- USER PERSONAL-->
-                    <div class='client-navigation-float-right'>
-                        <a href="space-user-personal.html">
-                            <button class='button-text' id='user-identity-personal'>
-                                SB
+                    <div class='center'>
+                        <div class='client-navigation-float-left'>
+                            <button class='button' id='button-compass'>
+                                <i class="far fa-compass"></i>
                             </button>
-                        </a>
+                        </div>
+                        <div class='client-navigation-float-left' id='text-compass'>
+                            <h2>My Stella 
+                                <i class="fas fa-angle-right"></i>
+                                All Projects
+                            </h2>
+                        </div>
+                        <div class='client-navigation-float-right'>
+                            <a href="space-user-personal.html">
+                                <button class='button-text' id='user-identity-personal'>
+                                    SB
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                    <style>        
+                    <style>
                         div#client-navigation-footer
                         {
                             background: transparent;                 
@@ -528,7 +550,21 @@
                         {
                             text-decoration: none;
                         }
+                        div#text-compass h2
+                        {
+                            box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                            background: rgb(2, 2, 2);
+                            opacity: .8;
+
+                        }
+                        .center
+                        {
+                            margin: 0px auto;
+                            height: 32px;
+                            width: auto;
+                        }
                     </style>
+
                 </div>
 
                 <!-- NAVIGATION HEADER -->
@@ -571,14 +607,7 @@
 
             <style>
                 /* CLIENT */
-                div#client
-                    {
-                        background: #1D1D1D;
-                        height: 100%;
-                        position: fixed;
-                        width: 100%;
-                        z-index: 10;
-                    }
+
             </style>
         </div>
     </body>

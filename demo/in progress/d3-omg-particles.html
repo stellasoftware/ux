@@ -1,0 +1,539 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            body
+            {
+                color: #EDEDED;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                padding: 0px;
+                
+            }
+            .application
+            {
+                display: block;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+            }
+            h1
+            {
+                font-weight: 300;
+                font-size: 17px;
+                padding: 0px;
+            }
+            h2
+            {
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 11px;
+            }
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
+            }
+        </style>
+        <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+
+    <body>
+        <!-- component.static { component.client } -->
+        <div class='component' id='client'>
+
+            <!-- component.static { component.client.background } -->
+            <div class='component' id='client-background'>
+
+                <!-- component.static { component.space} -->
+                <div class='component' id=space>
+
+                    <!-- Space Personal--> 
+                    <div class='space' id='space-personal'>
+                        <!-- Space Content--> 
+                        <div class='space-content' id='project-management-personal'>
+
+                            <div class="space-header">
+                                <h1></h1>
+                            </div>
+
+                            <div class="space-navigation">
+                                <a href="#">
+                                    <h2>sort by</h2>
+                                </a>
+                                <a href="#">
+                                    <h2>filter by</h2>
+                                </a>
+                            </div>
+                            <!--OMG Particles--> 
+                            <div id="omg-particle">
+
+                            </div>
+                            <div class='space-column'> 
+                                <div class='gallery'>
+                                    <a href="space-project-01.html">
+                                        <img src="image/project-01.jpg" width="600" height="400">
+                                    </a>    
+                                    <h1>Glossier: Summer 2018</h1>
+                                    <h2>
+                                        Development I Branded Content
+                                    </h2> 
+                                </div>
+                            </div>
+
+                            <script>
+
+                                var width = Math.max(960, innerWidth),
+                                    height = Math.max(500, innerHeight);
+
+                                var x1 = width / 2,
+                                    y1 = height / 2,
+                                    x0 = x1,
+                                    y0 = y1,
+                                    i = 0,
+                                    r = 200,
+                                    τ = 2 * Math.PI;
+
+                                var canvas = d3.select("omg-particle").append("canvas")
+                                    .attr("width", width)
+                                    .attr("height", height)
+                                    .on("ontouchstart" in document ? "touchmove" : "mousemove", move);
+
+                                var context = canvas.node().getContext("2d");
+                                context.globalCompositeOperation = "lighter";
+                                context.lineWidth = 2;
+
+                                d3.timer(function() {
+                                context.clearRect(0, 0, width, height);
+
+                                var z = d3.hsl(++i % 360, 1, .5).rgb(),
+                                    c = "rgba(" + z.r + "," + z.g + "," + z.b + ",",
+                                    x = x0 += (x1 - x0) * .1,
+                                    y = y0 += (y1 - y0) * .1;
+
+                                d3.select({}).transition()
+                                    .duration(2000)
+                                    .ease(Math.sqrt)
+                                    .tween("circle", function() {
+                                        return function(t) {
+                                        context.strokeStyle = c + (1 - t) + ")";
+                                        context.beginPath();
+                                        context.arc(x, y, r * t, 0, τ);
+                                        context.stroke();
+                                        };
+                                    });
+                                });
+
+                                function move() {
+                                var mouse = d3.mouse(this);
+                                x1 = mouse[0];
+                                y1 = mouse[1];
+                                d3.event.preventDefault();
+                                }
+                            </script>
+
+
+                        </div>
+                        
+                        <div class="space-footer">
+                            <h1>
+                            </h1>
+                        </div>
+                        
+
+                        <style>
+                            div#omg-particle{
+                    
+                                margin: 0;
+                                background: rgb(20, 20, 20);
+                                height: 200px;
+                                width: 200px;
+
+                            }
+                            .space
+                            {   
+                                /*background-image: url("./07.jpg"); */
+                                height: 100%;
+                                width: 100%;
+                            }
+
+
+                            .space-content
+                            {   
+                                height: 100%;
+                                width: 100%;
+                                padding: 30px;
+                                box-sizing: border-box;
+                                overflow: auto;
+                            }
+
+                            .space-header 
+                            {
+                                background:transparent;
+                                padding: 5px;
+                                text-align: center;
+                            }
+
+                            .space-header h1 
+                            {
+                                font-size: 20px;
+                            }
+                            .space-footer 
+                            {
+                                padding: 20px;
+                                text-align: center;
+                                background: transparent;
+                                margin-top: 20px;
+                            }
+
+                            .space-navigation 
+                            {
+                                overflow: hidden;
+                                background-color: transparent;
+                            }
+
+                            .space-navigation a 
+                            {
+                                float: left;
+                                display: block;
+                                color: #f2f2f2;
+                                text-align: center;
+                                padding: 5px;
+                                text-decoration: none;
+                            }
+
+                            .space-navigation a:hover 
+                            {
+                                background-color: #ddd;
+                                color: black;
+                            }
+
+                            .space-column
+                            {
+                                padding: 0 6px;
+                                float: left;
+                                width: 20%;
+                                margin: 0px;
+                            }
+                            
+                            .space-column a
+                            {
+                                text-decoration: none;
+                            }
+
+                            .gallery 
+                            {
+                                padding: 10px;
+                                margin: 0;
+                            }
+
+                            .gallery:hover 
+                            {
+                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                background: white;
+                                opacity: .9;
+                                color: black;
+                                transform: scale(1.03);
+
+                            }
+
+                            .gallery img 
+                            {
+                                width: 100%;
+                                height: auto;
+                            }
+
+                            .clearfix:after {
+                                content: "";
+                                display: table;
+                                clear: both;
+                            }
+
+                            .image-placeholder {
+                                background-color: #aaa;
+                                width: 100%;
+                                height: auto;
+                            }
+
+                            
+                            .space-row:after 
+                                {
+                                    content: "";
+                                    display: table;
+                                    clear: both;
+                                }
+                            @media only screen and (max-width: 700px) {
+                                .space-column {
+                                    width: 49.99999%;
+                                    margin: 6px 0;
+                                }
+                            }
+
+                            @media only screen and (max-width: 500px) {
+                                .space-column  {
+                                    width: 100%;
+                                }
+                            }
+                            
+                        </style>
+
+                        <!-- Space Inspector --> 
+                        <div class='inspector' id='inspector-personal'>
+                            <div class='center'>
+                                <button class='button tooltip'id='button-search'>
+                                    <i class="fas fa-search"></i>
+                                    <span class="tooltiptext">Search</span>
+                                </button>
+                                <a href="create-project.html">
+                                    <button class='button tooltip'id='button-add'>
+                                        <i class="fas fa-plus"></i>
+                                        <span class="tooltiptext">Create Project</span>
+                                    </button>
+                                </a>
+                                <button class='button tooltip' id='button-change-view'>
+                                    <i class="fas fa-eye"></i>
+                                    <span class="tooltiptext">Change view</span>
+                                </button>                        
+                                <button class='button tooltip' id='button-more'>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    <span class="tooltiptext">More</span>
+                                </button>
+                            </div>
+                            <style>
+                                .inspector
+                                    {
+                                        width: 32px;
+                                        padding: 20px 10px;
+                                        position: absolute;
+                                        top: 0px;
+                                        right: 0px;
+                                    }
+
+                                .center
+                                    {
+                                        margin: 0px auto;
+                                        width: 32px;
+                                        height: auto;
+                                    }
+
+                                .button
+                                    {
+                                    background-color: black;
+                                    opacity: .6;
+                                    border: 0;
+                                    border-radius: 50%;
+                                    color: white;
+                                    float: right;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: block;
+                                    font-size: 15px;
+                                    margin: 0px 0px 8px 0px;
+                                    cursor: pointer;
+                                    width: 30px;
+                                    height: 30px;
+                                    padding: 0px;
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    }
+                                .button:hover
+                                    {
+                                    background-color: #ffffff;
+                                    opacity: 1;
+                                    color: black;
+                                    transform: scale(1.2);
+                                    -webkit-transition-duration: 0.1s; /* Safari */
+                                    transition-duration: 0.1s;
+                                    }
+
+                                .button-text 
+                                    {
+                                    background-color: black;
+                                    opacity: .6;
+                                    border: 0;
+                                    border-radius: 50%;
+                                    color: white;
+                                    text-align: center;
+                                    display: block;
+                                    font-size: 12px;
+                                    margin: 0px 0px 0px 0px;
+                                    cursor: pointer;
+                                    width: 30px;
+                                    height: 30px;
+                                    padding: 0px;
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    }
+                                .button-text:hover
+                                    {
+                                    background-color: #ffffff;
+                                    opacity: 1;
+                                    color: black;
+                                    font-weight: 600;
+                                    transform: scale(1.2);
+                                    text-decoration: none;
+
+                                    -webkit-transition-duration: 0.1s; /* Safari */
+                                    transition-duration: 0.1s;
+                                    }
+
+                                .tooltip 
+                                    {
+                                    position: relative;
+                                    display: inline-block;
+                                    border-bottom: 1px dotted black;
+                                    }
+                                .tooltip .tooltiptext 
+                                    {
+                                    visibility: hidden;
+                                    width: auto;
+                                    background-color:black;
+                                    color:white;
+                                    opacity: .3;
+                                    text-align: center;
+                                    border-radius: 3px;
+                                    padding: 4px 4px;
+                                    position: absolute;
+                                    z-index: 1;
+                                    top: -5px;
+                                    right: 110%;
+                                    font-size: 10px;
+                                    text-transform: uppercase;
+                                    }
+                                .tooltip .tooltiptext::after 
+                                    {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 100%;
+                                    margin-top: -5px;
+                                    border-width: 5px;
+                                    border-style: solid;
+                                    border-color: transparent transparent transparent black;
+                                    }
+                                .tooltip:hover .tooltiptext 
+                                    {
+                                    visibility: visible;
+                                    }
+                            </style>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- component.static { component.client.foreground } -->
+            <div class='component' id='client-foreground'>
+                <!-- COMPASS SHORTCUT -->
+            </div>
+
+            <!-- component.static { component.client.navigation } -->
+            <div class='component' id='client-navigation'>
+                <!-- NAVIGATION FOOTER -->                   
+                <div id='client-navigation-footer'>
+                    <div class='center'>
+                        <div class='client-navigation-float-left'>
+                            <button class='button' id='button-compass'>
+                                <i class="far fa-compass"></i>
+                            </button>
+                        </div>
+                        <div class='client-navigation-float-left' id='text-compass'>
+                            <h2>My Stella 
+                                <i class="fas fa-angle-right"></i>
+                                All Projects
+                            </h2>
+                        </div>
+                        <div class='client-navigation-float-right'>
+                            <a href="space-user-personal.html">
+                                <button class='button-text' id='user-identity-personal'>
+                                    SB
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <style>
+                        div#client-navigation-footer
+                        {
+                            background: transparent;                 
+                            bottom: 0px;
+                            display: block;
+                            height: 52px;
+                            overflow: visible;
+                            position: fixed;
+                            width: 100%;
+                            z-index: 10;
+
+                        }
+                        div.client-navigation-float-right a 
+                        {
+                            text-decoration: none;
+                        }
+                        div#text-compass h2
+                        {
+                            box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                            background: rgb(2, 2, 2);
+                            opacity: .8;
+
+                        }
+                        .center
+                        {
+                            margin: 0px auto;
+                            height: 32px;
+                            width: auto;
+                        }
+                    </style>
+
+                </div>
+
+                <!-- NAVIGATION HEADER -->
+                <div id='client-navigation-header'>
+                    <div></div>
+                    <style> 
+                        div#client-navigation-header
+                        {
+                            background: transparent;                
+                            display: block;                  
+                            height: 32px;
+                            overflow: visible;
+                            position: fixed;
+                            top: 0px;
+                            width: 100%;
+                            z-index: 10;
+                        }
+                    </style>
+                </div>
+
+                <style>
+                    div.client-navigation-float-left
+                    {
+                        display: block;
+                        float: left;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                    div.client-navigation-float-right
+                    {
+                        display: block;
+                        float: right;
+                        width: auto;
+                        padding: 10px;
+                    }
+
+                </style>
+            </div>
+
+            <style>
+                /* CLIENT */
+
+            </style>
+        </div>
+    </body>
+</html>

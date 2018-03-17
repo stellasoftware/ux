@@ -62,8 +62,36 @@
                         <!-- Space Content--> 
                         <div class='space-content' id='project-management-personal'>
 
-                            <!--Focus Context --> 
-                            <canvas width="960" height="960"></canvas>
+                        <!--Force Directed Lattice --> 
+                        <canvas id='canvas'>
+                        </canvas>
+
+                            <!--Canvas Full Size --> 
+                            <script>
+                                (function() {
+                                    var canvas = document.getElementById('canvas'),
+                                            context = canvas.getContext('2d');
+
+                                    // resize the canvas to fill browser window dynamically
+                                    window.addEventListener('resize', resizeCanvas, false);
+
+                                    function resizeCanvas() {
+                                            canvas.width = window.innerWidth;
+                                            canvas.height = window.innerHeight;
+
+                                            /**
+                                             * Your drawings need to be inside this function otherwise they will be reset when 
+                                             * you resize the browser window and the canvas goes will be cleared.
+                                             */
+                                            drawStuff(); 
+                                    }
+                                    resizeCanvas();
+
+                                    function drawStuff() {
+                                            // do your drawing stuff here
+                                    }
+                                })();
+                            </script>
 
                             <script>
 
@@ -164,14 +192,6 @@
                         
 
                         <style>
-                            div#omg-particle{
-                    
-                                margin: 0;
-                                background: rgb(20, 20, 20);
-                                height: 200px;
-                                width: 200px;
-
-                            }
                             .space
                             {   
                                 /*background-image: url("./07.jpg"); */

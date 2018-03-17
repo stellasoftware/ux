@@ -63,13 +63,38 @@
                         <div class='space-content' id='project-management-personal'>
 
                             <!--Circle Dragging --> 
-                            <canvas width="960" height="500">
-
+                            <canvas id='canvas'>
                             </canvas>
 
-
+                            <!--Canvas Full Size --> 
                             <script>
+                                (function() {
+                                    var canvas = document.getElementById('canvas'),
+                                            context = canvas.getContext('2d');
 
+                                    // resize the canvas to fill browser window dynamically
+                                    window.addEventListener('resize', resizeCanvas, false);
+
+                                    function resizeCanvas() {
+                                            canvas.width = window.innerWidth;
+                                            canvas.height = window.innerHeight;
+
+                                            /**
+                                             * Your drawings need to be inside this function otherwise they will be reset when 
+                                             * you resize the browser window and the canvas goes will be cleared.
+                                             */
+                                            drawStuff(); 
+                                    }
+                                    resizeCanvas();
+
+                                    function drawStuff() {
+                                            // do your drawing stuff here
+                                    }
+                                })();
+                            </script>
+                            
+                            <!--Canvas Full Size --> 
+                            <script>
                                 var canvas = d3.select("canvas"),
                                     context = canvas.node().getContext("2d"),
                                     width = canvas.property("width"),
@@ -147,10 +172,7 @@
                                 function dragended() {
                                 d3.event.subject.active = false;
                                 }
-
-                                </script>
-
-
+                            </script>
                         </div>
                         
                         <div class="space-footer">
@@ -174,7 +196,10 @@
                                 height: 100%;
                                 width: 100%;
                             }
-
+                            canvas
+                            {
+                                display:block;
+                            }
 
                             .space-content
                             {   
@@ -183,6 +208,7 @@
                                 padding: 30px;
                                 box-sizing: border-box;
                                 overflow: auto;
+                                position: fixed;
                             }
 
                             .space-header 

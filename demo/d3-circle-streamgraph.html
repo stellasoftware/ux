@@ -64,10 +64,20 @@
 
                             <!--Streamgraph --> 
                             <button onclick="transition()">Update</button>
-                            <svg width="960" height="500" onclick="transition()">
-                                
+                            <svg 
+                                id="chart" 
+                                width="960" 
+                                height="500"
+                                viewBox="0 0 960 500"
+                                preserveAspectRatio="xMidYMid meet">
                             </svg>
-                            
+                            <style>
+                                svg {
+                                width: 100%;
+                                height: 100%;
+                                }
+                            </style>                            
+                                
                             <script>
 
                                 var n = 20, // number of layers
@@ -154,14 +164,8 @@
                         
 
                         <style>
-                            div#omg-particle{
-                    
-                                margin: 0;
-                                background: rgb(20, 20, 20);
-                                height: 200px;
-                                width: 200px;
 
-                            }
+                            
                             .space
                             {   
                                 /*background-image: url("./07.jpg"); */

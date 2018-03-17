@@ -1,0 +1,377 @@
+
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+<div class="component" id="ganttChart-container">
+  <div id="buttonStation">
+    <button type="button" onclick="changeTimeDomain('Day')">Day</button>
+    <button type="button" onclick="changeTimeDomain('Week')">Week</button>
+    <button type="button" onclick="changeTimeDomain('Month')">Month</button>
+    <button type="button" onclick="changeTimeDomain('Year')">Year</button>
+  </div>
+  <div id="ganttChart"></div>
+</div>
+
+
+
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+
+  #ganttChart-container{
+    width:80%;
+    height:1000px;
+  }
+  #ganttChart{
+    width:100%;
+    height:80%;
+  }
+
+  .axis path,.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis line{
+    stroke:#ededed;
+    stroke-width:1;
+  }
+
+  .y.axis path{
+    stroke:#ededed;
+    stroke-width:2;
+  }
+
+  .axis text{
+    font-family: "Roboto", sans-serif;
+    fill:#ededed;
+  }
+  .x.axis text{
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .y.axis text{
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .bar       {opacity: .8;}
+  .project   {fill: #B3B3B3;}
+  .project-0 {fill: #E74C3C;}
+  .project-1 {fill: #8E44AD;}
+  .project-2 {fill: #F39C12;}
+  .project-3 {fill: #27AE60;}
+  .project-4 {fill: #F1C40F;}
+  .project-5 {fill: #3498DB;}
+
+  .bar:hover{
+    opacity:1;
+  }
+
+  .tooltip {
+    background: #ededed;
+    color: #000;
+    font-family: 'Roboto',sans-serif;
+    font-size: 17px;
+    left: 130px;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    text-align: center;
+    top: 100px;
+    z-index: 10;
+    display: block;
+    opacity: 0;
+  }
+  button{
+    font-size: 15px;
+    font-family: 'Roboto',sans-serif;
+    margin:20px 1px 20px 1px;
+    padding: 10px;
+    border-radius: 5px;
+    border:none;
+    background-color: #808080
+  }
+  button:hover{
+    background-color:#ededed;
+  }
+  #buttonStation{
+    width:100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+</style>
+
+<script>
+
+
+  // function changeTimeDomain(timeDomainString) {
+  //   this.timeDomainString = timeDomainString;
+  //   switch (timeDomainString) {
+  //     case 'Day':
+  //     d1 = d3.timeDay.offset(new Date(),+1);
+  //     break;
+
+  //     case 'Week':
+  //     d1 = d3.timeWeek.offset(new Date(),+1);
+  //     break;
+
+  //     case 'Month':
+  //     d1 = d3.timeMonth.offset(new Date(),+1);
+  //     break;
+
+  //     case 'Year':
+  //     d1 = d3.timeYear.offset(new Date(),+1);
+  //     break;
+  //   }
+  // };
+
+  d3.gantt = function() {
+
+    var margin = {
+      top : 40,
+      right : 40,
+      bottom : 40,
+      left : 200
+    };
+
+    var timeDomainStart,
+    timeDomainEnd;
+
+    var timeDomainMode = "fit";// fixed or fit
+    
+    var projectTypes = [];
+    
+    var wrapper = document.getElementById("ganttChart");
+
+    var height = wrapper.clientHeight - margin.top - margin.bottom;
+    
+    var width = wrapper.clientWidth - margin.right - margin.left;
+
+    var x, y, xAxis, yAxis;
+
+
+    var rectScale=0.045;
+
+    var keyFunction = function(d) {
+      return d.startDate + d.projectName + d.endDate;
+    };
+
+
+
+    function gantt(projects) {
+
+      timeDomainStart = projects[0].startDate;
+      timeDomainEnd = projects[projects.length - 1].endDate;
+
+      var zoom = d3.zoom()
+      .scaleExtent([1/30, 12])
+      .translateExtent([[0,0], [width, height]])
+      .extent([[0, 0], [width, height]])
+      .on("zoom", zoomed);
+
+      x = d3.scaleTime()
+      .domain([ timeDomainStart, timeDomainEnd])
+      .range([0, width])
+      .clamp(true);
+
+      var ganttHeight=height - margin.top - margin.bottom;
+
+      y = d3.scaleBand()
+      .domain(projectTypes)
+      .rangeRound([ 0, ganttHeight], .1);
+
+      xAxis = d3.axisTop(x)
+      .ticks(6)
+      .tickSize(ganttHeight)
+      .tickPadding(10);
+
+      yAxis = d3.axisLeft(y).tickPadding(10);
+
+      var svg = d3.select('#ganttChart')
+      .append("svg")
+      .attr("class", "chart")
+      .attr("width", wrapper.clientWidth)
+      .attr("height", wrapper.clientHeight)
+      .append("g")
+      .attr("class", "gantt-chart")
+      .attr("width", wrapper.clientWidth)
+      .attr("height", wrapper.clientHeight)
+      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+      var g = svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0, " + (ganttHeight) + ")")
+      .call(xAxis);
+
+      svg.selectAll(".chart")
+      .data(projects, keyFunction).enter()
+      .append("rect")
+      .attr("rx", 5)
+      .attr("ry", 5)
+      .attr("class", function(d){ 
+       if(d.status == null){ return "project";}
+       return d.status;
+     }) 
+
+      .attr("y", (y.range()[1]*(1/projects.length-rectScale)*.5))
+      .attr("transform", function(d) {
+        return "translate(" + x(d.startDate) + "," + y(d.projectName) + ")";})
+      .attr("height", function(d) { return y.range()[1]*rectScale; })
+      .attr("width", function(d) { 
+       return (x(d.endDate) - x(d.startDate)); 
+     });
+
+      svg.append("g").attr("class", "y axis").transition().call(yAxis);
+
+      // svg.append("line")
+      // .attr("class", "today")
+      // .transition()
+      // .attr("x1",x(new Date()))
+      // .attr("x2",x(new Date()))
+      // .attr("y1",0)
+      // .attr("y2",height)
+      // .attr("stroke-width", 2)
+      // .attr("stroke", "black");
+
+      var d0 = new Date();
+      d1 = d3.timeMonth.offset(new Date(),+1);
+
+      svg.call(zoom)
+      .call(zoom.transform, d3.zoomIdentity
+        .scale(width / (x(d1) - x(d0)))
+        .translate(-x(d0), 0));
+
+      function zoomed() {
+        var t = d3.event.transform, xt=t.rescaleX(x);
+        svg.selectAll("rect")
+        .attr("transform", function(d){
+          return "translate(" + xt(d.startDate) + "," + y(d.projectName) + ")";
+        })
+        .attr("width",function(d) { 
+         return (xt(d.endDate) - xt(d.startDate));
+       });
+        g.call(xAxis.scale(xt));
+      };
+
+
+      var tooltip = d3.select("#ganttChart")
+      .append("div")
+      .attr("class","tooltip");
+
+      tooltip.append("div").attr("class", "t_project");
+      tooltip.append("div").attr("class", "t_startDate");
+      tooltip.append("div").attr("class", "t_endDate");
+
+      svg.selectAll(".bar")
+      .on("mouseover", function(d) {
+
+        tooltip.select(".t_project").html("<b>" + d.projectName + "</b>");
+        tooltip.select(".t_startDate").html("<b>"+d.startDate.toDateString()+"</b>" + "  to  " + "<b>"+d.endDate.toDateString()+"</b>");
+
+        tooltip.style("display", "block");
+        tooltip.style("opacity",.8);
+
+      })
+      .on("mousemove", function(d) {
+        tooltip.style("top", (d3.event.layerY + 10) + "px")
+        .style("left", (d3.event.layerX - 25) + "px");
+      })
+      .on("mouseout", function() {
+        tooltip.style("display", "none");
+        tooltip.style("opacity",0);
+      });
+
+      return gantt;
+
+    };
+
+    gantt.margin = function(value) {
+      if (!arguments.length)
+        return margin;
+      margin = value;
+      return gantt;
+    };
+
+    gantt.timeDomain = function(value) {
+      if (!arguments.length)
+        return [ timeDomainStart, timeDomainEnd ];
+      timeDomainStart = +value[0], timeDomainEnd = +value[1];
+      return gantt;
+    };
+
+    gantt.timeDomainMode = function(value) {
+      if (!arguments.length)
+        return timeDomainMode;
+      timeDomainMode = value;
+      return gantt;
+    };
+
+    gantt.projectTypes = function(value) {
+      if (!arguments.length)
+        return projectTypes;
+      projectTypes = value;
+      return gantt;
+    };
+
+    gantt.projectStatus = function(value) {
+      if (!arguments.length)
+        return projectStatus;
+      projectStatus = value;
+      return gantt;
+    };
+
+    gantt.width = function(value) {
+      if (!arguments.length)
+        return width;
+      width = +value;
+      return gantt;
+    };
+
+    gantt.height = function(value) {
+      if (!arguments.length)
+        return height;
+      height = +value;
+      return gantt;
+    };
+
+    gantt.tickFormat = function(value) {
+      if (!arguments.length)
+        return tickFormat;
+      tickFormat = value;
+      return gantt;
+    };
+
+    return gantt;
+  };
+
+</script>
+
+<script>
+  dataLink();
+
+  function dataLink() {
+    var projects = [];
+
+    d3.json("data.json", function(error, json) {
+      if (error)
+        return console.warn(error);
+      var projectNames = [];
+      for ( var i = 0; i < json.length; i++) {
+        var title = json[i]["Title"];
+        projectNames.push(title);
+        projects.push({
+          "projectName" : title,
+          "startDate" : new Date(json[i]["StartDate"]),
+          "endDate" : new Date(json[i]["EndDate"]),
+          "status": "bar project-"+(i%6)
+        });
+      }      
+
+      var gantt = d3.gantt().projectTypes(projectNames);
+
+      gantt(projects);
+    });
+  };
+</script>
+

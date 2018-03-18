@@ -21,9 +21,24 @@
                 overflow: hidden;
                 width: 100%;
             }
-            h1
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
+            }
+            h0
             {
 
+                font-weight: 100;
+                font-size: 50px;
+                padding: 0px;
+            }
+            h1
+            {
                 font-weight: 300;
                 font-size: 17px;
                 padding: 0px;
@@ -52,20 +67,19 @@
                     <div class='space' id='space-personal'>
                         <!-- Space Content--> 
                         <div class='space-content' id='project-management-personal'>
-
                             <div class="space-header">
-                                <h1>
+                                <h0>
                                     Glossier: Summer 2018
-                                </h1>
+                                </h0>
                             </div>
 
                             <div class="space-navigation">
-                                <a href="#">
+                                <!--<a href="#">
                                     <h2>sort by</h2>
                                 </a>
                                 <a href="#">
                                     <h2>filter by</h2>
-                                </a>
+                                </a>-->
                             </div>
                         
                             <div class='space-column'>
@@ -117,7 +131,7 @@
                             {   
                                 height: 100%;
                                 width: 100%;
-                                padding: 30px;
+                                padding: 40px 10px;
                                 box-sizing: border-box;
                                 overflow: auto;
                                 position: fixed;
@@ -128,7 +142,7 @@
                             {
                                 background:transparent;
                                 padding: 5px;
-                                text-align: center;
+                                text-align: left;
                             }
 
                             .space-header h1 
@@ -229,11 +243,11 @@
                         <div class='inspector' id='inspector-personal'>
                             <div class='center'>
                                 <button class='button tooltip'id='button-search'>
-                                    <i class="fas fa-search"></i>
+                                    <i class="fal fa-search"></i>
                                     <span class="tooltiptext">Search</span>
                                 </button>
                                 <button class='button tooltip'id='button-add'onclick="open_create_options()">
-                                    <i class="fas fa-plus"></i>
+                                    <i class="fal fa-plus"></i>
                                     <span class="tooltiptext">Create</span>
                                 </button>
                                 <button class='button tooltip' id='button-change-view'>
@@ -264,8 +278,8 @@
 
                                 .button
                                     {
-                                    background-color: black;
-                                    opacity: .6;
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -274,7 +288,7 @@
                                     text-decoration: none;
                                     display: block;
                                     font-size: 15px;
-                                    margin: 0px 0px 8px 0px;
+                                    margin: 0px 0px 5px 5px;
                                     cursor: pointer;
                                     width: 30px;
                                     height: 30px;
@@ -293,8 +307,8 @@
 
                                 .button-text 
                                     {
-                                    background-color: black;
-                                    opacity: .6;
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -375,23 +389,32 @@
             <div class='component' id='client-navigation'>
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
-                    <!-- COMPASS-->
-                    <div class='client-navigation-float-left'>
-                        <button class='button' id='button-compass'>
-                            <i class="far fa-compass"></i>
-                        </button>
-
-                    </div>
-                    <!-- USER PERSONAL-->
-                    <div class='client-navigation-float-right'>
-                        <a href="space-user-personal.html">
-                            <button class='button-text' id='user-identity-personal'>
-                                SB
+                    <div class='center'>
+                    <!-- Button Stella-->
+                        <div class='client-navigation-float-left'>
+                            <button class='button' id='button-stella'>
+                                    <img src="image/button-stella-w.png"
+                                    onmouseover="this.src='image/button-stella-b.png'"
+                                    onmouseout="this.src='image/button-stella-w.png'"
+                                    >
                             </button>
-                        </a>
+                        </div>
+                        <div class='client-navigation-float-left' id='text-navigation'>
+                            <h2>My Stella 
+                                <i class="fas fa-angle-right"></i>
+                                Glossier: Summer 2018
+                            </h2>
+                        </div>
+                        <div class='client-navigation-float-right'>
+                            <a href="space-user-personal.html">
+                                <button class='button-text' id='user-identity-personal'>
+                                    SB
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                    <style>        
-                        div#client-navigation-footer
+                    <style>
+                       div#client-navigation-footer
                         {
                             background: transparent;                 
                             bottom: 0px;
@@ -402,18 +425,45 @@
                             width: 100%;
                             z-index: 10;
 
-
                         }
                         div.client-navigation-float-right a 
                         {
                             text-decoration: none;
+                        }
+                        div#text-navigation h2
+                        {
+                            background-color:#1D1D1D;
+                            opacity: .7;
+                            box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                            
+
+                        }
+                        .center
+                        {
+                            margin: 0px auto;
+                            height: 32px;
+                            width: auto;
                         }
                     </style>
                 </div>
 
                 <!-- NAVIGATION HEADER -->
                 <div id='client-navigation-header'>
-                    <div></div>
+           
+                    <div class='client-navigation-float-left'>
+
+                        <button class='button' id='button-next'>
+                            <i class="fal fa-angle-right"></i>
+                        </button>
+                        <button class='button' id='button-previous'>
+                            <i class="fal fa-angle-left"></i>
+                        </button>
+                        <button class='button' id='button-close'>
+                            <i class="fal fa-times"></i>
+                        </button>
+
+                    </div>
+ 
                     <style> 
                         div#client-navigation-header
                         {
@@ -435,8 +485,7 @@
                         display: block;
                         float: left;
                         width: auto;
-                        padding: 10px;
-
+                        padding: 20px 10px;
                     }
 
                     div.client-navigation-float-right
@@ -444,23 +493,13 @@
                         display: block;
                         float: right;
                         width: auto;
-                        padding: 10px;
+                        padding: 10px 10px ;
                     }
 
                 </style>
             </div>
 
             <style>
-                /* CLIENT */
-                div#client
-                    {
-                        background: #1D1D1D;
-                        height: 100%;
-                        position: fixed;
-                        width: 100%;
-                        z-index: 10;
-                    }
-
             </style>
         </div>
     </body>

@@ -21,6 +21,22 @@
                 overflow: hidden;
                 width: 100%;
             }
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
+            }
+            h0
+            {
+
+                font-weight: 100;
+                font-size: 50px;
+                padding: 0px;
+            }
             h1
             {
                 font-weight: 300;
@@ -33,15 +49,7 @@
                 font-weight: 400;
                 font-size: 11px;
             }
-            div#client
-            {
-                background: #1D1D1D;
-                height: 100%;
-                position: fixed;
-                width: 100%;
-                z-index: 10;
-            
-            }
+
         </style>
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
     </head>
@@ -62,7 +70,6 @@
                         <div class='space-content' id='project-management-personal'>
 
                             <div class="space-header">
-                                <h1></h1>
                             </div>
 
                             <div class-"space-body">
@@ -266,7 +273,7 @@
                             {
                                 background:transparent;
                                 padding: 5px;
-                                text-align: center;
+                                text-align: left;
                                 overflow: visible;
                             }
 
@@ -375,26 +382,24 @@
 
                         <!-- Space Inspector --> 
                         <div class='inspector' id='inspector-personal'>
-                            <div class='center'>
-                                <button class='button tooltip'id='button-search'>
-                                    <i class="fas fa-search"></i>
-                                    <span class="tooltiptext">Search</span>
-                                </button>
-                                <a href="create-project.html">
-                                    <button class='button tooltip'id='button-add'>
-                                        <i class="fas fa-plus"></i>
-                                        <span class="tooltiptext">Create Project</span>
+                                <div class='center'>
+                                    <button class='button tooltip'id='button-search'>
+                                        <i class="fal fa-search"></i>
+                                        <span class="tooltiptext">Search</span>
                                     </button>
-                                </a>
-                                <button class='button tooltip' id='button-change-view'>
-                                    <i class="fas fa-eye"></i>
-                                    <span class="tooltiptext">Change view</span>
-                                </button>                        
-                                <button class='button tooltip' id='button-more'>
-                                    <i class="fas fa-ellipsis-h"></i>
-                                    <span class="tooltiptext">More</span>
-                                </button>
-                            </div>
+                                    <button class='button tooltip'id='button-add'onclick="open_create_options()">
+                                        <i class="fal fa-plus"></i>
+                                        <span class="tooltiptext">Create</span>
+                                    </button>
+                                    <button class='button tooltip' id='button-change-view'>
+                                        <i class="fas fa-eye"></i>
+                                        <span class="tooltiptext">Change view</span>
+                                    </button>                        
+                                    <button class='button tooltip' id='button-more'>
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span class="tooltiptext">More</span>
+                                    </button>
+                                </div>
                             <style>
                                 .inspector
                                     {
@@ -414,8 +419,8 @@
 
                                 .button
                                     {
-                                    background-color: black;
-                                    opacity: .6;
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -443,8 +448,8 @@
 
                                 .button-text 
                                     {
-                                    background-color: black;
-                                    opacity: .6;
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -525,12 +530,16 @@
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
                     <div class='center'>
+                     <!-- Button Stella-->
                         <div class='client-navigation-float-left'>
-                            <button class='button' id='button-compass'>
-                                <i class="far fa-compass"></i>
+                            <button class='button' id='button-stella'>
+                                    <img src="image/button-stella-w.png"
+                                    onmouseover="this.src='image/button-stella-b.png'"
+                                    onmouseout="this.src='image/button-stella-w.png'"
+                                    >
                             </button>
                         </div>
-                        <div class='client-navigation-float-left' id='text-compass'>
+                        <div class='client-navigation-float-left' id='text-navigation'>
                             <h2>My Stella 
                                 <i class="fas fa-angle-right"></i>
                                 All Projects
@@ -561,11 +570,11 @@
                         {
                             text-decoration: none;
                         }
-                        div#text-compass h2
+                        div#text-navigation h2
                         {
+                            background-color:#1D1D1D;
+                            opacity: .7;
                             box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                            background: rgb(2, 2, 2);
-                            opacity: .8;
 
                         }
                         .center
@@ -574,7 +583,9 @@
                             height: 32px;
                             width: auto;
                         }
+                        
                     </style>
+                    
 
                 </div>
 
@@ -602,7 +613,7 @@
                         display: block;
                         float: left;
                         width: auto;
-                        padding: 10px;
+                        padding: 20px 10px;
                     }
 
                     div.client-navigation-float-right
@@ -610,15 +621,13 @@
                         display: block;
                         float: right;
                         width: auto;
-                        padding: 10px;
+                        padding: 10px 10px ;
                     }
 
                 </style>
             </div>
 
             <style>
-                /* CLIENT */
-
             </style>
         </div>
     </body>

@@ -50,7 +50,9 @@
                 font-size: 11px;
             }
         </style>
+        <a target="_blank" style="outline:none;">
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
     </head>
 
     <body>
@@ -63,61 +65,162 @@
                 <!-- component.static { component.space} -->
                 <div class='component' id=space>
 
-                    <!-- Space Personal--> 
-                    <div class='space' id='space-personal'>
                         <!-- Space Content--> 
-                        <div class='space-content' id='project-management-personal'>
+                        <div class='space-content' >
                             <div class="space-header">
                                 <h0>
-                                    Glossier: Summer 2018
+                                    Sara Belot   
                                 </h0>
                             </div>
 
                             <div class="space-navigation">
-                                <!--<a href="#">
-                                    <h2>sort by</h2>
-                                </a>
-                                <a href="#">
-                                    <h2>filter by</h2>
-                                </a>-->
                             </div>
-                        
-                            <div class='space-column'>
-                                <div class='gallery'>
-                                    <h1>Concept</h1>
-                                    <h2>
-                                            Script
-                                    </h2> 
-                                </div>
+                            <div class="space-row"> 
+                            <div class='space-column-left'>
+                                    <h2>About</h2>
+                                    <h2>Portfolio</h2> 
+                                    <h2>Experience</h2>
+                                    <h2>Collaborators</h2>     
                             </div>
-                            <div class='space-column'>
-                                <div class='gallery'>
-                                    <h1>Shotlist</h1>
-                                    <h2>
-                                            Shotlist
-                                    </h2> 
-                                </div>
+                            <div class='space-column-center'>
+                                <h2>All Collaborators</h2>
+                                <h2>Most Frequent</h2>    
                             </div>
-                            <div class='space-column'>
-                                    <div class='gallery'>
-                                        <h1>Schedule</h1>
-                                        <h2>
-                                                Schedule
-                                        </h2> 
-                                    </div>
-                                </div>
-                            </div>
-    
+                            <!--Force Directed Network--> 
+                            <canvas id='canvas'>
+                            </canvas>
+
+                            <!--Canvas Full Size --> 
+                            <script>
+                                (function() {
+                                    var canvas = document.getElementById('canvas'),
+                                            context = canvas.getContext('2d');
+
+                                    // resize the canvas to fill browser window dynamically
+                                    window.addEventListener('resize', resizeCanvas, false);
+
+                                    function resizeCanvas() {
+                                            canvas.width = window.innerWidth;
+                                            canvas.height = window.innerHeight;
+
+                                            /**
+                                             * Your drawings need to be inside this function otherwise they will be reset when 
+                                             * you resize the browser window and the canvas goes will be cleared.
+                                             */
+                                            drawStuff(); 
+                                    }
+                                    resizeCanvas();
+
+                                    function drawStuff() {
+                                            // do your drawing stuff here
+                                    }
+                                })();
+                            </script>
+                            <!--Network Here --> 
+                            <script>
+                                var canvas = document.querySelector("canvas"),
+                                    context = canvas.getContext("2d"),
+                                    width = canvas.width,
+                                    height = canvas.height,
+                                    searchRadius = 40;
+                                
+                                var color = d3.scaleOrdinal()
+                                    .range(d3.schemeCategory20);
+                                
+                                var simulation = d3.forceSimulation()
+                                    .force("charge", d3.forceManyBody().strength(-18))
+                                    .force("link", d3.forceLink().iterations(4).id(function(d) { return d.id; }))
+                                    .force("x", d3.forceX())
+                                    .force("y", d3.forceY());
+                                
+                                d3.json("graph.json", function(error, graph) {
+                                if (error) throw error;
+                                
+                                var users = d3.nest()
+                                    .key(function(d) { return d.user; })
+                                    .entries(graph.nodes)
+                                    .sort(function(a, b) { return b.values.length - a.values.length; });
+                                
+                                color.domain(users.map(function(d) { return d.key; }));
+                                
+                                simulation
+                                    .nodes(graph.nodes)
+                                    .on("tick", ticked);
+                                
+                                simulation.force("link")
+                                    .links(graph.links);
+                                
+                                d3.select(canvas)
+                                    .on("mousemove", mousemoved)
+                                    .call(d3.drag()
+                                        .container(canvas)
+                                        .subject(dragsubject)
+                                        .on("start", dragstarted)
+                                        .on("drag", dragged)
+                                        .on("end", dragended));
+                                
+                                function ticked() {
+                                    context.clearRect(0, 0, width, height);
+                                    context.save();
+                                    context.translate(width / 2, height / 2);
+                                
+                                    context.beginPath();
+                                    graph.links.forEach(drawLink);
+                                    context.strokeStyle = "#aaa";
+                                    context.stroke();
+                                
+                                    users.forEach(function(user) {
+                                    context.beginPath();
+                                    user.values.forEach(drawNode);
+                                    context.fillStyle = color(user.key);
+                                    context.fill();
+                                    });
+                                
+                                    context.restore();
+                                }
+                                
+                                function dragsubject() {
+                                    return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2, searchRadius);
+                                }
+                                
+                                function mousemoved() {
+                                    var a = this.parentNode, m = d3.mouse(this), d = simulation.find(m[0] - width / 2, m[1] - height / 2, searchRadius);
+                                    if (!d) return a.removeAttribute("href"), a.removeAttribute("title");
+                                    a.setAttribute("href", "http://bl.ocks.org/" + (d.user ? d.user + "/" : "") + d.id);
+                                    a.setAttribute("title", d.id + (d.user ? " by " + d.user : "") + (d.description ? "\n" + d.description : ""));
+                                }
+                                });
+                                
+                                function dragstarted() {
+                                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                                d3.event.subject.fx = d3.event.subject.x;
+                                d3.event.subject.fy = d3.event.subject.y;
+                                }
+                                
+                                function dragged() {
+                                d3.event.subject.fx = d3.event.x;
+                                d3.event.subject.fy = d3.event.y;
+                                }
+                                
+                                function dragended() {
+                                if (!d3.event.active) simulation.alphaTarget(0);
+                                d3.event.subject.fx = null;
+                                d3.event.subject.fy = null;
+                                }
+                                
+                                function drawLink(d) {
+                                context.moveTo(d.source.x, d.source.y);
+                                context.lineTo(d.target.x, d.target.y);
+                                }
+                                
+                                function drawNode(d) {
+                                context.moveTo(d.x + 3, d.y);
+                                context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
+                                }
+                            </script>
 
                         </div>
 
-                        </div>
-                        <!--
-                        <div class="space-footer">
-                            <h1>
-                            </h1>
-                        </div>
-                        -->
 
                         <style>
                             .space
@@ -143,7 +246,6 @@
                                 background:transparent;
                                 padding: 5px;
                                 text-align: left;
-                                
                             }
 
                             .space-header h1 
@@ -181,62 +283,72 @@
                             }
 
                             .space-column
-                            {
-                                padding: 0 6px;
-                                float: left;
-                                width: 20%;
-                            }
-                            div.gallery 
-                            {
-                                padding: 10px;
-                                margin: 0;
-                            }
-
-                            div.gallery:hover 
-                            {
-                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                background: white;
-                                opacity: .9;
-                                color: black;
-
-                            }
-
-                            div.gallery img 
-                            {
-                                width: 100%;
-                                height: auto;
-                            }
-                            .clearfix:after {
-                                content: "";
-                                display: table;
-                                clear: both;
-                            }
-
-                            
-
-                            .space-card 
-                            {
-                                padding: 20px;
-                            }
-                            
-                            /*.space-row:after 
                                 {
-                                    content: "";
-                                    display: table;
-                                    clear: both;
-                                }*/
-                            @media only screen and (max-width: 700px) {
-                                .space-column {
-                                    width: 49.99999%;
-                                    margin: 6px 0;
+                                    padding: 0 6px;
+                                    float: left;
+                                    width: 20%;
                                 }
-                            }
+                                .space-column-left
+                                {
+                                    padding: 0 20px;
+                                    float: left;
+                                    width: 10%;
+                                    text-align: right;
+                                    border-right: .1px solid #FFFFFF;
+                                }
 
-                            @media only screen and (max-width: 500px) {
-                                .space-column  {
-                                    width: 100%;
+                                .space-column-left h2{
+                                opacity: .5;
+
                                 }
-                            }
+                                .space-column-left h2:hover
+                                {
+                                opacity: 1;
+                                }
+                                
+
+                                .space-column-center
+                                {
+                                    padding: 0 0 0 20px;
+                                    float: left;
+                                    width: 10%;
+                                }
+                                .space-column-center h2{
+                                opacity: .5;
+
+                                }
+                                .space-column-center h2:hover
+                                {
+                                opacity: 1;
+                                }
+
+                                .space-column-right
+                                {
+                                    padding: 0 0 0 20px;
+                                    float: left;
+                                    width: 60%;
+                                    text-align: center;
+
+                                }
+                                .space-column-right-box
+                                {
+                                    border-bottom: 1px solid rgb(53, 53, 53);
+                                }
+
+                                
+                            
+                                .space-card 
+                                {
+                                    padding: 20px;
+                                }
+                                
+                                .space-row:after 
+                                    {
+                                        content: "";
+                                        display: table;
+                                        clear: both;
+                                    }
+                                
                             
                             </style>
 
@@ -401,9 +513,7 @@
                             </button>
                         </div>
                         <div class='client-navigation-float-left' id='text-navigation'>
-                            <h2>My Stella 
-                                <i class="fas fa-angle-right"></i>
-                                Glossier: Summer 2018
+                            <h2>
                             </h2>
                         </div>
                         <div class='client-navigation-float-right'>
@@ -412,6 +522,10 @@
                                     SB
                                 </button>
                             </a>
+                        </div>
+                        <div class='client-navigation-float-right' id='text-navigation'>
+                            <h2> My Account   I   Profile
+                            </h2>
                         </div>
                     </div>
                     <style>
@@ -436,8 +550,6 @@
                             background-color:#1D1D1D;
                             opacity: .7;
                             box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                            
-
                         }
                         .center
                         {
@@ -456,7 +568,7 @@
                         <button class='button' id='button-next'>
                             <i class="fal fa-angle-right"></i>
                         </button>
-                        <button class='button' id='button-previous'onclick="goBack()">
+                        <button class='button' id='button-previous'>
                             <i class="fal fa-angle-left"></i>
                         </button>
                         <button class='button' id='button-close'>
@@ -478,11 +590,6 @@
                             z-index: 10;
                         }
                     </style>
-                    <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>
                 </div>
 
                 <style>

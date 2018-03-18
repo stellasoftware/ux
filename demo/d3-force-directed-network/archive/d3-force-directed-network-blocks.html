@@ -3,7 +3,6 @@
 <html>
     <head>
         <style>
-            
             @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
             body
             {
@@ -12,6 +11,7 @@
                 font-weight: 300;
                 margin: 0px;
                 padding: 0px;
+                
             }
             .application
             {
@@ -20,22 +20,6 @@
                 position: absolute;
                 overflow: hidden;
                 width: 100%;
-            }
-            div#client
-            {
-                background: #1D1D1D;
-                height: 100%;
-                position: fixed;
-                width: 100%;
-                z-index: 10;
-            
-            }
-            h0
-            {
-
-                font-weight: 100;
-                font-size: 50px;
-                padding: 0px;
             }
             h1
             {
@@ -49,8 +33,19 @@
                 font-weight: 400;
                 font-size: 11px;
             }
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
+            }
         </style>
+        <a target="_blank" style="outline:none;">
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
     </head>
 
     <body>
@@ -66,58 +61,144 @@
                     <!-- Space Personal--> 
                     <div class='space' id='space-personal'>
                         <!-- Space Content--> 
-                        <div class='space-content' id='project-management-personal'>
-                            <div class="space-header">
-                                <h0>
-                                    Glossier: Summer 2018
-                                </h0>
-                            </div>
+                        <div class='space-content' >
 
-                            <div class="space-navigation">
-                                <!--<a href="#">
-                                    <h2>sort by</h2>
-                                </a>
-                                <a href="#">
-                                    <h2>filter by</h2>
-                                </a>-->
-                            </div>
+                            <!--Force Directed Network--> 
+                            <canvas id='canvas'>
+                            </canvas>
+
+                            <!--Canvas Full Size --> 
+                            <script>
+                                (function() {
+                                    var canvas = document.getElementById('canvas'),
+                                            context = canvas.getContext('2d');
+
+                                    // resize the canvas to fill browser window dynamically
+                                    window.addEventListener('resize', resizeCanvas, false);
+
+                                    function resizeCanvas() {
+                                            canvas.width = window.innerWidth;
+                                            canvas.height = window.innerHeight;
+
+                                            /**
+                                             * Your drawings need to be inside this function otherwise they will be reset when 
+                                             * you resize the browser window and the canvas goes will be cleared.
+                                             */
+                                            drawStuff(); 
+                                    }
+                                    resizeCanvas();
+
+                                    function drawStuff() {
+                                            // do your drawing stuff here
+                                    }
+                                })();
+                            </script>
+                            <!--Network Here --> 
+                            <script>
+                                var canvas = document.querySelector("canvas"),
+                                    context = canvas.getContext("2d"),
+                                    width = canvas.width,
+                                    height = canvas.height,
+                                    searchRadius = 40;
+                                
+                                var color = d3.scaleOrdinal()
+                                    .range(d3.schemeCategory20);
+                                
+                                var simulation = d3.forceSimulation()
+                                    .force("charge", d3.forceManyBody().strength(-18))
+                                    .force("link", d3.forceLink().iterations(4).id(function(d) { return d.id; }))
+                                    .force("x", d3.forceX())
+                                    .force("y", d3.forceY());
+                                
+                                d3.json("graph.json", function(error, graph) {
+                                if (error) throw error;
+                                
+                                var users = d3.nest()
+                                    .key(function(d) { return d.user; })
+                                    .entries(graph.nodes)
+                                    .sort(function(a, b) { return b.values.length - a.values.length; });
+                                
+                                color.domain(users.map(function(d) { return d.key; }));
+                                
+                                simulation
+                                    .nodes(graph.nodes)
+                                    .on("tick", ticked);
+                                
+                                simulation.force("link")
+                                    .links(graph.links);
+                                
+                                d3.select(canvas)
+                                    .on("mousemove", mousemoved)
+                                    .call(d3.drag()
+                                        .container(canvas)
+                                        .subject(dragsubject)
+                                        .on("start", dragstarted)
+                                        .on("drag", dragged)
+                                        .on("end", dragended));
+                                
+                                function ticked() {
+                                    context.clearRect(0, 0, width, height);
+                                    context.save();
+                                    context.translate(width / 2, height / 2);
+                                
+                                    context.beginPath();
+                                    graph.links.forEach(drawLink);
+                                    context.strokeStyle = "#aaa";
+                                    context.stroke();
+                                
+                                    users.forEach(function(user) {
+                                    context.beginPath();
+                                    user.values.forEach(drawNode);
+                                    context.fillStyle = color(user.key);
+                                    context.fill();
+                                    });
+                                
+                                    context.restore();
+                                }
+                                
+                                function dragsubject() {
+                                    return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2, searchRadius);
+                                }
+                                
+                                function mousemoved() {
+                                    var a = this.parentNode, m = d3.mouse(this), d = simulation.find(m[0] - width / 2, m[1] - height / 2, searchRadius);
+                                    if (!d) return a.removeAttribute("href"), a.removeAttribute("title");
+                                    a.setAttribute("href", "http://bl.ocks.org/" + (d.user ? d.user + "/" : "") + d.id);
+                                    a.setAttribute("title", d.id + (d.user ? " by " + d.user : "") + (d.description ? "\n" + d.description : ""));
+                                }
+                                });
+                                
+                                function dragstarted() {
+                                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                                d3.event.subject.fx = d3.event.subject.x;
+                                d3.event.subject.fy = d3.event.subject.y;
+                                }
+                                
+                                function dragged() {
+                                d3.event.subject.fx = d3.event.x;
+                                d3.event.subject.fy = d3.event.y;
+                                }
+                                
+                                function dragended() {
+                                if (!d3.event.active) simulation.alphaTarget(0);
+                                d3.event.subject.fx = null;
+                                d3.event.subject.fy = null;
+                                }
+                                
+                                function drawLink(d) {
+                                context.moveTo(d.source.x, d.source.y);
+                                context.lineTo(d.target.x, d.target.y);
+                                }
+                                
+                                function drawNode(d) {
+                                context.moveTo(d.x + 3, d.y);
+                                context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
+                                }
+                            </script>
+
+                        </div>
                         
-                            <div class='space-column'>
-                                <div class='gallery'>
-                                    <h1>Concept</h1>
-                                    <h2>
-                                            Script
-                                    </h2> 
-                                </div>
-                            </div>
-                            <div class='space-column'>
-                                <div class='gallery'>
-                                    <h1>Shotlist</h1>
-                                    <h2>
-                                            Shotlist
-                                    </h2> 
-                                </div>
-                            </div>
-                            <div class='space-column'>
-                                    <div class='gallery'>
-                                        <h1>Schedule</h1>
-                                        <h2>
-                                                Schedule
-                                        </h2> 
-                                    </div>
-                                </div>
-                            </div>
-    
-
-                        </div>
-
-                        </div>
-                        <!--
-                        <div class="space-footer">
-                            <h1>
-                            </h1>
-                        </div>
-                        -->
+                        
 
                         <style>
                             .space
@@ -127,23 +208,21 @@
                                 width: 100%;
                             }
 
+
                             .space-content
                             {   
                                 height: 100%;
                                 width: 100%;
-                                padding: 40px 10px;
+                                padding: 30px;
                                 box-sizing: border-box;
                                 overflow: auto;
-                                position: fixed;
-                                
                             }
 
                             .space-header 
                             {
                                 background:transparent;
                                 padding: 5px;
-                                text-align: left;
-                                
+                                text-align: center;
                             }
 
                             .space-header h1 
@@ -185,46 +264,55 @@
                                 padding: 0 6px;
                                 float: left;
                                 width: 20%;
+                                margin: 0px;
                             }
-                            div.gallery 
+                            
+                            .space-column a
+                            {
+                                text-decoration: none;
+                            }
+
+                            .gallery 
                             {
                                 padding: 10px;
                                 margin: 0;
                             }
 
-                            div.gallery:hover 
+                            .gallery:hover 
                             {
                                 box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
                                 background: white;
                                 opacity: .9;
                                 color: black;
+                                transform: scale(1.03);
 
                             }
 
-                            div.gallery img 
+                            .gallery img 
                             {
                                 width: 100%;
                                 height: auto;
                             }
+
                             .clearfix:after {
                                 content: "";
                                 display: table;
                                 clear: both;
                             }
 
-                            
-
-                            .space-card 
-                            {
-                                padding: 20px;
+                            .image-placeholder {
+                                background-color: #aaa;
+                                width: 100%;
+                                height: auto;
                             }
+
                             
-                            /*.space-row:after 
+                            .space-row:after 
                                 {
                                     content: "";
                                     display: table;
                                     clear: both;
-                                }*/
+                                }
                             @media only screen and (max-width: 700px) {
                                 .space-column {
                                     width: 49.99999%;
@@ -238,19 +326,21 @@
                                 }
                             }
                             
-                            </style>
+                        </style>
 
-                        <!-- Space INSPECTOR --> 
+                        <!-- Space Inspector --> 
                         <div class='inspector' id='inspector-personal'>
                             <div class='center'>
                                 <button class='button tooltip'id='button-search'>
-                                    <i class="fal fa-search"></i>
+                                    <i class="fas fa-search"></i>
                                     <span class="tooltiptext">Search</span>
                                 </button>
-                                <button class='button tooltip'id='button-add'onclick="open_create_options()">
-                                    <i class="fal fa-plus"></i>
-                                    <span class="tooltiptext">Create</span>
-                                </button>
+                                <a href="create-project.html">
+                                    <button class='button tooltip'id='button-add'>
+                                        <i class="fas fa-plus"></i>
+                                        <span class="tooltiptext">Create Project</span>
+                                    </button>
+                                </a>
                                 <button class='button tooltip' id='button-change-view'>
                                     <i class="fas fa-eye"></i>
                                     <span class="tooltiptext">Change view</span>
@@ -265,7 +355,7 @@
                                     {
                                         width: 32px;
                                         padding: 20px 10px;
-                                        position: fixed;
+                                        position: absolute;
                                         top: 0px;
                                         right: 0px;
                                     }
@@ -279,8 +369,8 @@
 
                                 .button
                                     {
-                                    background-color:#1D1D1D;
-                                    opacity: .7;
+                                    background-color: black;
+                                    opacity: .6;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -289,7 +379,7 @@
                                     text-decoration: none;
                                     display: block;
                                     font-size: 15px;
-                                    margin: 0px 0px 5px 5px;
+                                    margin: 0px 0px 8px 0px;
                                     cursor: pointer;
                                     width: 30px;
                                     height: 30px;
@@ -308,8 +398,8 @@
 
                                 .button-text 
                                     {
-                                    background-color:#1D1D1D;
-                                    opacity: .7;
+                                    background-color: black;
+                                    opacity: .6;
                                     border: 0;
                                     border-radius: 50%;
                                     color: white;
@@ -376,8 +466,8 @@
                                     }
                             </style>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
 
@@ -391,19 +481,15 @@
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
                     <div class='center'>
-                    <!-- Button Stella-->
                         <div class='client-navigation-float-left'>
-                            <button class='button' id='button-stella'>
-                                    <img src="image/button-stella-w.png"
-                                    onmouseover="this.src='image/button-stella-b.png'"
-                                    onmouseout="this.src='image/button-stella-w.png'"
-                                    >
+                            <button class='button' id='button-compass'>
+                                <i class="far fa-compass"></i>
                             </button>
                         </div>
-                        <div class='client-navigation-float-left' id='text-navigation'>
+                        <div class='client-navigation-float-left' id='text-compass'>
                             <h2>My Stella 
                                 <i class="fas fa-angle-right"></i>
-                                Glossier: Summer 2018
+                                All Projects
                             </h2>
                         </div>
                         <div class='client-navigation-float-right'>
@@ -415,7 +501,7 @@
                         </div>
                     </div>
                     <style>
-                       div#client-navigation-footer
+                        div#client-navigation-footer
                         {
                             background: transparent;                 
                             bottom: 0px;
@@ -431,12 +517,11 @@
                         {
                             text-decoration: none;
                         }
-                        div#text-navigation h2
+                        div#text-compass h2
                         {
-                            background-color:#1D1D1D;
-                            opacity: .7;
                             box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                            
+                            background: rgb(2, 2, 2);
+                            opacity: .8;
 
                         }
                         .center
@@ -446,25 +531,12 @@
                             width: auto;
                         }
                     </style>
+
                 </div>
 
                 <!-- NAVIGATION HEADER -->
                 <div id='client-navigation-header'>
-           
-                    <div class='client-navigation-float-left'>
-
-                        <button class='button' id='button-next'>
-                            <i class="fal fa-angle-right"></i>
-                        </button>
-                        <button class='button' id='button-previous'onclick="goBack()">
-                            <i class="fal fa-angle-left"></i>
-                        </button>
-                        <button class='button' id='button-close'>
-                            <i class="fal fa-times"></i>
-                        </button>
-
-                    </div>
- 
+                    <div></div>
                     <style> 
                         div#client-navigation-header
                         {
@@ -478,11 +550,6 @@
                             z-index: 10;
                         }
                     </style>
-                    <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>
                 </div>
 
                 <style>
@@ -491,7 +558,7 @@
                         display: block;
                         float: left;
                         width: auto;
-                        padding: 20px 10px;
+                        padding: 10px;
                     }
 
                     div.client-navigation-float-right
@@ -499,13 +566,15 @@
                         display: block;
                         float: right;
                         width: auto;
-                        padding: 10px 10px ;
+                        padding: 10px;
                     }
 
                 </style>
             </div>
 
             <style>
+                /* CLIENT */
+
             </style>
         </div>
     </body>

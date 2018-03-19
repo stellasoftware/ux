@@ -64,6 +64,112 @@
                 visibility: visible;
             }
 
+
+            .button
+                {
+                background-color:#1D1D1D;
+                opacity: .7;
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                float: right;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+                margin: 0px 0px 5px 5px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button:hover
+                {
+                background-color: #ffffff;
+                opacity: 1;
+                color: black;
+                transform: scale(1.2);
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .button-selected button{
+                background-color: #ffffff;
+                opacity: 1;
+                color: black;
+
+            }
+
+            .button-text 
+                {
+                background-color:#1D1D1D;
+                opacity: .7;
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                text-align: center;
+                display: block;
+                font-size: 12px;
+                margin: 0px 0px 0px 0px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button-text:hover
+                {
+                background-color: #ffffff;
+                opacity: 1;
+                color: black;
+                font-weight: 600;
+                transform: scale(1.2);
+                text-decoration: none;
+
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .tooltip 
+                {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+                }
+            .tooltip .tooltiptext 
+                {
+                visibility: hidden;
+                width: auto;
+                background-color:black;
+                color:white;
+                opacity: .3;
+                text-align: center;
+                border-radius: 3px;
+                padding: 4px 4px;
+                position: absolute;
+                z-index: 1;
+                top: -5px;
+                right: 110%;
+                font-size: 10px;
+                text-transform: uppercase;
+                }
+            .tooltip .tooltiptext::after 
+                {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent transparent black;
+                }
+            .tooltip:hover .tooltiptext 
+                {
+                visibility: visible;
+                }
+
         </style>
 
 
@@ -124,6 +230,7 @@
                                     .menu-primary h2:hover
                                     {
                                         color: rgba(255, 255, 255, 1);
+                                        transform: scale(1.05);
                                     } 
                                 </style>
                                 <script>
@@ -264,6 +371,7 @@
                                     .menu-secondary h2:hover
                                         {
                                             color: rgba(255, 255, 255, 1);
+                                            transform: scale(1.05);
                                         }
                                 </style>
                             </div>
@@ -345,17 +453,17 @@
                             <div id="main-profile">
                                 <div id="main-profile-about"class="display-none">
                                     <h0>
-                                        About
+                                    About
                                     </h0>
                                 </div>
                                 <div id="main-profile-portfolio"class="display-none">
                                     <h0>
-                                        Portfolio
+                                    Portfolio
                                     </h0>
                                 </div>
                                 <div id="main-profile-experience"class="display-none">
                                     <h0>
-                                        Experience 
+                                    Experience 
                                     </h0>
                                     <!-- Spider Chart -->
                                     <script src="http://d3js.org/d3.v3.js"></script>
@@ -547,7 +655,7 @@
                                 </div>
                                 <div id="main-profile-collaborators"class="display-none">
                                     <h0>
-                                        Collaborators 
+                                    Collaborators 
                                     </h0>
                                     <!--Force Directed Network--> 
                                     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -681,38 +789,28 @@
                                         context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
                                         }
                                     </script>
-    
-
-
-
-
-
-
-
-
-
                                 </div>
 
                             </div>
                             <div id="main-account" class="display-none">
                                 <div id="main-account-personalinformation" class="display-none">
                                     <h0>
-                                        Personal Information 
+                                    Personal Information 
                                     </h0>
                                 </div>
                                 <div id="main-account-products" class="display-none">
                                     <h0>
-                                        Product 
+                                    Product 
                                     </h0>
                                 </div>
                                 <div id="main-account-billing" class="display-none">
                                     <h0>
-                                        Billing 
+                                    Billing 
                                     </h0>
                                 </div>
                                 <div id="main-account-settings" class="display-none">
                                     <h0>
-                                        Setting 
+                                    Setting 
                                     </h0>
                                 </div>
                             </div>
@@ -734,24 +832,47 @@
 
                         <!-- Space Inspector --> 
                         <div class='inspector' id='inspector-personal'>
-                            <div class='center'>
-                                <button class='button tooltip'id='button-search'>
-                                    <i class="fal fa-search"></i>
-                                    <span class="tooltiptext">Search</span>
-                                </button>
-                                <button class='button tooltip'id='button-add'>
-                                    <i class="fal fa-plus"></i>
-                                    <span class="tooltiptext">Create</span>
-                                </button>
-                                <button class='button tooltip' id='button-change-view'>
-                                    <i class="fas fa-eye"></i>
-                                    <span class="tooltiptext">Change view</span>
-                                </button>                        
-                                <button class='button tooltip' id='button-more'>
-                                    <i class="fas fa-ellipsis-h"></i>
-                                    <span class="tooltiptext">More</span>
-                                </button>
+                            <div class='inspector-center'>
+                                <div id='button-search'>
+                                    <button class='button tooltip' onclick='select_search()'>
+                                        <i class="fal fa-search"></i>
+                                        <span class="tooltiptext">Search</span>
+                                    </button>
+                                </div>
+                                <div id='button-add'>
+                                    <button class='button tooltip' onclick='select_add()'>
+                                        <i class="fal fa-plus"></i>
+                                        <span class="tooltiptext">Add</span>
+                                    </button>
+                                </div>
+                                <div id='button-change-view'>
+                                    <button class='button tooltip' onclick='select_change_view()'>
+                                        <i class="fas fa-eye"></i>
+                                        <span class="tooltiptext">Change view</span>
+                                    </button>
+                                </div>
+                                <div id='button-more'>                      
+                                    <button class='button tooltip' onclick='select_more()'>
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span class="tooltiptext">More</span>
+                                    </button>
+                                </div>  
                             </div>
+                            <script>                       
+                                function select_search(){
+                                    document.getElementById("button-search").classList.toggle("button-selected");
+                                }
+                                function select_add(){
+                                    document.getElementById("button-add").classList.toggle("button-selected");
+                                }
+                                function select_change_view(){
+                                    document.getElementById("button-change-view").classList.toggle("button-selected");
+                                }
+                                function select_more(){
+                                    document.getElementById("button-more").classList.toggle("button-selected");
+                                }
+                            </script>
+
                         </div>
                         <style>
                             .inspector
@@ -763,109 +884,11 @@
                                     right: 0px;
                                 }
 
-                            .center
+                            .inspector-center
                                 {
                                     margin: 0px auto;
                                     width: 32px;
                                     height: auto;
-                                }
-
-                            .button
-                                {
-                                background-color:#1D1D1D;
-                                opacity: .7;
-                                border: 0;
-                                border-radius: 50%;
-                                color: white;
-                                float: right;
-                                text-align: center;
-                                text-decoration: none;
-                                display: block;
-                                font-size: 15px;
-                                margin: 0px 0px 5px 5px;
-                                cursor: pointer;
-                                width: 30px;
-                                height: 30px;
-                                padding: 0px;
-                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                }
-                            .button:hover
-                                {
-                                background-color: #ffffff;
-                                opacity: 1;
-                                color: black;
-                                transform: scale(1.2);
-                                -webkit-transition-duration: 0.1s; /* Safari */
-                                transition-duration: 0.1s;
-                                }
-
-                            .button-text 
-                                {
-                                background-color:#1D1D1D;
-                                opacity: .7;
-                                border: 0;
-                                border-radius: 50%;
-                                color: white;
-                                text-align: center;
-                                display: block;
-                                font-size: 12px;
-                                margin: 0px 0px 0px 0px;
-                                cursor: pointer;
-                                width: 30px;
-                                height: 30px;
-                                padding: 0px;
-                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                }
-                            .button-text:hover
-                                {
-                                background-color: #ffffff;
-                                opacity: 1;
-                                color: black;
-                                font-weight: 600;
-                                transform: scale(1.2);
-                                text-decoration: none;
-
-                                -webkit-transition-duration: 0.1s; /* Safari */
-                                transition-duration: 0.1s;
-                                }
-
-                            .tooltip 
-                                {
-                                position: relative;
-                                display: inline-block;
-                                border-bottom: 1px dotted black;
-                                }
-                            .tooltip .tooltiptext 
-                                {
-                                visibility: hidden;
-                                width: auto;
-                                background-color:black;
-                                color:white;
-                                opacity: .3;
-                                text-align: center;
-                                border-radius: 3px;
-                                padding: 4px 4px;
-                                position: absolute;
-                                z-index: 1;
-                                top: -5px;
-                                right: 110%;
-                                font-size: 10px;
-                                text-transform: uppercase;
-                                }
-                            .tooltip .tooltiptext::after 
-                                {
-                                content: "";
-                                position: absolute;
-                                top: 50%;
-                                left: 100%;
-                                margin-top: -5px;
-                                border-width: 5px;
-                                border-style: solid;
-                                border-color: transparent transparent transparent black;
-                                }
-                            .tooltip:hover .tooltiptext 
-                                {
-                                visibility: visible;
                                 }
                         </style>
                     </div>
@@ -882,18 +905,18 @@
                     </style>
                 </div>
                 <style>
-                .space
-                    {   
-                        /*background-image: url("./07.jpg"); */
-                        height: 100%;
-                        width: 100%;
-                    }
+                    .space
+                        {   
+                            /*background-image: url("./07.jpg"); */
+                            height: 100%;
+                            width: 100%;
+                        }
                 </style>
             </div>
 
             <!-- component.static { component.client.foreground } -->
             <div class='component' id='client-foreground'>
-                <!-- COMPASS SHORTCUT -->
+                <!-- Stella Button Reaction -->
             </div>
 
             <!-- component.static { component.client.navigation } -->
@@ -901,26 +924,36 @@
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
                     <div class='footer-center'>
-                    <!-- Button Stella-->
-                        <div class='client-navigation-float-left'>
-                            <button class='button' id='button-stella'>
+                        <!-- Button Stella-->
+                        <div class='client-navigation-float-left'id='button-stella'>
+                            <button class='button' onclick="select_stella()">
                                     <img src="image/button-stella-w.png"
                                     onmouseover="this.src='image/button-stella-b.png'"
                                     onmouseout="this.src='image/button-stella-w.png'"
                                     >
                             </button>
                         </div>
+                        <script>
+                            function select_stella(){
+                                document.getElementById("butten-stella").classList.toggle("button-selected");
+                            }
+                        </script>
                         <div class='client-navigation-float-left' id='text-navigation'>
                             <h2>
+                                
                             </h2>
                         </div>
-                        <div class='client-navigation-float-right'>
-                            <a href="space-user-personal.html">
-                                <button class='button-text' id='user-identity-personal'>
-                                    SB
-                                </button>
-                            </a>
+                        <!-- User Personal-->
+                        <div class='client-navigation-float-right'id='butten-user'>
+                            <button class='button-text' onclick="select_user()">
+                                SB
+                            </button>
                         </div>
+                        <script>
+                            function select_user(){
+                                document.getElementById("butten-user").classList.toggle("button-selected");
+                            }
+                        </script>
                         <div class='client-navigation-float-right' id='button-account' onclick="select_account()">
                             <h2> My Account   
                             </h2>
@@ -936,14 +969,19 @@
 
                                 document.getElementById("menu-profile").classList.toggle("display-none", true);
                                 document.getElementById("menu-account").classList.toggle("display-none", false);
+
+                                document.getElementById("main-profile").classList.toggle("display-none", true);
+                                document.getElementById("main-account").classList.toggle("display-none", false);
                             }
                             function select_profile(){
                                 document.getElementById("button-account").classList.toggle("text-selected", false);
                                 document.getElementById("button-profile").classList.toggle("text-selected", true);
 
-
                                 document.getElementById("menu-profile").classList.toggle("display-none", false);
                                 document.getElementById("menu-account").classList.toggle("display-none", true);
+
+                                document.getElementById("main-profile").classList.toggle("display-none", false);
+                                document.getElementById("main-account").classList.toggle("display-none", true);
                             }
 
                         </script>
@@ -966,6 +1004,7 @@
                         {
                             text-decoration: none;
                         }
+
                         .footer-center
                         {
                             margin: 0px auto;
@@ -989,10 +1028,10 @@
                         <button class='button' id='button-next'>
                             <i class="fal fa-angle-right"></i>
                         </button>
-                        <button class='button' id='button-previous'onclick="goBack()">
+                        <button class='button' id='button-previous'>
                             <i class="fal fa-angle-left"></i>
                         </button>
-                        <button class='button' id='button-close'>
+                        <button class='button' id='button-close'onclick="goBack()">
                             <i class="fal fa-times"></i>
                         </button>
 

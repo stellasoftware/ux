@@ -3,7 +3,6 @@
 <html>
     <head>
         <style>
-            
             @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
             body
             {
@@ -23,6 +22,7 @@
             }
             div#client
             {
+                
                 background: #1D1D1D;
                 height: 100%;
                 position: fixed;
@@ -40,7 +40,7 @@
             h1
             {
                 font-weight: 300;
-                font-size: 17px;
+                font-size: 20px;
                 padding: 0px;
             }
             h2
@@ -67,8 +67,7 @@
 
             .button
                 {
-                background-color:#1D1D1D;
-                opacity: .7;
+                background:rgba(29, 29, 29, 0.5);
                 border: 0;
                 border-radius: 50%;
                 color: white;
@@ -86,8 +85,7 @@
                 }
             .button:hover
                 {
-                background-color: #ffffff;
-                opacity: 1;
+                background: rgb(255, 255, 255);
                 color: black;
                 transform: scale(1.2);
                 -webkit-transition-duration: 0.1s; /* Safari */
@@ -95,7 +93,7 @@
                 }
 
             .button-selected button{
-                background-color: #ffffff;
+                background: rgb(255, 255, 255);
                 opacity: 1;
                 color: black;
 
@@ -103,8 +101,7 @@
 
             .button-text 
                 {
-                background-color:#1D1D1D;
-                opacity: .7;
+                background:rgba(29, 29, 29, 0.5);
                 border: 0;
                 border-radius: 50%;
                 color: white;
@@ -120,8 +117,7 @@
                 }
             .button-text:hover
                 {
-                background-color: #ffffff;
-                opacity: 1;
+                background: rgb(255, 255, 255);
                 color: black;
                 font-weight: 600;
                 transform: scale(1.2);
@@ -141,9 +137,8 @@
                 {
                 visibility: hidden;
                 width: auto;
-                background-color:black;
+                background:rgba(29, 29, 29, 0.3);
                 color:white;
-                opacity: .3;
                 text-align: center;
                 border-radius: 3px;
                 padding: 4px 4px;
@@ -185,18 +180,15 @@
             <!-- component.static { component.client.background } -->
             <div class='component' id='client-background'>
 
-                <!-- Application Space --> 
-                <div class='application' id=application-space>
-
                 <!-- component.static { component.space} -->
-                <div class='component' id=space>
+                <div class='component' id='space'>
                     <!-- Space Content--> 
                     <div class='space-content'>
                         <!-- Space Menu--> 
                         <div class='space-menu'>
                             <div class="menu-header">
                                 <h0>
-                                    Sara Belot   
+                                    Sara Belot  
                                 </h0>
                             </div>
                             <style>
@@ -442,12 +434,14 @@
                         <style>
                             .space-menu
                             {
-                                background:transparent;
+                                background:rgba(29, 29, 29, 0);
                                 position: fixed;
                                 width: 30%;
+                                height: 100%;
+                                z-index: 1;
                             }
-                        
                         </style>
+
                         <!-- Space Main -->
                         <div class='space-main'>
                             <div id="main-profile">
@@ -822,76 +816,258 @@
                                 width: 100%;
                                 text-align: center;
                                 position: relative;
-                                z-index: -1;
+                                z-index: 0;
                             }
                             .space-main-box
                             {
-                                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                                border-bottom: .1px solid rgba(255, 255, 255, 0.1);
                             }
                         </style>
 
-                        <!-- Space Inspector --> 
-                        <div class='inspector' id='inspector-personal'>
-                            <div class='inspector-center'>
-                                <div id='button-search'>
-                                    <button class='button tooltip' onclick='select_search()'>
-                                        <i class="fal fa-search"></i>
-                                        <span class="tooltiptext">Search</span>
-                                    </button>
+                        <!-- Space Action --> 
+                        <div class='space-action'>
+                            <!-- Action Primary -->
+                            <div class='action-primary'>
+                                <div class='primary-box'>
+                                    <div id='button-search'>
+                                        <button class='button tooltip' onclick='select_search()'>
+                                            <i class="fal fa-search"></i>
+                                            <span class="tooltiptext">Search</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-change-view'>
+                                        <button class='button tooltip' onclick='select_change_view()'>
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltiptext">Change View</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-add'>
+                                        <button class='button tooltip' onclick='select_add()'>
+                                            <i class="fal fa-plus"></i>
+                                            <span class="tooltiptext">Add</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-edit'>                      
+                                        <button class='button tooltip' onclick='select_edit()'>
+                                            <i class="fal fa-edit"></i>
+                                            <span class="tooltiptext">Edit</span>
+                                        </button>
+                                    </div>  
+                                    <div id='button-more'>                      
+                                        <button class='button tooltip' onclick='select_more()'>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                            <span class="tooltiptext">More</span>
+                                        </button>
+                                    </div>  
                                 </div>
-                                <div id='button-add'>
-                                    <button class='button tooltip' onclick='select_add()'>
-                                        <i class="fal fa-plus"></i>
-                                        <span class="tooltiptext">Add</span>
-                                    </button>
-                                </div>
-                                <div id='button-change-view'>
-                                    <button class='button tooltip' onclick='select_change_view()'>
-                                        <i class="fas fa-eye"></i>
-                                        <span class="tooltiptext">Change view</span>
-                                    </button>
-                                </div>
-                                <div id='button-more'>                      
-                                    <button class='button tooltip' onclick='select_more()'>
-                                        <i class="fas fa-ellipsis-h"></i>
-                                        <span class="tooltiptext">More</span>
-                                    </button>
-                                </div>  
+                                <style>
+                                .primary-box
+                                    {
+                                        margin: 0px auto;
+                                        width: 32px;
+                                        height: auto;
+                                    }
+                                </style>
                             </div>
-                            <script>                       
-                                function select_search(){
-                                    document.getElementById("button-search").classList.toggle("button-selected");
-                                }
-                                function select_add(){
-                                    document.getElementById("button-add").classList.toggle("button-selected");
-                                }
-                                function select_change_view(){
-                                    document.getElementById("button-change-view").classList.toggle("button-selected");
-                                }
-                                function select_more(){
-                                    document.getElementById("button-more").classList.toggle("button-selected");
-                                }
-                            </script>
-
-                        </div>
-                        <style>
-                            .inspector
+                            <style>
+                            .action-primary
                                 {
                                     width: 32px;
                                     padding: 20px 10px;
                                     position: fixed;
                                     top: 0px;
                                     right: 0px;
+                                    z-index: 2;
                                 }
 
-                            .inspector-center
-                                {
-                                    margin: 0px auto;
-                                    width: 32px;
-                                    height: auto;
+                            </style>
+                            <script>   
+                                function select_search(){
+                                    document.getElementById("button-search").classList.toggle("button-selected");
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none");
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
                                 }
+
+                                function select_add(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected");
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none");
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_change_view(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected");
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none");
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_edit(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected");
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none");
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_more(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected");
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none");
+                                }
+                            </script>
+
+                            <!-- Action Secondary -->
+                            <div class='action-secondary'>
+                                <div class='secondary-box'>
+                                    <div class='display-none' id='action-search'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Search
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-add'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Add
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-change-view'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Change View 
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                Grid
+                                            </p>
+                                            <p>
+                                                Activity
+                                            </p>
+                                            <p>
+                                                Timeline
+                                            </p>
+                                            <p>
+                                                Map
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-edit'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Edit
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-more'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                More
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <style>
+                                    .secondary-box
+                                    {
+                                        margin:25px 50px 80px 20px;
+                                        height:100%
+                                    }
+                                    .secondary-header 
+                                    {
+                                        background:transparent;
+                                        text-align: left;
+                                        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                                    }
+                                    .secondary-list
+                                    {
+                                        padding: 0 10px;
+                                    }
+                                </style>
+                            </div>
+                            <style>
+                                .action-secondary
+                                {
+                                    background: linear-gradient(90deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    position: fixed;
+                                    width: 15%;
+                                    height:100%;
+                                    top: 0px;
+                                    right: 0px;
+                                    z-index: 1;
+                                }
+                                .secondary-list p:hover
+                                {
+                                    color: rgba(255, 255, 255, 1);
+                                    transform: scale(1.05);
+                                } 
+                        
+                            </style>
+                        </div>
+                        <style>
                         </style>
-                    </div>
+
                     <style>        
                         .space-content
                         {   
@@ -900,14 +1076,19 @@
                             padding: 40px 10px;
                             box-sizing: border-box;
                             overflow: auto;
-                            position: fixed;   
+                            position: fixed;
+                            
+                            background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/space-background-04.jpg"); 
+
+                            background-size:cover;                
+                            background-repeat:no-repeat;
+                            background-position: center center;  
                         }
                     </style>
                 </div>
                 <style>
-                    .space
+                    #space
                         {   
-                            /*background-image: url("./07.jpg"); */
                             height: 100%;
                             width: 100%;
                         }
@@ -1011,13 +1192,7 @@
                             height: 32px;
                             width: auto;
                         }
-  
-
                     </style>
-
-                    
-
-
                 </div>
 
                 <!-- NAVIGATION HEADER -->
@@ -1057,7 +1232,6 @@
                         }
                     </script>
                 </div>
-
                 <style>
                     div.client-navigation-float-left
                     {
@@ -1077,9 +1251,6 @@
 
                 </style>
             </div>
-
-            <style>
-            </style>
         </div>
     </body>
 </html>

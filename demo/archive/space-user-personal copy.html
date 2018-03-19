@@ -1,0 +1,877 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <style>
+            
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            body
+            {
+                color: #EDEDED;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                padding: 0px;
+            }
+            .application
+            {
+                display: block;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+            }
+            div#client
+            {
+                background: #1D1D1D;
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            
+            }
+            h0
+            {
+
+                font-weight: 100;
+                font-size: 50px;
+                padding: 0px;
+            }
+            h1
+            {
+                font-weight: 300;
+                font-size: 17px;
+                padding: 0px;
+            }
+            h2
+            {
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 11px;
+            }
+            .text-selected
+            {
+                color: rgba(255, 255, 255, 1);                                 
+            }
+            .display-block {
+                display: block;
+            }
+            .display-none {
+                display: none;
+            }
+            .visibility-visible {
+                visibility: visible;
+            }
+
+        </style>
+
+
+        <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script src="http://d3js.org/d3.v3.js"></script>
+        <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+    </head>
+
+    <body>
+        <!-- component.static { component.client } -->
+        <div class='component' id='client'>
+
+            <!-- component.static { component.client.background } -->
+            <div class='component' id='client-background'>
+
+                <!-- Application Space --> 
+                <div class='application' id=application-space>
+
+                <!-- component.static { component.space} -->
+                <div class='component' id=space>
+                    <!-- Space Content--> 
+                    <div class='space-content'>
+
+                        <div class="space-header">
+                            <h0>
+                                Sara Belot   
+                            </h0>
+                        </div>
+
+                        <div class="space-navigation">
+                        </div>
+                        <!-- Profile --> 
+                        <div id="space-content-profile"> 
+                            <!-- Column Left --> 
+                            <div class='space-column-left'>
+                                <h2 id="profile-about" onclick="select_about()">About</h2>
+                                <h2 id="profile-portfolio" onclick="select_portfolio()">Portfolio</h2> 
+                                <h2 id="profile-experience" onclick="select_experience()">Experience</h2>
+                                <h2 id="profile-collaborators" onclick="select_collaborators()">Collaborators</h2>     
+                            </div>
+                            <script>
+                                function select_about(){
+                                    document.getElementById("profile-about").classList.toggle("text-selected");
+                                    document.getElementById("profile-portfolio").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-experience").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-collaborators").classList.toggle("text-selected", false);
+
+                                    document.getElementById("about-details").classList.toggle("display-none");
+                                    document.getElementById("portfolio-details").classList.toggle("display-none", true);
+                                    document.getElementById("experience-details").classList.toggle("display-none", true);
+                                    document.getElementById("collaborators-details").classList.toggle("display-none", true);
+                                }
+                                function select_portfolio(){
+                                    document.getElementById("profile-about").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-portfolio").classList.toggle("text-selected");
+                                    document.getElementById("profile-experience").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                    document.getElementById("about-details").classList.toggle("display-none", true);
+                                    document.getElementById("portfolio-details").classList.toggle("display-none");
+                                    document.getElementById("experience-details").classList.toggle("display-none", true);
+                                    document.getElementById("collaborators-details").classList.toggle("display-none", true);
+                                }
+                                function select_experience(){
+                                    document.getElementById("profile-about").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-portfolio").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-experience").classList.toggle("text-selected");
+                                    document.getElementById("profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                    document.getElementById("about-details").classList.toggle("display-none", true);
+                                    document.getElementById("portfolio-details").classList.toggle("display-none", true);
+                                    document.getElementById("experience-details").classList.toggle("display-none");
+                                    document.getElementById("collaborators-details").classList.toggle("display-none", true);
+                                }
+                                function select_collaborators(){
+                                    document.getElementById("profile-about").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-portfolio").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-experience").classList.toggle("text-selected", false);
+                                    document.getElementById("profile-collaborators").classList.toggle("text-selected");
+
+
+                                    document.getElementById("about-details").classList.toggle("display-none", true);
+                                    document.getElementById("portfolio-details").classList.toggle("display-none", true);
+                                    document.getElementById("experience-details").classList.toggle("display-none", true);
+                                    document.getElementById("collaborators-details").classList.toggle("display-none");
+                                }
+                            </script>
+
+                            <!-- Column Center -->
+                            <div class='space-column-center'>
+                                <div class='display-none' id="about-details">
+                                    <h2 id="about-location" onclick="select_location()">New York, NY</h2> 
+                                </div>
+                                <script>
+                                    function select_location(){
+                                        document.getElementById("about-location").classList.toggle("text-selected");
+                                    }
+                                </script>  
+
+                                <div class='display-none' id="portfolio-details">
+                                    <h2 id="portfolio-all" onclick="select_portfolio_all()">All</h2>
+                                    <h2 id="portfolio-recent" onclick="select_portfolio_recent()">Recent</h2>  
+                                </div>
+                                <script>
+                                    function select_portfolio_all(){
+                                        document.getElementById("portfolio-all").classList.toggle("text-selected");
+                                    }
+                                    function select_portfolio_recent(){
+                                        document.getElementById("portfolio-recent").classList.toggle("text-selected");
+                                    }
+                                </script>  
+
+                                <div class='display-none' id="experience-details">
+                                    <h2 id="experience-roles" onclick="select_experience_roles()">Roles</h2>
+                                    <h2 id="experience-projects" onclick="select_experience_projects()">Projects</h2>  
+                                </div>
+                                <script>
+                                    function select_experience_roles(){
+                                        document.getElementById("experience-roles").classList.toggle("text-selected");
+                                    }
+                                    function select_experience_projects(){
+                                        document.getElementById("experience-projects").classList.toggle("text-selected");
+                                    }
+                                </script>  
+
+                                <div class='display-none' id="collaborators-details">
+                                    <h2 id="collaborators-all" onclick="select_collaborators_all()">All</h2>
+                                    <h2 id="collaborators-recommendations" onclick="select_collaborators_recommendations()">Recommendations</h2>
+                                    <h2 id="collaborators-organizations" onclick="select_collaborators_organizations()">Organizations</h2>
+                                    <h2 id="collaborators-professionals" onclick="select_collaborators_professionals()">Professionals</h2>      
+                                </div>
+                                <script>
+                                    function select_collaborators_all(){
+                                        document.getElementById("collaborators-all").classList.toggle("text-selected");
+                                    }
+                                    function select_collaborators_recommendations(){
+                                        document.getElementById("collaborators-recommendations").classList.toggle("text-selected");
+                                    }
+                                    function select_collaborators_organizations(){
+                                        document.getElementById("collaborators-organizations").classList.toggle("text-selected");
+                                    }
+                                    function select_collaborators_professionals(){
+                                        document.getElementById("collaborators-professionals").classList.toggle("text-selected");
+                                    }
+                                </script>
+                            </div>  
+
+                            <!-- Column Right -->
+                            <div class='space-column-right'>
+                                <!-- Spider Chart -->
+                                <div class='space-column-right-box'> 
+                                    <h2>
+                                        Previous Roles
+                                    </h2>
+                                    <div id="chart-container">
+                                    </div>
+                                    <style>
+                                        #chart-container{
+                                        display: inline-block;
+                                        text-align: center;
+                                        }
+
+                                        .radar-chart .area {
+                                        fill-opacity: 0.7;
+                                        }
+                                        .radar-chart.focus .area {
+                                        fill-opacity: 0.3;
+                                        }
+                                        .radar-chart.focus .area.focused {
+                                        fill-opacity: 0.9;
+                                        }
+                                        .area.target-graph, .target-graph .color {
+                                        fill: #01afff;
+                                        stroke: none;
+                                        }
+                                        .area.my-graph, .my-graph .color{
+                                        fill: #3a3a3a;
+                                        stroke: none;
+                                        }
+                                        .radar-chart .axis .legend{
+                                        fill:#ededed;
+                                        font-family:'Roboto', sans-serif;
+                                        font-weight: 500;
+                                        font-size:10px;
+                                        }
+                                        .radar-chart .axis .legend.left{text-anchor:middle}
+                                        .radar-chart .axis .legend.middle{text-anchor:middle}
+                                        .radar-chart .axis .legend.right{text-anchor:middle}
+                                        .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                        .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                    </style>
+                                    <script>
+                                        var data = [
+                                        {
+                                            className: 'my-graph',
+                                            axes: [
+                                            {axis: "Producing", value: 3}, 
+                                            {axis: "Editing", value: 2}, 
+                                            {axis: "Screenwriting", value: 10},  
+                                            {axis: "Cinematography", value: 10},  
+                                            {axis: "Directing", value: 2},
+                                            {axis: "Sound Design", value: 1 }
+                                            ]
+                                        },
+                                        {
+                                            className: 'target-graph',
+                                            axes: [
+                                            {axis: "Oroducing", value: 4}, 
+                                            {axis: "Editing", value: 6}, 
+                                            {axis: "Screenwriting", value: 8},  
+                                            {axis: "Cinematography", value: 4},  
+                                            {axis: "Directing", value: 9},
+                                            {axis: "Sound Design", value: 2}
+                                            ]
+                                        },
+                                        ];
+
+                                        var w=450, h=450;
+                                        
+                                        RadarChart.defaultConfig.color = function() {};
+                                        
+                                        var chart = RadarChart.chart();
+                                        var cfg = chart.config();
+                                        
+                                        chart.config({
+                                            w: w,
+                                            h: h,
+                                            factor: 0.7,
+                                            factorLegend:0.85,
+                                            levels:5,
+                                            circles:false,
+                                        });
+                                        
+                                        var svg = d3.select('#chart-container').append('svg')
+                                        // .attr('x',50)
+                                        // .attr('y',0)
+                                        .attr('width', w)
+                                        .attr('height', h)
+                                        
+                                        svg.append('g').classed('single', 1).datum(data).call(chart);
+                                    </script>
+                                </div>
+                                <!-- Spider Chart -->
+                                <div class='space-column-right-box'> 
+                                    <h2>
+                                        Types of Projects
+                                    </h2>
+                                    <div id="chart-container-02">
+                                    </div>
+
+                                    <style>
+                                        #chart-container-02{
+                                        display: inline-block;
+                                        text-align: center;
+                                        }
+                                        .radar-chart .area {
+                                        fill-opacity: 0.7;
+                                        }
+                                        .radar-chart.focus .area {
+                                        fill-opacity: 0.3;
+                                        }
+                                        .radar-chart.focus .area.focused {
+                                        fill-opacity: 0.9;
+                                        }
+                                        .area.target-graph, .target-graph .color {
+                                        fill: #01afff;
+                                        stroke: none;
+                                        }
+                                        .area.my-graph, .my-graph .color{
+                                        fill: #3a3a3a;
+                                        stroke: none;
+                                        }
+                                        .radar-chart .axis .legend{
+                                        fill:#ededed;
+                                        font-family:'Roboto', sans-serif;
+                                        font-weight: 500;
+                                        font-size:10px;
+                                        }
+                                        .radar-chart .axis .legend.left{text-anchor:middle}
+                                        .radar-chart .axis .legend.middle{text-anchor:middle}
+                                        .radar-chart .axis .legend.right{text-anchor:middle}
+                                        .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                        .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                    </style>
+                                    <script>
+                                        var data = [
+                                        {
+                                            className: 'my-graph',
+                                            axes: [
+                                            {axis: "Branded Content", value: 10}, 
+                                            {axis: "Commercial", value: 7}, 
+                                            {axis: "Scripted Feature", value: 6},  
+                                            {axis: "Music Video", value: 5},  
+                                            {axis: "Music Video", value: 9},
+                                            {axis: "Scripted Short", value: 7}
+                                            ]
+                                        },
+                                        {
+                                            className: 'target-graph',
+                                            axes: [
+                                            {axis: "Branded Content", value: 4}, 
+                                            {axis: "Commercial", value: 3}, 
+                                            {axis: "Scripted Feature", value:10},  
+                                            {axis: "Music Video", value: 3},  
+                                            {axis: "Music Video", value: 1},
+                                            {axis: "Scripted Short", value: 12}
+                                            ]
+                                        },
+                                        ];
+
+                                        var w=450, h=450;
+                                        
+                                        RadarChart.defaultConfig.color = function() {};
+                                        
+                                        var chart = RadarChart.chart();
+                                        var cfg = chart.config();
+                                        
+                                        chart.config({
+                                            w: w,
+                                            h: h,
+                                            factor: 0.7,
+                                            factorLegend:0.85,
+                                            levels:5,
+                                            circles:false,
+                                        });
+                                        
+                                        var svg = d3.select('#chart-container-02').append('svg')
+                                        // .attr('x',50)
+                                        // .attr('y',0)
+                                        .attr('width', w)
+                                        .attr('height', h)
+                                        
+                                        svg.append('g').classed('single', 1).datum(data).call(chart);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Account --> 
+                        <div id="space-content-account" class="display-none">
+                            <!-- Column Left --> 
+                            <div class='space-column-left'>
+                                <h2 id="account-personalinformation" onclick="select_personalinformation()">Personal Information</h2>
+                                <h2 id="account-products" onclick="select_products()">Products</h2>
+                                <h2 id="account-billing" onclick="select_billing()">Billing</h2>
+                                <h2 id="account-settings" onclick="select_settings()">Settings</h2>
+                            </div>
+                            <script>
+                                function select_personalinformation(){
+                                    document.getElementById("account-personalinformation").classList.toggle("text-selected");
+                                    document.getElementById("account-products").classList.toggle("text-selected", false);
+                                    document.getElementById("account-billing").classList.toggle("text-selected", false);
+                                    document.getElementById("account-settings").classList.toggle("text-selected", false);
+
+                                    document.getElementById("personalinformation-details").classList.toggle("display-none");
+                                    document.getElementById("products-details").classList.toggle("display-none", true);
+                                    document.getElementById("billing-details").classList.toggle("display-none", true);
+                                    document.getElementById("settings-details").classList.toggle("display-none", true);
+                                }
+
+                                function select_products(){
+                                    document.getElementById("account-personalinformation").classList.toggle("text-selected", false);
+                                    document.getElementById("account-products").classList.toggle("text-selected");
+                                    document.getElementById("account-billing").classList.toggle("text-selected", false);
+                                    document.getElementById("account-settings").classList.toggle("text-selected", false);
+
+                                    document.getElementById("personalinformation-details").classList.toggle("display-none", true);
+                                    document.getElementById("products-details").classList.toggle("display-none");
+                                    document.getElementById("billing-details").classList.toggle("display-none", true);
+                                    document.getElementById("settings-details").classList.toggle("display-none", true);
+                                }
+
+                                function select_billing(){
+                                    document.getElementById("account-personalinformation").classList.toggle("text-selected", false);
+                                    document.getElementById("account-products").classList.toggle("text-selected", false);
+                                    document.getElementById("account-billing").classList.toggle("text-selected");
+                                    document.getElementById("account-settings").classList.toggle("text-selected", false);
+
+                                    document.getElementById("personalinformation-details").classList.toggle("display-none", true);
+                                    document.getElementById("products-details").classList.toggle("display-none", true);
+                                    document.getElementById("billing-details").classList.toggle("display-none");
+                                    document.getElementById("settings-details").classList.toggle("display-none", true);
+                                }
+
+                                function select_settings(){
+                                    document.getElementById("account-personalinformation").classList.toggle("text-selected", false);
+                                    document.getElementById("account-products").classList.toggle("text-selected", false);
+                                    document.getElementById("account-billing").classList.toggle("text-selected", false);
+                                    document.getElementById("account-settings").classList.toggle("text-selected");
+
+                                    document.getElementById("personalinformation-details").classList.toggle("display-none", true);
+                                    document.getElementById("products-details").classList.toggle("display-none", true);
+                                    document.getElementById("billing-details").classList.toggle("display-none", true);
+                                    document.getElementById("settings-details").classList.toggle("display-none");
+                                }
+
+
+                            </script>
+                            <!-- Column Center --> 
+                            <div class='space-column-center'></div>
+                            <!-- Column Right --> 
+                            <div class='space-column-right'>
+                            </div>
+
+                        </div>
+
+                        <style>
+                            .space
+                            {   
+                                /*background-image: url("./07.jpg"); */
+                                height: 100%;
+                                width: 100%;
+
+                            }
+
+                            .space-content
+                            {   
+                                height: 100%;
+                                width: 100%;
+                                padding: 40px 10px;
+                                box-sizing: border-box;
+                                overflow: auto;
+                                position: fixed;
+                                
+                            }
+
+                            .space-header 
+                            {
+                                background:transparent;
+                                padding: 5px;
+                                text-align: left;
+                                position: relative;
+                            }
+
+                            .space-footer 
+                            {
+                                padding: 20px;
+                                text-align: center;
+                                background: transparent;
+                                margin-top: 20px;
+                            }
+
+                            .space-navigation 
+                            {
+                                overflow: hidden;
+                                background-color: transparent;
+                            }
+
+                            .space-navigation a 
+                            {
+                                float: left;
+                                display: block;
+                                color: #f2f2f2;
+                                text-align: center;
+                                padding: 5px;
+                                text-decoration: none;
+                            }
+
+                            .space-navigation a:hover 
+                            {
+                                background-color: #ddd;
+                                color: black;
+                            }
+
+                            .space-column
+                            {
+                                padding: 0 6px;
+                                float: left;
+                                width: 20%;
+                                position: relative;
+                            }
+                            .space-column-left
+                            {
+                                padding: 0 10px;
+                                float: left;
+                                width: 10%;
+                                text-align: right;
+                                border-right: .1px solid #FFFFFF;
+                                color: rgba(255, 255, 255, 0.5);
+                                position: relative;
+                            }
+
+                            .space-column-left h2:hover
+                            {
+                                color: rgba(255, 255, 255, 1)
+                            }   
+
+                            .space-column-center
+                            {
+                                padding: 0 0 0 20px;
+                                float: left;
+                                width: 10%;
+                                color: rgba(255, 255, 255, 0.5);
+                                position: relative;
+                                
+
+                            }
+
+                            .space-column-center h2:hover
+                            {
+                                color: rgba(255, 255, 255, 1);
+                            }
+
+                            .space-column-right
+                            {
+                                padding: 0 0 0 20px;
+                                float: left;
+                                width: 60%;
+                                text-align: center;
+                                position: relative;
+                            }
+                            .space-column-right-box
+                            {
+                                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                            }
+                        </style>
+
+                        <!-- Space Inspector --> 
+                        <div class='inspector' id='inspector-personal'>
+                            <div class='center'>
+                                <button class='button tooltip'id='button-search'>
+                                    <i class="fal fa-search"></i>
+                                    <span class="tooltiptext">Search</span>
+                                </button>
+                                <button class='button tooltip'id='button-add'>
+                                    <i class="fal fa-plus"></i>
+                                    <span class="tooltiptext">Create</span>
+                                </button>
+                                <button class='button tooltip' id='button-change-view'>
+                                    <i class="fas fa-eye"></i>
+                                    <span class="tooltiptext">Change view</span>
+                                </button>                        
+                                <button class='button tooltip' id='button-more'>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    <span class="tooltiptext">More</span>
+                                </button>
+                            </div>
+
+                            <style>
+                                .inspector
+                                    {
+                                        width: 32px;
+                                        padding: 20px 10px;
+                                        position: fixed;
+                                        top: 0px;
+                                        right: 0px;
+                                    }
+
+                                .center
+                                    {
+                                        margin: 0px auto;
+                                        width: 32px;
+                                        height: auto;
+                                    }
+
+                                .button
+                                    {
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
+                                    border: 0;
+                                    border-radius: 50%;
+                                    color: white;
+                                    float: right;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: block;
+                                    font-size: 15px;
+                                    margin: 0px 0px 5px 5px;
+                                    cursor: pointer;
+                                    width: 30px;
+                                    height: 30px;
+                                    padding: 0px;
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    }
+                                .button:hover
+                                    {
+                                    background-color: #ffffff;
+                                    opacity: 1;
+                                    color: black;
+                                    transform: scale(1.2);
+                                    -webkit-transition-duration: 0.1s; /* Safari */
+                                    transition-duration: 0.1s;
+                                    }
+
+                                .button-text 
+                                    {
+                                    background-color:#1D1D1D;
+                                    opacity: .7;
+                                    border: 0;
+                                    border-radius: 50%;
+                                    color: white;
+                                    text-align: center;
+                                    display: block;
+                                    font-size: 12px;
+                                    margin: 0px 0px 0px 0px;
+                                    cursor: pointer;
+                                    width: 30px;
+                                    height: 30px;
+                                    padding: 0px;
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    }
+                                .button-text:hover
+                                    {
+                                    background-color: #ffffff;
+                                    opacity: 1;
+                                    color: black;
+                                    font-weight: 600;
+                                    transform: scale(1.2);
+                                    text-decoration: none;
+
+                                    -webkit-transition-duration: 0.1s; /* Safari */
+                                    transition-duration: 0.1s;
+                                    }
+
+                                .tooltip 
+                                    {
+                                    position: relative;
+                                    display: inline-block;
+                                    border-bottom: 1px dotted black;
+                                    }
+                                .tooltip .tooltiptext 
+                                    {
+                                    visibility: hidden;
+                                    width: auto;
+                                    background-color:black;
+                                    color:white;
+                                    opacity: .3;
+                                    text-align: center;
+                                    border-radius: 3px;
+                                    padding: 4px 4px;
+                                    position: absolute;
+                                    z-index: 1;
+                                    top: -5px;
+                                    right: 110%;
+                                    font-size: 10px;
+                                    text-transform: uppercase;
+                                    }
+                                .tooltip .tooltiptext::after 
+                                    {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 100%;
+                                    margin-top: -5px;
+                                    border-width: 5px;
+                                    border-style: solid;
+                                    border-color: transparent transparent transparent black;
+                                    }
+                                .tooltip:hover .tooltiptext 
+                                    {
+                                    visibility: visible;
+                                    }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- component.static { component.client.foreground } -->
+            <div class='component' id='client-foreground'>
+                <!-- COMPASS SHORTCUT -->
+            </div>
+
+            <!-- component.static { component.client.navigation } -->
+            <div class='component' id='client-navigation'>
+                <!-- NAVIGATION FOOTER -->                   
+                <div id='client-navigation-footer'>
+                    <div class='footer-center'>
+                    <!-- Button Stella-->
+                        <div class='client-navigation-float-left'>
+                            <button class='button' id='button-stella'>
+                                    <img src="image/button-stella-w.png"
+                                    onmouseover="this.src='image/button-stella-b.png'"
+                                    onmouseout="this.src='image/button-stella-w.png'"
+                                    >
+                            </button>
+                        </div>
+                        <div class='client-navigation-float-left' id='text-navigation'>
+                            <h2>
+                            </h2>
+                        </div>
+                        <div class='client-navigation-float-right'>
+                            <a href="space-user-personal.html">
+                                <button class='button-text' id='user-identity-personal'>
+                                    SB
+                                </button>
+                            </a>
+                        </div>
+                        <div class='client-navigation-float-right' id='button-account' onclick="select_account()">
+                            <h2> My Account   
+                            </h2>
+                        </div>
+                        <div class='client-navigation-float-right text-selected' id='button-profile' onclick="select_profile()">
+                            <h2> Profile
+                            </h2>
+                        </div>
+                        <script>
+                            function select_account(){
+                                document.getElementById("button-account").classList.toggle("text-selected", true);
+                                document.getElementById("button-profile").classList.toggle("text-selected", false);
+
+                                document.getElementById("space-content-profile").classList.toggle("display-none", true);
+                                document.getElementById("space-content-account").classList.toggle("display-none", false);
+                            }
+                            function select_profile(){
+                                document.getElementById("button-account").classList.toggle("text-selected", false);
+                                document.getElementById("button-profile").classList.toggle("text-selected", true);
+
+
+                                document.getElementById("space-content-profile").classList.toggle("display-none", false);
+                                document.getElementById("space-content-account").classList.toggle("display-none", true);
+                            }
+
+                        </script>
+                    </div>
+                    <style>        
+                       div#client-navigation-footer
+                        {
+                            background: transparent;                 
+                            bottom: 0px;
+                            display: block;
+                            height: 52px;
+                            overflow: visible;
+                            position: fixed;
+                            width: 100%;
+                            z-index: 10;
+                            color: rgba(255, 255, 255, .5)
+
+                        }
+                        div.client-navigation-float-right a 
+                        {
+                            text-decoration: none;
+                        }
+                        .footer-center
+                        {
+                            margin: 0px auto;
+                            height: 32px;
+                            width: auto;
+                        }
+  
+
+                    </style>
+
+                    
+
+
+                </div>
+
+                <!-- NAVIGATION HEADER -->
+                <div id='client-navigation-header'>
+           
+                    <div class='client-navigation-float-left'>
+
+                        <button class='button' id='button-next'>
+                            <i class="fal fa-angle-right"></i>
+                        </button>
+                        <button class='button' id='button-previous'onclick="goBack()">
+                            <i class="fal fa-angle-left"></i>
+                        </button>
+                        <button class='button' id='button-close'>
+                            <i class="fal fa-times"></i>
+                        </button>
+
+                    </div>
+    
+                    <style> 
+                        div#client-navigation-header
+                        {
+                            background: transparent;                
+                            display: block;                  
+                            height: 32px;
+                            overflow: visible;
+                            position: fixed;
+                            top: 0px;
+                            width: 100%;
+                            z-index: 10;
+                        }
+                    </style>
+
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
+
+                <style>
+                    div.client-navigation-float-left
+                    {
+                        display: block;
+                        float: left;
+                        width: auto;
+                        padding: 20px 10px;
+                    }
+
+                    div.client-navigation-float-right
+                    {
+                        display: block;
+                        float: right;
+                        width: auto;
+                        padding: 10px 10px ;
+                    }
+
+                </style>
+            </div>
+
+            <style>
+            </style>
+        </div>
+    </body>
+</html>

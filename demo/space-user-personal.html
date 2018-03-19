@@ -49,10 +49,27 @@
                 font-weight: 400;
                 font-size: 11px;
             }
+            .text-selected
+            {
+                color: rgba(255, 255, 255, 1);
+                font-weight: 500;                                
+            }
+            .display-block {
+                display: block;
+            }
+            .display-none {
+                display: none;
+            }
+            .visibility-visible {
+                visibility: visible;
+            }
+
         </style>
+
+
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
-        <script src="http://d3js.org/d3.v3.js"></script>
-        <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+
+        
     </head>
 
     <body>
@@ -69,370 +86,673 @@
                 <div class='component' id=space>
                     <!-- Space Content--> 
                     <div class='space-content'>
-
-                        <div class="space-header">
-                            <h0>
-                                Sara Belot   
-                            </h0>
-                        </div>
-
-                        <div class="space-navigation">
-                        </div>
-                        <div class="space-row"> 
-                        <div class='space-column-left'>
-                             <h2>About</h2>
-                             <h2>Portfolio</h2> 
-                             <h2>Experience</h2>
-                             <h2>Collaborators</h2>     
-                        </div>
-                        <div class='space-column-center'>
-                            <h2>Previous Roles</h2>
-                            <h2>Types of Projects</h2>    
-                        </div>
-
-                        <div class='space-column-right'>
-                            <!-- Spider Chart -->
-                            <div class=space-column-right-box> 
-                                <h2>
-                                    Previous Roles
-                                </h2>
-                                <div id="chart-container">
+                        <!-- Space Menu--> 
+                        <div class='space-menu'>
+                            <div class="menu-header">
+                                <h0>
+                                    Sara Belot   
+                                </h0>
+                            </div>
+                            <style>
+                                .menu-header 
+                                {
+                                    background:transparent;
+                                    padding: 5px;
+                                    text-align: left;
+                                    position: relative;
+                                }
+                            </style>
+                            <!-- Menu Profile --> 
+                            <div id="menu-profile"> 
+                                <!-- Menu Primary--> 
+                                <div class='menu-primary'>
+                                    <h2 id="menu-profile-about" onclick="select_about()">About</h2>
+                                    <h2 id="menu-profile-portfolio" onclick="select_portfolio()">Portfolio</h2> 
+                                    <h2 id="menu-profile-experience" onclick="select_experience()">Experience</h2>
+                                    <h2 id="menu-profile-collaborators" onclick="select_collaborators()">Collaborators</h2>     
                                 </div>
                                 <style>
-                                    #chart-container{
-                                    display: inline-block;
-                                    text-align: center;
+                                    .menu-primary
+                                    {
+                                        padding: 0 10px;
+                                        float: left;
+                                        text-align: right;
+                                        border-right: .1px solid rgba(255, 255, 255, 0.1);
+                                        color: rgba(255, 255, 255, 0.5);
+                                        position: relative;
                                     }
-
-                                    .radar-chart .area {
-                                    fill-opacity: 0.7;
-                                    }
-                                    .radar-chart.focus .area {
-                                    fill-opacity: 0.3;
-                                    }
-                                    .radar-chart.focus .area.focused {
-                                    fill-opacity: 0.9;
-                                    }
-                                    .area.target-graph, .target-graph .color {
-                                    fill: #01afff;
-                                    stroke: none;
-                                    }
-                                    .area.my-graph, .my-graph .color{
-                                    fill: #3a3a3a;
-                                    stroke: none;
-                                    }
-                                    .radar-chart .axis .legend{
-                                    fill:#ededed;
-                                    font-family:'Roboto', sans-serif;
-                                    font-weight: 500;
-                                    font-size:10px;
-                                    }
-                                    .radar-chart .axis .legend.left{text-anchor:middle}
-                                    .radar-chart .axis .legend.middle{text-anchor:middle}
-                                    .radar-chart .axis .legend.right{text-anchor:middle}
-                                    .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
-                                    .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                    .menu-primary h2:hover
+                                    {
+                                        color: rgba(255, 255, 255, 1);
+                                    } 
                                 </style>
                                 <script>
-                                    var data = [
-                                    {
-                                        className: 'my-graph',
-                                        axes: [
-                                        {axis: "Producing", value: 3}, 
-                                        {axis: "Editing", value: 2}, 
-                                        {axis: "Screenwriting", value: 10},  
-                                        {axis: "Cinematography", value: 10},  
-                                        {axis: "Directing", value: 2},
-                                        {axis: "Sound Design", value: 1 }
-                                        ]
-                                    },
-                                    {
-                                        className: 'target-graph',
-                                        axes: [
-                                        {axis: "Oroducing", value: 4}, 
-                                        {axis: "Editing", value: 6}, 
-                                        {axis: "Screenwriting", value: 8},  
-                                        {axis: "Cinematography", value: 4},  
-                                        {axis: "Directing", value: 9},
-                                        {axis: "Sound Design", value: 2}
-                                        ]
-                                    },
-                                    ];
+                                    function select_about(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
 
-                                    var w=450, h=450;
-                                    
-                                    RadarChart.defaultConfig.color = function() {};
-                                    
-                                    var chart = RadarChart.chart();
-                                    var cfg = chart.config();
-                                    
-                                    chart.config({
-                                        w: w,
-                                        h: h,
-                                        factor: 0.7,
-                                        factorLegend:0.85,
-                                        levels:5,
-                                        circles:false,
-                                    });
-                                    
-                                    var svg = d3.select('#chart-container').append('svg')
-                                    // .attr('x',50)
-                                    // .attr('y',0)
-                                    .attr('width', w)
-                                    .attr('height', h)
-                                    
-                                    svg.append('g').classed('single', 1).datum(data).call(chart);
+                                        document.getElementById("menu-about-details").classList.toggle("display-none");
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none");
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_portfolio(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none");
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none");
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_experience(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none");
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none");
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_collaborators(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected");
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none");
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none");
+                                    }
                                 </script>
-                            </div>
-                            <!-- Spider Chart -->
-                            <div class=space-column-right-box> 
-                                <h2>
-                                    Types of Projects
-                                </h2>
-                                <div id="chart-container-02">
+
+                                <!-- Menu Secondary -->
+                                <div class='menu-secondary'>
+                                    <div class='display-none' id="menu-about-details">
+                                        <h2 id="menu-about-location" onclick="select_location()">New York, NY</h2> 
+                                    </div>
+                                    <script>
+                                        function select_location(){
+                                            document.getElementById("menu-about-location").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-portfolio-details">
+                                        <h2 id="menu-portfolio-all" onclick="select_portfolio_all()">All</h2>
+                                        <h2 id="menu-portfolio-recent" onclick="select_portfolio_recent()">Recent</h2>  
+                                    </div>
+                                    <script>
+                                        function select_portfolio_all(){
+                                            document.getElementById("menu-portfolio-all").classList.toggle("text-selected");
+                                        }
+                                        function select_portfolio_recent(){
+                                            document.getElementById("menu-portfolio-recent").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-experience-details">
+                                        <h2 id="menu-experience-roles" onclick="select_experience_roles()">Roles</h2>
+                                        <h2 id="menu-experience-projects" onclick="select_experience_projects()">Projects</h2>  
+                                    </div>
+                                    <script>
+                                        function select_experience_roles(){
+                                            document.getElementById("menu-experience-roles").classList.toggle("text-selected");
+                                        }
+                                        function select_experience_projects(){
+                                            document.getElementById("menu-experience-projects").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-collaborators-details">
+                                        <h2 id="menu-collaborators-all" onclick="select_collaborators_all()">All</h2>
+                                        <h2 id="menu-collaborators-recommendations" onclick="select_collaborators_recommendations()">Recommendations</h2>
+                                        <h2 id="menu-collaborators-organizations" onclick="select_collaborators_organizations()">Organizations</h2>
+                                        <h2 id="menu-collaborators-professionals" onclick="select_collaborators_professionals()">Professionals</h2>      
+                                    </div>
+                                    <script>
+                                        function select_collaborators_all(){
+                                            document.getElementById("menu-collaborators-all").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_recommendations(){
+                                            document.getElementById("menu-collaborators-recommendations").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_organizations(){
+                                            document.getElementById("menu-collaborators-organizations").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_professionals(){
+                                            document.getElementById("menu-collaborators-professionals").classList.toggle("text-selected");
+                                        }
+                                    </script>
                                 </div>
-
                                 <style>
-                                    #chart-container-02{
-                                    display: inline-block;
-                                    text-align: center;
-                                    }
-
-                                    .radar-chart .area {
-                                    fill-opacity: 0.7;
-                                    }
-                                    .radar-chart.focus .area {
-                                    fill-opacity: 0.3;
-                                    }
-                                    .radar-chart.focus .area.focused {
-                                    fill-opacity: 0.9;
-                                    }
-                                    .area.target-graph, .target-graph .color {
-                                    fill: #01afff;
-                                    stroke: none;
-                                    }
-                                    .area.my-graph, .my-graph .color{
-                                    fill: #3a3a3a;
-                                    stroke: none;
-                                    }
-                                    .radar-chart .axis .legend{
-                                    fill:#ededed;
-                                    font-family:'Roboto', sans-serif;
-                                    font-weight: 500;
-                                    font-size:10px;
-                                    }
-                                    .radar-chart .axis .legend.left{text-anchor:middle}
-                                    .radar-chart .axis .legend.middle{text-anchor:middle}
-                                    .radar-chart .axis .legend.right{text-anchor:middle}
-                                    .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
-                                    .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                    .menu-secondary
+                                        {
+                                            padding: 0 0 0 20px;
+                                            float: left;
+                                            color: rgba(255, 255, 255, 0.5);
+                                            position: relative;
+                                        }
+                                    .menu-secondary h2:hover
+                                        {
+                                            color: rgba(255, 255, 255, 1);
+                                        }
                                 </style>
+                            </div>
+                            <!-- Menu Account --> 
+                            <div id="menu-account" class="display-none">
+                                <!-- Menu Primary --> 
+                                <div class='menu-primary'>
+                                    <h2 id="menu-account-personalinformation" onclick="select_personalinformation()">Personal Information</h2>
+                                    <h2 id="menu-account-products" onclick="select_products()">Products</h2>
+                                    <h2 id="menu-account-billing" onclick="select_billing()">Billing</h2>
+                                    <h2 id="menu-account-settings" onclick="select_settings()">Settings</h2>
+                                </div>
                                 <script>
-                                    var data = [
-                                    {
-                                        className: 'my-graph',
-                                        axes: [
-                                        {axis: "Branded Content", value: 10}, 
-                                        {axis: "Commercial", value: 7}, 
-                                        {axis: "Scripted Feature", value: 6},  
-                                        {axis: "Music Video", value: 5},  
-                                        {axis: "Music Video", value: 9},
-                                        {axis: "Scripted Short", value: 7}
-                                        ]
-                                    },
-                                    {
-                                        className: 'target-graph',
-                                        axes: [
-                                        {axis: "Branded Content", value: 4}, 
-                                        {axis: "Commercial", value: 3}, 
-                                        {axis: "Scripted Feature", value:10},  
-                                        {axis: "Music Video", value: 3},  
-                                        {axis: "Music Video", value: 1},
-                                        {axis: "Scripted Short", value: 12}
-                                        ]
-                                    },
-                                    ];
+                                    function select_personalinformation(){
+                                        document.getElementById("menu-account-personalinformation").classList.toggle("text-selected");
+                                        document.getElementById("menu-account-products").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-billing").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-settings").classList.toggle("text-selected", false);
 
-                                    var w=450, h=450;
-                                    
-                                    RadarChart.defaultConfig.color = function() {};
-                                    
-                                    var chart = RadarChart.chart();
-                                    var cfg = chart.config();
-                                    
-                                    chart.config({
-                                        w: w,
-                                        h: h,
-                                        factor: 0.7,
-                                        factorLegend:0.85,
-                                        levels:5,
-                                        circles:false,
-                                    });
-                                    
-                                    var svg = d3.select('#chart-container-02').append('svg')
-                                    // .attr('x',50)
-                                    // .attr('y',0)
-                                    .attr('width', w)
-                                    .attr('height', h)
-                                    
-                                    svg.append('g').classed('single', 1).datum(data).call(chart);
+                                        document.getElementById("menu-personalinformation-details").classList.toggle("display-none");
+                                        document.getElementById("menu-products-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-billing-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-settings-details").classList.toggle("display-none", true);
+                                    }
+
+                                    function select_products(){
+                                        document.getElementById("menu-account-personalinformation").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-products").classList.toggle("text-selected");
+                                        document.getElementById("menu-account-billing").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-settings").classList.toggle("text-selected", false);
+
+                                        document.getElementById("menu-personalinformation-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-products-details").classList.toggle("display-none");
+                                        document.getElementById("menu-billing-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-settings-details").classList.toggle("display-none", true);
+                                    }
+
+                                    function select_billing(){
+                                        document.getElementById("menu-account-personalinformation").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-products").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-billing").classList.toggle("text-selected");
+                                        document.getElementById("menu-account-settings").classList.toggle("text-selected", false);
+
+                                        document.getElementById("menu-personalinformation-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-products-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-billing-details").classList.toggle("display-none");
+                                        document.getElementById("menu-settings-details").classList.toggle("display-none", true);
+                                    }
+
+                                    function select_settings(){
+                                        document.getElementById("menu-account-personalinformation").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-products").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-billing").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-account-settings").classList.toggle("text-selected");
+
+                                        document.getElementById("menu-personalinformation-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-products-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-billing-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-settings-details").classList.toggle("display-none");
+                                    }
+
+
                                 </script>
+                                <!-- Menu Secondary--> 
+                                <div class='menu-secondary'></div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="space-footer">
-                        <h1>
-                        </h1>
-                    </div>
-
-                    <style>
-                        .space
-                        {   
-                            /*background-image: url("./07.jpg"); */
-                            height: 100%;
-                            width: 100%;
-
-                        }
-
-                        .space-content
-                        {   
-                            height: 100%;
-                            width: 100%;
-                            padding: 40px 10px;
-                            box-sizing: border-box;
-                            overflow: auto;
-                            position: fixed;
-                            
-                        }
-
-                        .space-header 
-                        {
-                            background:transparent;
-                            padding: 5px;
-                            text-align: left;
-                        }
-
-                        .space-footer 
-                        {
-                            padding: 20px;
-                            text-align: center;
-                            background: transparent;
-                            margin-top: 20px;
-                        }
-
-                        .space-navigation 
-                        {
-                            overflow: hidden;
-                            background-color: transparent;
-                        }
-
-                        .space-navigation a 
-                        {
-                            float: left;
-                            display: block;
-                            color: #f2f2f2;
-                            text-align: center;
-                            padding: 5px;
-                            text-decoration: none;
-                        }
-
-                        .space-navigation a:hover 
-                        {
-                            background-color: #ddd;
-                            color: black;
-                        }
-
-                        .space-column
-                        {
-                            padding: 0 6px;
-                            float: left;
-                            width: 20%;
-                        }
-                        .space-column-left
-                        {
-                            padding: 0 20px;
-                            float: left;
-                            width: 10%;
-                            text-align: right;
-                            border-right: .1px solid #FFFFFF;
-                        }
-
-                        .space-column-left h2{
-                        opacity: .5;
-
-                        }
-                        .space-column-left h2:hover
-                        {
-                        opacity: 1;
-                        }
-                        
-
-                        .space-column-center
-                        {
-                            padding: 0 0 0 20px;
-                            float: left;
-                            width: 10%;
-                        }
-                        .space-column-center h2{
-                        opacity: .5;
-
-                        }
-                        .space-column-center h2:hover
-                        {
-                        opacity: 1;
-                        }
-
-                        .space-column-right
-                        {
-                            padding: 0 0 0 20px;
-                            float: left;
-                            width: 60%;
-                            text-align: center;
-
-                        }
-                        .space-column-right-box
-                        {
-                            border-bottom: 1px solid rgb(53, 53, 53);
-                        }
-
-                        
-                    
-                        .space-card 
-                        {
-                            padding: 20px;
-                        }
-                        
-                        .space-row:after 
+                        <style>
+                            .space-menu
                             {
-                                content: "";
-                                display: table;
-                                clear: both;
+                                background:transparent;
+                                position: fixed;
+                                width: 30%;
                             }
                         
                         </style>
+                        <!-- Space Main -->
+                        <div class='space-main'>
+                            <div id="main-profile">
+                                <div id="main-profile-about"class="display-none">
+                                    <h0>
+                                        About
+                                    </h0>
+                                </div>
+                                <div id="main-profile-portfolio"class="display-none">
+                                    <h0>
+                                        Portfolio
+                                    </h0>
+                                </div>
+                                <div id="main-profile-experience"class="display-none">
+                                    <h0>
+                                        Experience 
+                                    </h0>
+                                    <!-- Spider Chart -->
+                                    <script src="http://d3js.org/d3.v3.js"></script>
+                                    <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+                                    <div class='space-main-box'> 
+                                        <h2>
+                                            Previous Roles
+                                        </h2>
+                                        <div id="chart-container">
+                                        </div>
+                                        <style>
+                                            #chart-container{
+                                            display: inline-block;
+                                            text-align: center;
+                                            }
 
-                    <!-- Space INSPECTOR --> 
-                    <div class='inspector' id='inspector-personal'>
-                        <div class='center'>
-                            <button class='button tooltip'id='button-search'>
-                                <i class="fal fa-search"></i>
-                                <span class="tooltiptext">Search</span>
-                            </button>
-                            <button class='button tooltip'id='button-add'onclick="open_create_options()">
-                                <i class="fal fa-plus"></i>
-                                <span class="tooltiptext">Create</span>
-                            </button>
-                            <button class='button tooltip' id='button-change-view'>
-                                <i class="fas fa-eye"></i>
-                                <span class="tooltiptext">Change view</span>
-                            </button>                        
-                            <button class='button tooltip' id='button-more'>
-                                <i class="fas fa-ellipsis-h"></i>
-                                <span class="tooltiptext">More</span>
-                            </button>
+                                            .radar-chart .area {
+                                            fill-opacity: 0.7;
+                                            }
+                                            .radar-chart.focus .area {
+                                            fill-opacity: 0.3;
+                                            }
+                                            .radar-chart.focus .area.focused {
+                                            fill-opacity: 0.9;
+                                            }
+                                            .area.target-graph, .target-graph .color {
+                                            fill: #01afff;
+                                            stroke: none;
+                                            }
+                                            .area.my-graph, .my-graph .color{
+                                            fill: #3a3a3a;
+                                            stroke: none;
+                                            }
+                                            .radar-chart .axis .legend{
+                                            fill:#ededed;
+                                            font-family:'Roboto', sans-serif;
+                                            font-weight: 500;
+                                            font-size:10px;
+                                            }
+                                            .radar-chart .axis .legend.left{text-anchor:middle}
+                                            .radar-chart .axis .legend.middle{text-anchor:middle}
+                                            .radar-chart .axis .legend.right{text-anchor:middle}
+                                            .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                            .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                        </style>
+                                        <script>
+                                            var data = [
+                                            {
+                                                className: 'my-graph',
+                                                axes: [
+                                                {axis: "Producing", value: 3}, 
+                                                {axis: "Editing", value: 2}, 
+                                                {axis: "Screenwriting", value: 10},  
+                                                {axis: "Cinematography", value: 10},  
+                                                {axis: "Directing", value: 2},
+                                                {axis: "Sound Design", value: 1 }
+                                                ]
+                                            },
+                                            {
+                                                className: 'target-graph',
+                                                axes: [
+                                                {axis: "Oroducing", value: 4}, 
+                                                {axis: "Editing", value: 6}, 
+                                                {axis: "Screenwriting", value: 8},  
+                                                {axis: "Cinematography", value: 4},  
+                                                {axis: "Directing", value: 9},
+                                                {axis: "Sound Design", value: 2}
+                                                ]
+                                            },
+                                            ];
+
+                                            var w=450, h=450;
+                                            
+                                            RadarChart.defaultConfig.color = function() {};
+                                            
+                                            var chart = RadarChart.chart();
+                                            var cfg = chart.config();
+                                            
+                                            chart.config({
+                                                w: w,
+                                                h: h,
+                                                factor: 0.7,
+                                                factorLegend:0.85,
+                                                levels:5,
+                                                circles:false,
+                                            });
+                                            
+                                            var svg = d3.select('#chart-container').append('svg')
+                                            // .attr('x',50)
+                                            // .attr('y',0)
+                                            .attr('width', w)
+                                            .attr('height', h)
+                                            
+                                            svg.append('g').classed('single', 1).datum(data).call(chart);
+                                        </script>
+                                    </div>
+                                    <!-- Spider Chart -->
+                                    <div class='space-main-box'> 
+                                        <h2>
+                                            Types of Projects
+                                        </h2>
+                                        <div id="chart-container-02">
+                                        </div>
+                                        <style>
+                                            #chart-container-02{
+                                            display: inline-block;
+                                            text-align: center;
+                                            }
+                                            .radar-chart .area {
+                                            fill-opacity: 0.7;
+                                            }
+                                            .radar-chart.focus .area {
+                                            fill-opacity: 0.3;
+                                            }
+                                            .radar-chart.focus .area.focused {
+                                            fill-opacity: 0.9;
+                                            }
+                                            .area.target-graph, .target-graph .color {
+                                            fill: #01afff;
+                                            stroke: none;
+                                            }
+                                            .area.my-graph, .my-graph .color{
+                                            fill: #3a3a3a;
+                                            stroke: none;
+                                            }
+                                            .radar-chart .axis .legend{
+                                            fill:#ededed;
+                                            font-family:'Roboto', sans-serif;
+                                            font-weight: 500;
+                                            font-size:10px;
+                                            }
+                                            .radar-chart .axis .legend.left{text-anchor:middle}
+                                            .radar-chart .axis .legend.middle{text-anchor:middle}
+                                            .radar-chart .axis .legend.right{text-anchor:middle}
+                                            .radar-chart .level{stroke:#4C4C4C;stroke-width:1}
+                                            .radar-chart .axis line{stroke:#808080;stroke-width:1.5}
+                                        </style>
+                                        <script>
+                                            var data = [
+                                            {
+                                                className: 'my-graph',
+                                                axes: [
+                                                {axis: "Branded Content", value: 10}, 
+                                                {axis: "Commercial", value: 7}, 
+                                                {axis: "Scripted Feature", value: 6},  
+                                                {axis: "Music Video", value: 5},  
+                                                {axis: "Music Video", value: 9},
+                                                {axis: "Scripted Short", value: 7}
+                                                ]
+                                            },
+                                            {
+                                                className: 'target-graph',
+                                                axes: [
+                                                {axis: "Branded Content", value: 4}, 
+                                                {axis: "Commercial", value: 3}, 
+                                                {axis: "Scripted Feature", value:10},  
+                                                {axis: "Music Video", value: 3},  
+                                                {axis: "Music Video", value: 1},
+                                                {axis: "Scripted Short", value: 12}
+                                                ]
+                                            },
+                                            ];
+    
+                                            var w=450, h=450;
+                                            
+                                            RadarChart.defaultConfig.color = function() {};
+                                            
+                                            var chart = RadarChart.chart();
+                                            var cfg = chart.config();
+                                            
+                                            chart.config({
+                                                w: w,
+                                                h: h,
+                                                factor: 0.7,
+                                                factorLegend:0.85,
+                                                levels:5,
+                                                circles:false,
+                                            });
+                                            
+                                            var svg = d3.select('#chart-container-02').append('svg')
+                                            // .attr('x',50)
+                                            // .attr('y',0)
+                                            .attr('width', w)
+                                            .attr('height', h)
+                                            
+                                            svg.append('g').classed('single', 1).datum(data).call(chart);
+                                        </script>
+                                    </div>
+                                </div>
+                                <div id="main-profile-collaborators"class="display-none">
+                                    <h0>
+                                        Collaborators 
+                                    </h0>
+                                    <!--Force Directed Network--> 
+                                    <script src="https://d3js.org/d3.v4.min.js"></script>
+                                    <canvas id='canvas'>
+                                    </canvas>
+                                    <!--Canvas Full Size --> 
+                                    <script>
+                                        (function() {
+                                            var canvas = document.getElementById('canvas'),
+                                                    context = canvas.getContext('2d');
+        
+                                            // resize the canvas to fill browser window dynamically
+                                            window.addEventListener('resize', resizeCanvas, false);
+        
+                                            function resizeCanvas() {
+                                                    canvas.width = window.innerWidth;
+                                                    canvas.height = window.innerHeight;
+        
+                                                    /**
+                                                     * Your drawings need to be inside this function otherwise they will be reset when 
+                                                     * you resize the browser window and the canvas goes will be cleared.
+                                                     */
+                                                    drawStuff(); 
+                                            }
+                                            resizeCanvas();
+        
+                                            function drawStuff() {
+                                                    // do your drawing stuff here
+                                            }
+                                        })();
+                                    </script>
+                                    <!--Network Here --> 
+                                    <script>
+                                        var canvas = document.querySelector("canvas"),
+                                            context = canvas.getContext("2d"),
+                                            width = canvas.width,
+                                            height = canvas.height,
+                                            searchRadius = 40;
+                                        
+                                        var color = d3.scaleOrdinal()
+                                            .range(d3.schemeCategory20);
+                                        
+                                        var simulation = d3.forceSimulation()
+                                            .force("charge", d3.forceManyBody().strength(-18))
+                                            .force("link", d3.forceLink().iterations(4).id(function(d) { return d.id; }))
+                                            .force("x", d3.forceX())
+                                            .force("y", d3.forceY());
+                                        
+                                        d3.json("./d3-force-directed-network/graph.json", function(error, graph) {
+                                        if (error) throw error;
+                                        
+                                        var users = d3.nest()
+                                            .key(function(d) { return d.user; })
+                                            .entries(graph.nodes)
+                                            .sort(function(a, b) { return b.values.length - a.values.length; });
+                                        
+                                        color.domain(users.map(function(d) { return d.key; }));
+                                        
+                                        simulation
+                                            .nodes(graph.nodes)
+                                            .on("tick", ticked);
+                                        
+                                        simulation.force("link")
+                                            .links(graph.links);
+                                        
+                                        d3.select(canvas)
+                                            .on("mousemove", mousemoved)
+                                            .call(d3.drag()
+                                                .container(canvas)
+                                                .subject(dragsubject)
+                                                .on("start", dragstarted)
+                                                .on("drag", dragged)
+                                                .on("end", dragended));
+                                        
+                                        function ticked() {
+                                            context.clearRect(0, 0, width, height);
+                                            context.save();
+                                            context.translate(width / 2, height / 2);
+                                        
+                                            context.beginPath();
+                                            graph.links.forEach(drawLink);
+                                            context.strokeStyle = "#aaa";
+                                            context.stroke();
+                                        
+                                            users.forEach(function(user) {
+                                            context.beginPath();
+                                            user.values.forEach(drawNode);
+                                            context.fillStyle = color(user.key);
+                                            context.fill();
+                                            });
+                                        
+                                            context.restore();
+                                        }
+                                        
+                                        function dragsubject() {
+                                            return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2, searchRadius);
+                                        }
+                                        
+                                        function mousemoved() {
+                                            var a = this.parentNode, m = d3.mouse(this), d = simulation.find(m[0] - width / 2, m[1] - height / 2, searchRadius);
+                                            if (!d) return a.removeAttribute("href"), a.removeAttribute("title");
+                                            a.setAttribute("href", "http://bl.ocks.org/" + (d.user ? d.user + "/" : "") + d.id);
+                                            a.setAttribute("title", d.id + (d.user ? " by " + d.user : "") + (d.description ? "\n" + d.description : ""));
+                                        }
+                                        });
+                                        
+                                        function dragstarted() {
+                                        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                                        d3.event.subject.fx = d3.event.subject.x;
+                                        d3.event.subject.fy = d3.event.subject.y;
+                                        }
+                                        
+                                        function dragged() {
+                                        d3.event.subject.fx = d3.event.x;
+                                        d3.event.subject.fy = d3.event.y;
+                                        }
+                                        
+                                        function dragended() {
+                                        if (!d3.event.active) simulation.alphaTarget(0);
+                                        d3.event.subject.fx = null;
+                                        d3.event.subject.fy = null;
+                                        }
+                                        
+                                        function drawLink(d) {
+                                        context.moveTo(d.source.x, d.source.y);
+                                        context.lineTo(d.target.x, d.target.y);
+                                        }
+                                        
+                                        function drawNode(d) {
+                                        context.moveTo(d.x + 3, d.y);
+                                        context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
+                                        }
+                                    </script>
+    
+
+
+
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                            <div id="main-account" class="display-none">
+                                <div id="main-account-personalinformation" class="display-none">
+                                    <h0>
+                                        Personal Information 
+                                    </h0>
+                                </div>
+                                <div id="main-account-products" class="display-none">
+                                    <h0>
+                                        Product 
+                                    </h0>
+                                </div>
+                                <div id="main-account-billing" class="display-none">
+                                    <h0>
+                                        Billing 
+                                    </h0>
+                                </div>
+                                <div id="main-account-settings" class="display-none">
+                                    <h0>
+                                        Setting 
+                                    </h0>
+                                </div>
+                            </div>
                         </div>
+                        <style>
+                            .space-main
+                            {
+                                padding: 0 0 0 20px;
+                                width: 100%;
+                                text-align: center;
+                                position: relative;
+                                z-index: -1;
+                            }
+                            .space-main-box
+                            {
+                                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                            }
+                        </style>
 
+                        <!-- Space Inspector --> 
+                        <div class='inspector' id='inspector-personal'>
+                            <div class='center'>
+                                <button class='button tooltip'id='button-search'>
+                                    <i class="fal fa-search"></i>
+                                    <span class="tooltiptext">Search</span>
+                                </button>
+                                <button class='button tooltip'id='button-add'>
+                                    <i class="fal fa-plus"></i>
+                                    <span class="tooltiptext">Create</span>
+                                </button>
+                                <button class='button tooltip' id='button-change-view'>
+                                    <i class="fas fa-eye"></i>
+                                    <span class="tooltiptext">Change view</span>
+                                </button>                        
+                                <button class='button tooltip' id='button-more'>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    <span class="tooltiptext">More</span>
+                                </button>
+                            </div>
+                        </div>
                         <style>
                             .inspector
                                 {
@@ -549,12 +869,26 @@
                                 }
                         </style>
                     </div>
+                    <style>        
+                        .space-content
+                        {   
+                            height: 100%;
+                            width: 100%;
+                            padding: 40px 10px;
+                            box-sizing: border-box;
+                            overflow: auto;
+                            position: fixed;   
+                        }
+                    </style>
                 </div>
                 <style>
+                .space
+                    {   
+                        /*background-image: url("./07.jpg"); */
+                        height: 100%;
+                        width: 100%;
+                    }
                 </style>
-
-                <script>
-                </script>
             </div>
 
             <!-- component.static { component.client.foreground } -->
@@ -566,7 +900,7 @@
             <div class='component' id='client-navigation'>
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
-                    <div class='center'>
+                    <div class='footer-center'>
                     <!-- Button Stella-->
                         <div class='client-navigation-float-left'>
                             <button class='button' id='button-stella'>
@@ -587,10 +921,32 @@
                                 </button>
                             </a>
                         </div>
-                        <div class='client-navigation-float-right' id='text-navigation'>
-                            <h2> My Account   I   Profile
+                        <div class='client-navigation-float-right' id='button-account' onclick="select_account()">
+                            <h2> My Account   
                             </h2>
                         </div>
+                        <div class='client-navigation-float-right text-selected' id='button-profile' onclick="select_profile()">
+                            <h2> Profile
+                            </h2>
+                        </div>
+                        <script>
+                            function select_account(){
+                                document.getElementById("button-account").classList.toggle("text-selected", true);
+                                document.getElementById("button-profile").classList.toggle("text-selected", false);
+
+                                document.getElementById("menu-profile").classList.toggle("display-none", true);
+                                document.getElementById("menu-account").classList.toggle("display-none", false);
+                            }
+                            function select_profile(){
+                                document.getElementById("button-account").classList.toggle("text-selected", false);
+                                document.getElementById("button-profile").classList.toggle("text-selected", true);
+
+
+                                document.getElementById("menu-profile").classList.toggle("display-none", false);
+                                document.getElementById("menu-account").classList.toggle("display-none", true);
+                            }
+
+                        </script>
                     </div>
                     <style>        
                        div#client-navigation-footer
@@ -603,26 +959,26 @@
                             position: fixed;
                             width: 100%;
                             z-index: 10;
+                            color: rgba(255, 255, 255, .5)
 
                         }
                         div.client-navigation-float-right a 
                         {
                             text-decoration: none;
                         }
-                        div#text-navigation h2
-                        {
-                            background-color:#1D1D1D;
-                            opacity: .7;
-                            box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-
-                        }
-                        .center
+                        .footer-center
                         {
                             margin: 0px auto;
                             height: 32px;
                             width: auto;
                         }
+  
+
                     </style>
+
+                    
+
+
                 </div>
 
                 <!-- NAVIGATION HEADER -->

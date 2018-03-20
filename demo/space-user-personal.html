@@ -166,11 +166,7 @@
                 }
 
         </style>
-
-
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
-
-        
     </head>
 
     <body>
@@ -434,11 +430,14 @@
                         <style>
                             .space-menu
                             {
-                                background:rgba(29, 29, 29, 0);
+                                background: linear-gradient(270deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
                                 position: fixed;
-                                width: 30%;
+                                width: 25%;
                                 height: 100%;
                                 z-index: 1;
+                                top: 0px;
+                                left: 0px;
+                                padding: 40px 0 0 10px;
                             }
                         </style>
 
@@ -1125,14 +1124,14 @@
                             </h2>
                         </div>
                         <!-- User Personal-->
-                        <div class='client-navigation-float-right'id='butten-user'>
+                        <div class='client-navigation-float-right'id='button-user'>
                             <button class='button-text' onclick="select_user()">
                                 SB
                             </button>
                         </div>
                         <script>
                             function select_user(){
-                                document.getElementById("butten-user").classList.toggle("button-selected");
+                                document.getElementById("button-user").classList.toggle("button-selected");
                             }
                         </script>
                         <div class='client-navigation-float-right' id='button-account' onclick="select_account()">

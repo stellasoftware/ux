@@ -11,7 +11,6 @@
                 font-weight: 300;
                 margin: 0px;
                 padding: 0px;
-                
             }
             .application
             {
@@ -23,6 +22,7 @@
             }
             div#client
             {
+                
                 background: #1D1D1D;
                 height: 100%;
                 position: fixed;
@@ -32,7 +32,6 @@
             }
             h0
             {
-
                 font-weight: 100;
                 font-size: 50px;
                 padding: 0px;
@@ -40,18 +39,140 @@
             h1
             {
                 font-weight: 300;
-                font-size: 17px;
+                font-size: 15px;
                 padding: 0px;
             }
             h2
             {
-                text-transform: uppercase;
                 font-weight: 400;
                 font-size: 11px;
+                text-transform: uppercase;
+            }
+            p{
+                font-size: 13px;
+            }
+            .text-selected
+            {
+                color: rgba(255, 255, 255, 1);
+                font-weight: 500;                                
+            }
+            .display-block {
+                display: block;
+            }
+            .display-none {
+                display: none;
+            }
+            .visibility-visible {
+                visibility: visible;
             }
 
+
+            .button
+                {
+                background:rgba(29, 29, 29, 0.5);
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                float: right;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+                margin: 0px 0px 5px 5px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button:hover
+                {
+                background: rgb(255, 255, 255);
+                color: black;
+                transform: scale(1.2);
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .button-selected button{
+                background: rgb(255, 255, 255);
+                opacity: 1;
+                color: black;
+
+            }
+
+            .button-text 
+                {
+                background:rgba(29, 29, 29, 0.5);
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                text-align: center;
+                display: block;
+                font-size: 12px;
+                margin: 0px 0px 0px 0px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button-text:hover
+                {
+                background: rgb(255, 255, 255);
+                color: black;
+                font-weight: 600;
+                transform: scale(1.2);
+                text-decoration: none;
+
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .tooltip 
+                {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+                }
+            .tooltip .tooltiptext 
+                {
+                visibility: hidden;
+                width: auto;
+                background:rgba(29, 29, 29, 0.3);
+                color:white;
+                text-align: center;
+                border-radius: 3px;
+                padding: 4px 4px;
+                position: absolute;
+                z-index: 1;
+                top: -5px;
+                right: 110%;
+                font-size: 10px;
+                text-transform: uppercase;
+                }
+            .tooltip .tooltiptext::after 
+                {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent transparent black;
+                }
+            .tooltip:hover .tooltiptext 
+                {
+                visibility: visible;
+                }
+
         </style>
+
+
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+
+        
     </head>
 
     <body>
@@ -62,28 +183,213 @@
             <div class='component' id='client-background'>
 
                 <!-- component.static { component.space} -->
-                <div class='component' id=space>
+                <div class='component' id='space'>
+                    <!-- Space Content--> 
+                    <div class='space-content'>
+                        <!-- Space Menu--> 
+                        <div class='space-menu display-none'>
+                            <div class="menu-header">
+                                <h0>
+                                    Sara Belot  
+                                </h0>
+                            </div>
+                            <style>
+                                .menu-header 
+                                {
+                                    background:transparent;
+                                    padding: 5px;
+                                    text-align: left;
+                                    position: relative;
+                                }
+                            </style>
+                            <!-- Menu Profile --> 
+                            <div id="menu-profile"> 
+                                <!-- Menu Primary--> 
+                                <div class='menu-primary'>
+                                    <h2 id="menu-profile-about" onclick="select_about()">About</h2>
+                                    <h2 id="menu-profile-portfolio" onclick="select_portfolio()">Portfolio</h2> 
+                                    <h2 id="menu-profile-experience" onclick="select_experience()">Experience</h2>
+                                    <h2 id="menu-profile-collaborators" onclick="select_collaborators()">Collaborators</h2>     
+                                </div>
+                                <style>
+                                    .menu-primary
+                                    {
+                                        padding: 0 10px;
+                                        float: left;
+                                        text-align: right;
+                                        border-right: .1px solid rgba(255, 255, 255, 0.1);
+                                        color: rgba(255, 255, 255, 0.5);
+                                        position: relative;
+                                    }
+                                    .menu-primary h2:hover
+                                    {
+                                        color: rgba(255, 255, 255, 1);
+                                        transform: scale(1.05);
+                                    } 
+                                </style>
+                                <script>
+                                    function select_about(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
 
-                    <!-- Space Personal--> 
-                    <div class='space' id='space-personal'>
-                        <!-- Space Content--> 
-                        <div class='space-content' id='project-management-personal'>
+                                        document.getElementById("menu-about-details").classList.toggle("display-none");
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
 
-                            <div class="space-header">
+                                        document.getElementById("main-profile-about").classList.toggle("display-none");
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_portfolio(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none");
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none");
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_experience(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected");
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected", false);
+
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none");
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none", true);
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none");
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none", true);
+                                    }
+                                    function select_collaborators(){
+                                        document.getElementById("menu-profile-about").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-portfolio").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-experience").classList.toggle("text-selected", false);
+                                        document.getElementById("menu-profile-collaborators").classList.toggle("text-selected");
+
+                                        document.getElementById("menu-about-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-portfolio-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-experience-details").classList.toggle("display-none", true);
+                                        document.getElementById("menu-collaborators-details").classList.toggle("display-none");
+
+                                        document.getElementById("main-profile-about").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-portfolio").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-experience").classList.toggle("display-none", true);
+                                        document.getElementById("main-profile-collaborators").classList.toggle("display-none");
+                                    }
+                                </script>
+
+                                <!-- Menu Secondary -->
+                                <div class='menu-secondary'>
+                                    <div class='display-none' id="menu-about-details">
+                                        <h2 id="menu-about-location" onclick="select_location()">New York, NY</h2> 
+                                    </div>
+                                    <script>
+                                        function select_location(){
+                                            document.getElementById("menu-about-location").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-portfolio-details">
+                                        <h2 id="menu-portfolio-all" onclick="select_portfolio_all()">All</h2>
+                                        <h2 id="menu-portfolio-recent" onclick="select_portfolio_recent()">Recent</h2>  
+                                    </div>
+                                    <script>
+                                        function select_portfolio_all(){
+                                            document.getElementById("menu-portfolio-all").classList.toggle("text-selected");
+                                        }
+                                        function select_portfolio_recent(){
+                                            document.getElementById("menu-portfolio-recent").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-experience-details">
+                                        <h2 id="menu-experience-roles" onclick="select_experience_roles()">Roles</h2>
+                                        <h2 id="menu-experience-projects" onclick="select_experience_projects()">Projects</h2>  
+                                    </div>
+                                    <script>
+                                        function select_experience_roles(){
+                                            document.getElementById("menu-experience-roles").classList.toggle("text-selected");
+                                        }
+                                        function select_experience_projects(){
+                                            document.getElementById("menu-experience-projects").classList.toggle("text-selected");
+                                        }
+                                    </script>  
+
+                                    <div class='display-none' id="menu-collaborators-details">
+                                        <h2 id="menu-collaborators-all" onclick="select_collaborators_all()">All</h2>
+                                        <h2 id="menu-collaborators-recommendations" onclick="select_collaborators_recommendations()">Recommendations</h2>
+                                        <h2 id="menu-collaborators-organizations" onclick="select_collaborators_organizations()">Organizations</h2>
+                                        <h2 id="menu-collaborators-professionals" onclick="select_collaborators_professionals()">Professionals</h2>      
+                                    </div>
+                                    <script>
+                                        function select_collaborators_all(){
+                                            document.getElementById("menu-collaborators-all").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_recommendations(){
+                                            document.getElementById("menu-collaborators-recommendations").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_organizations(){
+                                            document.getElementById("menu-collaborators-organizations").classList.toggle("text-selected");
+                                        }
+                                        function select_collaborators_professionals(){
+                                            document.getElementById("menu-collaborators-professionals").classList.toggle("text-selected");
+                                        }
+                                    </script>
+                                </div>
+                                <style>
+                                    .menu-secondary
+                                        {
+                                            padding: 0 0 0 20px;
+                                            float: left;
+                                            color: rgba(255, 255, 255, 0.5);
+                                            position: relative;
+                                        }
+                                    .menu-secondary h2:hover
+                                        {
+                                            color: rgba(255, 255, 255, 1);
+                                            transform: scale(1.05);
+                                        }
+                                </style>
                             </div>
 
-                            <div class-"space-body">
+                        </div>
+                        <style>
+                            .space-menu
+                            {
+                                background: linear-gradient(270deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
+                                position: fixed;
+                                width: 25%;
+                                height: 100%;
+                                z-index: 1;
+                                top: 0px;
+                                left: 0px;
+                                padding: 40px 0 0 10px;
+                            }
+                        </style>
 
-                                <div class="space-navigation">
-                                    <a href="#">
-                                        <h2>sort by</h2>
-                                    </a>
-                                    <a href="#">
-                                        <h2>filter by</h2>
-                                    </a>
-                                </div>
-                            
-                                <div class='space-column'> 
+                        <!-- Space Main -->
+                        <div class='space-main'>
+
+
+                            <div class='space-column'> 
                                     <div class='gallery'>
                                         <a href="space-project-01.html">
                                             <img src="image/project-01.jpg" width="600" height="400">
@@ -94,7 +400,6 @@
                                         </h2> 
                                     </div>
                                 </div>
-
                                 <div class='space-column'>
                                     <div class='gallery'>
                                         <img src="image/project-02.jpg" width="600" height="400">
@@ -167,7 +472,6 @@
                                         </h2> 
                                     </div>
                                 </div>
-
                                 <div class='space-column'>
                                     <div class='gallery'>
                                         <img src="image/project-10.jpg" width="600" height="400">
@@ -232,85 +536,8 @@
                                         </h2> 
                                     </div>
                                 </div>-->
-                                <div class="clearfix">
-                                </div>
-                            </div>  
-
-                        </div>
-                        
-                        <div class="space-footer">
-                            <h1>
-                            </h1>
-                        </div>
-                        
-
-                        <style>
-                            .space
-                            {   
-                                /*background-image: url("./07.jpg"); */
-                                height: 100%;
-                                width: 100%;
-                                
-                            }
-                            #project-management-personal
-                            {
-                                overflow: scroll;
-                            }
-
-
-                            .space-content
-                            {   
-                                height: 100%;
-                                width: 100%;
-                                padding: 30px;
-                                box-sizing: border-box;
-                                overflow: auto;
-                                position: fixed;
-                                
-                            }
-                            
-                            .space-header 
-                            {
-                                background:transparent;
-                                padding: 5px;
-                                text-align: left;
-                                overflow: visible;
-                            }
-
-                            .space-header h1 
-                            {
-                                font-size: 20px;
-                            }
-                            .space-footer 
-                            {
-                                padding: 20px;
-                                text-align: center;
-                                background: transparent;
-                                margin-top: 20px;
-                            }
-
-                            .space-navigation 
-                            {
-                                overflow: hidden;
-                                background-color: transparent;
-                            }
-
-                            .space-navigation a 
-                            {
-                                float: left;
-                                display: block;
-                                color: #f2f2f2;
-                                text-align: center;
-                                padding: 5px;
-                                text-decoration: none;
-                            }
-
-                            .space-navigation a:hover 
-                            {
-                                background-color: #ddd;
-                                color: black;
-                            }
-
+                            </div>
+                            <style>
                             .space-column
                             {
                                 padding: 0 6px;
@@ -346,25 +573,6 @@
                                 height: auto;
                             }
 
-                            .clearfix:after {
-                                content: "";
-                                display: table;
-                                clear: both;
-                            }
-
-                            .image-placeholder {
-                                background-color: #aaa;
-                                width: 100%;
-                                height: auto;
-                            }
-
-                            
-                            .space-row:after 
-                                {
-                                    content: "";
-                                    display: table;
-                                    clear: both;
-                                }
                             @media only screen and (max-width: 700px) {
                                 .space-column {
                                     width: 49.99999%;
@@ -378,184 +586,371 @@
                                 }
                             }
                             
-                            </style>
+                            </style> 
+                        </div>
+                        <style>
+                            .space-main
+                            {
+                                padding: 0 0 0 20px;
+                                width: 100%;
+                                text-align: center;
+                                position: relative;
+                                z-index: 0;
+                            }
+                            .space-main-box
+                            {
+                                border-bottom: .1px solid rgba(255, 255, 255, 0.1);
+                            }
+                        </style>
 
-                        <!-- Space Inspector --> 
-                        <div class='inspector' id='inspector-personal'>
-                                <div class='center'>
-                                    <button class='button tooltip'id='button-search'>
-                                        <i class="fal fa-search"></i>
-                                        <span class="tooltiptext">Search</span>
-                                    </button>
-                                    <button class='button tooltip'id='button-add'onclick="open_create_options()">
-                                        <i class="fal fa-plus"></i>
-                                        <span class="tooltiptext">Create</span>
-                                    </button>
-                                    <button class='button tooltip' id='button-change-view'>
-                                        <i class="fas fa-eye"></i>
-                                        <span class="tooltiptext">Change view</span>
-                                    </button>                        
-                                    <button class='button tooltip' id='button-more'>
-                                        <i class="fas fa-ellipsis-h"></i>
-                                        <span class="tooltiptext">More</span>
-                                    </button>
+                        <!-- Space Action --> 
+                        <div class='space-action'>
+                            <!-- Action Primary -->
+                            <div class='action-primary'>
+                                <div class='primary-box'>
+                                    <div id='button-search'>
+                                        <button class='button tooltip' onclick='select_search()'>
+                                            <i class="fal fa-search"></i>
+                                            <span class="tooltiptext">Search</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-change-view'>
+                                        <button class='button tooltip' onclick='select_change_view()'>
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltiptext">Change View</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-add'>
+                                        <button class='button tooltip' onclick='select_add()'>
+                                            <i class="fal fa-plus"></i>
+                                            <span class="tooltiptext">Add</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-edit'>                      
+                                        <button class='button tooltip' onclick='select_edit()'>
+                                            <i class="fal fa-edit"></i>
+                                            <span class="tooltiptext">Edit</span>
+                                        </button>
+                                    </div>  
+                                    <div id='button-more'>                      
+                                        <button class='button tooltip' onclick='select_more()'>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                            <span class="tooltiptext">More</span>
+                                        </button>
+                                    </div>  
                                 </div>
-                            <style>
-                                .inspector
-                                    {
-                                        width: 32px;
-                                        padding: 20px 10px;
-                                        position: fixed;
-                                        top: 0px;
-                                        right: 0px;
-                                    }
-
-                                .center
+                                <style>
+                                .primary-box
                                     {
                                         margin: 0px auto;
                                         width: 32px;
                                         height: auto;
                                     }
+                                </style>
+                            </div>
+                            <style>
+                            .action-primary
+                                {
+                                    width: 32px;
+                                    padding: 20px 10px;
+                                    position: fixed;
+                                    top: 0px;
+                                    right: 0px;
+                                    z-index: 2;
+                                }
 
-                                .button
+                            </style>
+                            <script>   
+                                function select_search(){
+                                    document.getElementById("button-search").classList.toggle("button-selected");
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none");
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_add(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected");
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none");
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_change_view(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected");
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none");
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_edit(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected");
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none");
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_more(){
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected");
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none");
+                                }
+                            </script>
+
+                            <!-- Action Secondary -->
+                            <div class='action-secondary'>
+                                <div class='secondary-box'>
+                                    <div class='display-none' id='action-search'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Search
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-add'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Add
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                Project
+                                            </p>
+                                            <p>
+                                                Organization
+                                            </p>
+                                            <p>
+                                                Space
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-change-view'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Change View 
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                Grid
+                                            </p>
+                                            <p>
+                                                Activity
+                                            </p>
+                                            <p>
+                                                Timeline
+                                            </p>
+                                            <p>
+                                                Map
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-edit'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Edit
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-more'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                More
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <style>
+                                    .secondary-box
                                     {
-                                    background-color:#1D1D1D;
-                                    opacity: .7;
-                                    border: 0;
-                                    border-radius: 50%;
-                                    color: white;
-                                    float: right;
-                                    text-align: center;
-                                    text-decoration: none;
-                                    display: block;
-                                    font-size: 15px;
-                                    margin: 0px 0px 8px 0px;
-                                    cursor: pointer;
-                                    width: 30px;
-                                    height: 30px;
-                                    padding: 0px;
+                                        margin:25px 50px 80px 20px;
+                                        height:100%
+                                    }
+                                    .secondary-header 
+                                    {
+                                        background:transparent;
+                                        text-align: left;
+                                        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                                    }
+                                    .secondary-list
+                                    {
+                                        padding: 0 10px;
+                                    }
+                                </style>
+                            </div>
+                            <style>
+                                .action-secondary
+                                {
+                                    background: linear-gradient(90deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
                                     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                    }
-                                .button:hover
-                                    {
-                                    background-color: #ffffff;
-                                    opacity: 1;
-                                    color: black;
-                                    transform: scale(1.2);
-                                    -webkit-transition-duration: 0.1s; /* Safari */
-                                    transition-duration: 0.1s;
-                                    }
-
-                                .button-text 
-                                    {
-                                    background-color:#1D1D1D;
-                                    opacity: .7;
-                                    border: 0;
-                                    border-radius: 50%;
-                                    color: white;
-                                    text-align: center;
-                                    display: block;
-                                    font-size: 12px;
-                                    margin: 0px 0px 0px 0px;
-                                    cursor: pointer;
-                                    width: 30px;
-                                    height: 30px;
-                                    padding: 0px;
-                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                    }
-                                .button-text:hover
-                                    {
-                                    background-color: #ffffff;
-                                    opacity: 1;
-                                    color: black;
-                                    font-weight: 600;
-                                    transform: scale(1.2);
-                                    text-decoration: none;
-
-                                    -webkit-transition-duration: 0.1s; /* Safari */
-                                    transition-duration: 0.1s;
-                                    }
-
-                                .tooltip 
-                                    {
-                                    position: relative;
-                                    display: inline-block;
-                                    border-bottom: 1px dotted black;
-                                    }
-                                .tooltip .tooltiptext 
-                                    {
-                                    visibility: hidden;
-                                    width: auto;
-                                    background-color:black;
-                                    color:white;
-                                    opacity: .3;
-                                    text-align: center;
-                                    border-radius: 3px;
-                                    padding: 4px 4px;
-                                    position: absolute;
+                                    position: fixed;
+                                    width: 15%;
+                                    height:100%;
+                                    top: 0px;
+                                    right: 0px;
                                     z-index: 1;
-                                    top: -5px;
-                                    right: 110%;
-                                    font-size: 10px;
-                                    text-transform: uppercase;
-                                    }
-                                .tooltip .tooltiptext::after 
-                                    {
-                                    content: "";
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 100%;
-                                    margin-top: -5px;
-                                    border-width: 5px;
-                                    border-style: solid;
-                                    border-color: transparent transparent transparent black;
-                                    }
-                                .tooltip:hover .tooltiptext 
-                                    {
-                                    visibility: visible;
-                                    }
+                                }
+                                .secondary-list p:hover
+                                {
+                                    color: rgba(255, 255, 255, 1);
+                                    transform: scale(1.05);
+                                } 
+                        
                             </style>
                         </div>
-                    </div>
+                        <style>
+                        </style>
+
+                    <style>        
+                        .space-content
+                        {   
+                            height: 100%;
+                            width: 100%;
+                            padding: 40px 10px;
+                            box-sizing: border-box;
+                            overflow: auto;
+                            position: fixed;
+                            
+                            background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/space-background-02.jpg"); 
+
+                            background-size:cover;                
+                            background-repeat:no-repeat;
+                            background-position: center center;  
+                        }
+                    </style>
                 </div>
+                <style>
+                    #space
+                    {   
+                        height: 100%;
+                        width: 100%;
+                    }
+                </style>
             </div>
 
             <!-- component.static { component.client.foreground } -->
             <div class='component' id='client-foreground'>
-                <!-- COMPASS SHORTCUT -->
+                <!-- Stella Button Reaction -->
             </div>
 
             <!-- component.static { component.client.navigation } -->
             <div class='component' id='client-navigation'>
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
-                    <div class='center'>
-                     <!-- Button Stella-->
-                        <div class='client-navigation-float-left'>
-                            <button class='button' id='button-stella'>
+                    <div class='footer-center'>
+                        <!-- Button Stella-->
+                        <div class='client-navigation-float-left'id='button-stella'>
+                            <button class='button' onclick="select_stella()">
                                     <img src="image/button-stella-w.png"
                                     onmouseover="this.src='image/button-stella-b.png'"
                                     onmouseout="this.src='image/button-stella-w.png'"
                                     >
                             </button>
                         </div>
+                        <script>
+                            function select_stella(){
+                                document.getElementById("butten-stella").classList.toggle("button-selected");
+                            }
+                        </script>
                         <div class='client-navigation-float-left' id='text-navigation'>
-                            <h2>My Stella </h2> 
-                            </div>
-                        
-                        <div class='client-navigation-float-left' id='text-navigation'>
-                            <h2>All Projects</h2>
+                            <h2>
+                                My Stella
+                            </h2>
                         </div>
-                        <div class='client-navigation-float-right'>
+                        <div class='client-navigation-float-left' id='text-navigation'>
+                            <h2>
+                                All Projects
+                            </h2>
+                        </div>
+                        <!-- User Personal-->
+                        <div class='client-navigation-float-right'id='button-user'>
                             <a href="space-user-personal.html">
-                                <button class='button-text' id='user-identity-personal'>
+                                <button class='button-text' onclick="select_user()" onmouseover="appear()"onmouseout="appear()">
                                     SB
                                 </button>
                             </a>
                         </div>
+                        <style>
+
+
+                        </style>
+                        <script>
+                            function select_user(){
+                                document.getElementById("button-user").classList.toggle("button-selected");
+                                document.getElementById("user-button-details").classList.toggle("display-none");
+                            }
+                            function appear(){
+                                document.getElementById("user-button-details").classList.toggle("display-none");
+                            }
+
+                        </script>
+                        <div id=user-button-details class=display-none>
+                            <div class='client-navigation-float-right' id='button-account' >
+                                <h2> My Account   
+                                </h2>
+                            </div>
+                            <div class='client-navigation-float-right' id='button-profile' >
+                                <h2> Profile
+                                </h2>
+                            </div>
+                        </div>
+                        <script>
+                        </script>
                     </div>
-                    <style>
-                        div#client-navigation-footer
+                    <style>        
+                       div#client-navigation-footer
                         {
                             background: transparent;                 
                             bottom: 0px;
@@ -565,34 +960,38 @@
                             position: fixed;
                             width: 100%;
                             z-index: 10;
+                            color: rgba(255, 255, 255, .5)
 
                         }
                         div.client-navigation-float-right a 
                         {
                             text-decoration: none;
                         }
-                        div#text-navigation h2
-                        {
-                            background-color:#1D1D1D;
-                            opacity: .7;
-                            box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 
-                        }
-                        .center
+                        .footer-center
                         {
                             margin: 0px auto;
                             height: 32px;
                             width: auto;
                         }
-                        
                     </style>
-                    
-
                 </div>
 
                 <!-- NAVIGATION HEADER -->
                 <div id='client-navigation-header'>
-                    <div></div>
+           
+                    <!--<div class='client-navigation-float-left'>
+                        <button class='button' id='button-next'>
+                            <i class="fal fa-angle-right"></i>
+                        </button>
+                        <button class='button' id='button-previous'>
+                            <i class="fal fa-angle-left"></i>
+                        </button>
+                        <button class='button' id='button-close'onclick="goBack()">
+                            <i class="fal fa-times"></i>
+                        </button>
+                    </div>-->
+    
                     <style> 
                         div#client-navigation-header
                         {
@@ -606,20 +1005,23 @@
                             z-index: 10;
                         }
                     </style>
-                </div>
 
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
                 <style>
                     div.client-navigation-float-left
                     {
-                        display: block;
                         float: left;
                         width: auto;
-                        padding: 5px 5px;
+                        padding: 10px 10px;
                     }
 
                     div.client-navigation-float-right
                     {
-                        display: block;
                         float: right;
                         width: auto;
                         padding: 10px 10px ;
@@ -627,9 +1029,6 @@
 
                 </style>
             </div>
-
-            <style>
-            </style>
         </div>
     </body>
 </html>

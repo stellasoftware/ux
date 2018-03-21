@@ -71,12 +71,11 @@
                 border: 0;
                 border-radius: 50%;
                 color: white;
-                float: right;
                 text-align: center;
                 text-decoration: none;
                 display: block;
                 font-size: 15px;
-                margin: 0px 0px 5px 5px;
+                margin: 2px 2px 2px 2px;
                 cursor: pointer;
                 width: 30px;
                 height: 30px;
@@ -432,7 +431,7 @@
                             {
                                 background: linear-gradient(270deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
                                 position: fixed;
-                                width: 25%;
+                                width: 20%;
                                 height: 100%;
                                 z-index: 1;
                                 top: 0px;
@@ -872,7 +871,7 @@
                             .action-primary
                                 {
                                     width: 32px;
-                                    padding: 20px 10px;
+                                    padding: 10px 10px;
                                     position: fixed;
                                     top: 0px;
                                     right: 0px;
@@ -1078,7 +1077,6 @@
                             position: fixed;
                             
                             background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/space-background-04.jpg"); 
-
                             background-size:cover;                
                             background-repeat:no-repeat;
                             background-position: center center;  
@@ -1103,69 +1101,84 @@
             <div class='component' id='client-navigation'>
                 <!-- NAVIGATION FOOTER -->                   
                 <div id='client-navigation-footer'>
-                    <div class='footer-center'>
-                        <!-- Button Stella-->
-                        <div class='client-navigation-float-left'id='button-stella'>
-                            <button class='button' onclick="select_stella()">
-                                    <img src="image/button-stella-w.png"
-                                    onmouseover="this.src='image/button-stella-b.png'"
-                                    onmouseout="this.src='image/button-stella-w.png'"
-                                    >
-                            </button>
-                        </div>
-                        <script>
-                            function select_stella(){
-                                document.getElementById("butten-stella").classList.toggle("button-selected");
-                            }
-                        </script>
-                        <div class='client-navigation-float-left' id='text-navigation'>
-                            <h2>
-                                
-                            </h2>
-                        </div>
-                        <!-- User Personal-->
-                        <div class='client-navigation-float-right'id='button-user'>
-                            <button class='button-text' onclick="select_user()">
-                                SB
-                            </button>
-                        </div>
-                        <script>
-                            function select_user(){
-                                document.getElementById("button-user").classList.toggle("button-selected");
-                            }
-                        </script>
-                        <div class='client-navigation-float-right' id='button-account' onclick="select_account()">
-                            <h2> My Account   
-                            </h2>
-                        </div>
-                        <div class='client-navigation-float-right text-selected' id='button-profile' onclick="select_profile()">
-                            <h2> Profile
-                            </h2>
-                        </div>
-                        <script>
-                            function select_account(){
-                                document.getElementById("button-account").classList.toggle("text-selected", true);
-                                document.getElementById("button-profile").classList.toggle("text-selected", false);
-
-                                document.getElementById("menu-profile").classList.toggle("display-none", true);
-                                document.getElementById("menu-account").classList.toggle("display-none", false);
-
-                                document.getElementById("main-profile").classList.toggle("display-none", true);
-                                document.getElementById("main-account").classList.toggle("display-none", false);
-                            }
-                            function select_profile(){
-                                document.getElementById("button-account").classList.toggle("text-selected", false);
-                                document.getElementById("button-profile").classList.toggle("text-selected", true);
-
-                                document.getElementById("menu-profile").classList.toggle("display-none", false);
-                                document.getElementById("menu-account").classList.toggle("display-none", true);
-
-                                document.getElementById("main-profile").classList.toggle("display-none", false);
-                                document.getElementById("main-account").classList.toggle("display-none", true);
-                            }
-
-                        </script>
+                    <!-- Button Stella-->
+                    <div class='client-navigation-float-left'id='button-stella'>
+                        <button class='button' onclick="select_stella()">
+                                <img src="image/button-stella-w.png"
+                                onmouseover="this.src='image/button-stella-b.png'"
+                                onmouseout="this.src='image/button-stella-w.png'"
+                                >
+                        </button>
                     </div>
+                    <script>
+                        function select_stella(){
+                            document.getElementById("butten-stella").classList.toggle("button-selected");
+                        }
+                    </script>
+                    <div class='client-navigation-float-left' id='text-navigation'>
+                        <h2>
+                            
+                        </h2>
+                    </div>
+
+
+                    <!-- User Personal-->
+                    <div class='client-navigation-float-right'id='button-user'>
+                        <button class='button-text' onclick="select_user()">
+                            SB
+                        </button>
+                    </div>
+                    <script>
+                        function select_user(){
+                            document.getElementById("button-user").classList.toggle("button-selected");
+                        }
+                    </script>
+                    <div id='button-account' onclick="select_account()">
+                        <h2> My Account   
+                        </h2>
+                    </div>
+                    <div id='button-profile' onclick="select_profile()">
+                        <h2> Profile
+                        </h2>
+                    </div>
+                    <style>
+                        #button-account{
+                            display: block;
+                            float: right;
+                            width: auto;
+                            padding: 10px 5px;
+                        }
+                        #button-profile{
+                            display: block;
+                            float: right;
+                            width: auto;
+                            padding: 10px 5px;
+                        }
+                    </style>
+                    <script>
+                        function select_account(){
+                            document.getElementById("button-account").classList.toggle("text-selected", true);
+                            document.getElementById("button-profile").classList.toggle("text-selected", false);
+
+                            document.getElementById("menu-profile").classList.toggle("display-none", true);
+                            document.getElementById("menu-account").classList.toggle("display-none", false);
+
+                            document.getElementById("main-profile").classList.toggle("display-none", true);
+                            document.getElementById("main-account").classList.toggle("display-none", false);
+                        }
+                        function select_profile(){
+                            document.getElementById("button-account").classList.toggle("text-selected", false);
+                            document.getElementById("button-profile").classList.toggle("text-selected", true);
+
+                            document.getElementById("menu-profile").classList.toggle("display-none", false);
+                            document.getElementById("menu-account").classList.toggle("display-none", true);
+
+                            document.getElementById("main-profile").classList.toggle("display-none", false);
+                            document.getElementById("main-account").classList.toggle("display-none", true);
+                        }
+
+                    </script>
+     
                     <style>        
                        div#client-navigation-footer
                         {
@@ -1177,42 +1190,42 @@
                             position: fixed;
                             width: 100%;
                             z-index: 10;
-                            color: rgba(255, 255, 255, .5)
 
                         }
                         div.client-navigation-float-right a 
                         {
                             text-decoration: none;
                         }
-
-                        .footer-center
-                        {
-                            margin: 0px auto;
-                            height: 32px;
-                            width: auto;
-                        }
                     </style>
                 </div>
 
                 <!-- NAVIGATION HEADER -->
                 <div id='client-navigation-header'>
-           
-                    <div class='client-navigation-float-left'>
 
-                        <button class='button' id='button-next'>
-                            <i class="fal fa-angle-right"></i>
-                        </button>
-                        <button class='button' id='button-previous'>
-                            <i class="fal fa-angle-left"></i>
-                        </button>
+                    <div class='client-navigation-float-left'>
                         <button class='button' id='button-close'onclick="goBack()">
                             <i class="fal fa-times"></i>
                         </button>
-
                     </div>
-    
+                
                     <style> 
-                        div#client-navigation-header
+                        #button-open-menu{
+                            display: block;
+                            float: left;
+                            width: auto;
+                            padding: 10px 0 0 0;
+                        }
+                    </style>
+
+
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
+                <style>
+                    div#client-navigation-header
                         {
                             background: transparent;                
                             display: block;                  
@@ -1223,33 +1236,26 @@
                             width: 100%;
                             z-index: 10;
                         }
-                    </style>
-
-                    <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>
-                </div>
-                <style>
-                    div.client-navigation-float-left
-                    {
-                        display: block;
-                        float: left;
-                        width: auto;
-                        padding: 20px 10px;
-                    }
-
-                    div.client-navigation-float-right
-                    {
-                        display: block;
-                        float: right;
-                        width: auto;
-                        padding: 10px 10px ;
-                    }
 
                 </style>
             </div>
+            <style>
+                div.client-navigation-float-left
+                {
+                    display: block;
+                    float: left;
+                    width: auto;
+                    padding: 10px 10px ;
+                }
+
+                div.client-navigation-float-right
+                {
+                    display: block;
+                    float: right;
+                    width: auto;
+                    padding: 10px 10px;
+                }
+            </style>
         </div>
     </body>
 </html>

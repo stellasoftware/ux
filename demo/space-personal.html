@@ -28,8 +28,14 @@
                 position: fixed;
                 width: 100%;
                 z-index: 10;
-            
             }
+            text
+            {
+                font-weight: 500;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
             h0
             {
                 font-weight: 100;
@@ -230,6 +236,18 @@
                                 </div>
                                 <div class='space-column'>
                                     <div class='gallery'>
+                                        <svg width="600" height="400">
+                                            <rect width="600" height="400" style="fill:rgb(255, 255, 255)"/>
+                                            <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle">Nike: Soar</text> 
+                                          </svg>
+                                        <h1>Nike: Soar</h1>
+                                        <h2>
+                                                Developement I Short Documentary
+                                        </h2> 
+                                    </div>
+                                </div>
+                                <div class='space-column'>
+                                    <div class='gallery'>
                                         <img src="image/project-02.jpg" width="600" height="400">
                                         <h1>The Last Track</h1>
                                         <h2>
@@ -394,6 +412,12 @@
                                 height: auto;
                             }
 
+                            .gallery svg 
+                            {
+                                width: 100%;
+                                height: auto;
+                            }
+
                             @media only screen and (max-width: 700px) {
                                 .space-column {
                                     width: 49.99999%;
@@ -478,6 +502,8 @@
                             </style>
                             <script>   
                                 function select_search(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+                                    
                                     document.getElementById("button-search").classList.toggle("button-selected");
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -492,6 +518,8 @@
                                 }
 
                                 function select_add(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected");
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -506,6 +534,8 @@
                                 }
 
                                 function select_change_view(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected");
@@ -520,6 +550,8 @@
                                 }
 
                                 function select_edit(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -534,6 +566,8 @@
                                 }
 
                                 function select_more(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -549,7 +583,7 @@
                             </script>
 
                             <!-- Action Secondary -->
-                            <div class='action-secondary'>
+                            <div id='action-secondary' class='action-secondary display-none'>
                                 <div class='secondary-box'>
                                     <div class='display-none' id='action-search'>
                                         <div class="secondary-header">
@@ -715,7 +749,7 @@
                     </div>
                     <script>
                         function select_stella(){
-                            document.getElementById("butt0n-stella").classList.toggle("button-selected");
+                            document.getElementById("button-stella").classList.toggle("button-selected");
                         }
                     </script>
                     <div id='button-my-stella'>

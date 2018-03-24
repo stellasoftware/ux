@@ -1,0 +1,1321 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+            body
+            {
+                color: #EDEDED;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                padding: 0px;
+            }
+            .application
+            {
+                display: block;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+            }
+            div#client
+            {
+                
+                background: rgb(29,29,29);
+                height: 100%;
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+            }
+
+            text
+            {
+                font-weight: 500;
+                font-size: 15px; 
+                
+            }
+
+            h0
+            {
+                font-weight: 100;
+                font-size: 50px;
+            }
+            h1
+            {
+                font-weight: 300;
+                font-size: 15px;
+            }
+            h2
+            {
+                font-weight: 400;
+                font-size: 11px;
+                text-transform: uppercase;
+            }
+            p{
+                font-size: 13px;
+            }
+
+            a 
+            {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .vl {
+                border-left: 2px solid rgba(255, 255, 255, 0.5);
+                height: 23%;
+            }
+
+            .text-selected
+            {
+                color: rgba(255, 255, 255, 1);
+                font-weight: 500;                                
+            }
+            .display-block {
+                display: block;
+            }
+            .display-none {
+                display: none;
+            }
+            .visibility-visible {
+                visibility: visible;
+            }
+
+
+            .button
+                {
+                background:rgba(29, 29, 29, 0.5);
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                text-align: center;
+                font-size: 15px;
+                margin: 2px 2px 2px 2px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button:hover
+                {
+                background: rgb(255, 255, 255);
+                color: black;
+                transform: scale(1.2);
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .button-selected button{
+                background: rgb(255, 255, 255);
+                opacity: 1;
+                color: black;
+
+            }
+
+            .button-text 
+                {
+                background:rgba(29, 29, 29, 0.5);
+                border: 0;
+                border-radius: 50%;
+                color: white;
+                text-align: center;
+                display: block;
+                font-size: 12px;
+                margin: 0px 0px 0px 0px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+            .button-text:hover
+                {
+                background: rgb(255, 255, 255);
+                color: black;
+                font-weight: 600;
+                transform: scale(1.2);
+                text-decoration: none;
+
+                -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;
+                }
+
+            .tooltip 
+                {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+                }
+            .tooltip .tooltiptext 
+                {
+                visibility: hidden;
+                width: auto;
+                background:rgba(29, 29, 29, 0.3);
+                color:white;
+                text-align: center;
+                border-radius: 3px;
+                padding: 4px 4px;
+                position: absolute;
+                z-index: 1;
+                top: -5px;
+                right: 110%;
+                font-size: 10px;
+                text-transform: uppercase;
+                }
+            .tooltip .tooltiptext::after 
+                {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent transparent black;
+                }
+            .tooltip:hover .tooltiptext 
+                {
+                visibility: visible;
+                }
+
+        </style>
+
+
+        <script type="text/javascript" src="./fontawesome-all.min.js"></script>
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+
+        
+    </head>
+
+    <body>
+        <!-- component.static { component.client } -->
+        <div class='component' id='client'>
+
+            <!-- component.static { component.client.background } -->
+            <div class='component' id='client-background'>
+
+                <!-- component.static { component.space} -->
+                <div class='component' id='space'>
+                    <!-- Space Content--> 
+                    <div class='space-content'>
+                        <!-- Space Menu--> 
+                        <div class='space-menu display-none' id=space-menu>
+                            <div class="menu-header">
+                                <h0>
+                                    My Stella  
+                                </h0>
+                            </div>
+                            <style>
+                                .menu-header 
+                                {
+                                    background:transparent;
+                                    padding: 5px;
+                                    text-align: left;
+                                    position: relative;
+                                }
+                            </style>
+                        </div>
+                        <style>
+                            .space-menu
+                            {
+                                background: linear-gradient(270deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
+                                position: fixed;
+                                width: 20%;
+                                height: 100%;
+                                z-index: 1;
+                                top: 0px;
+                                left: 0px;
+                                padding: 40px 0 0 10px;
+                            }
+                        </style>
+
+                        <!-- Space Main -->
+                        <div class='space-main'>
+                            <!-- Space Main Project View Timeline-->
+                            <div id='projects-view-timeline'>
+                                <div id="ganttChart-container">
+                                    <div id="buttonStation" >
+                                        
+                                        <h2 type="button" onclick="changeTimeDomain('Day')" class='navigation-float-left'>
+                                            Day
+                                        </h2>
+
+                                        <h2 type="button" onclick="changeTimeDomain('Week')"class='navigation-float-left'>
+                                            Week
+                                        </h2>
+                                        <h2 type="button" onclick="changeTimeDomain('Month')"class='navigation-float-left'>
+                                            Month
+                                        </h2>
+                                        <h2 type="button" onclick="changeTimeDomain('Year')"class='navigation-float-left'>
+                                            Year
+                                        </h2>
+                                    </div>
+                                    <div id="ganttChart">
+                                    </div>
+                                </div>
+                                <style>
+                                    
+                                    #chart-container{
+                                        width:100%;
+                                        height:100%;
+                                    }
+                                    #ganttChart{
+                                        width:100%;
+                                        height:900px;
+                                    }
+                                    
+                                    .axis path,.axis line {
+                                        fill: none;
+                                        stroke: none;
+                                        shape-rendering: crispEdges;
+                                    }
+                                    
+                                    .x.axis line{
+                                        stroke:rgba(255, 255, 255, 0.2);
+                                        stroke-width:.5;
+                                    }
+                                    
+                                    .y.axis path{
+                                        stroke: rgba(255, 255, 255,0.5);
+                                        stroke-width:1;
+                                    }
+                                    
+                                    .axis text{
+                                        font-family: "Roboto", sans-serif;
+                                        fill:#ededed;
+                                    }
+                                    .x.axis text{
+                                        font-size: 12px;
+                                        font-weight: 300;
+                                    }
+                                    .y.axis text{
+                                        font-size: 12px;
+                                        font-weight: 300;
+                                    }
+                                    
+                                    .bar       {opacity: .9;}
+                                    .project   {fill: #B3B3B3;}
+                                    .project-0 {fill: #E74C3C;}
+                                    .project-1 {fill: #8E44AD;}
+                                    .project-2 {fill: #F39C12;}
+                                    .project-3 {fill: #27AE60;}
+                                    .project-4 {fill: #F1C40F;}
+                                    .project-5 {fill: #3498DB;}
+                                    
+                                    
+                                    #buttonStation{
+                                        width:100%;
+
+                                    }
+                                    .navigation-float-left
+                                    {
+                                        display: block;
+                                        float: left;
+                                        width: auto;
+                                        padding: 10px 10px;
+                                    }
+    
+                                    </style>
+                                    <script>
+
+                                        d3.gantt = function() {
+                                        
+                                            var margin = {
+                                            top : 40,
+                                            right : 40,
+                                            bottom : 40,
+                                            left : 200
+                                            };
+                                        
+                                            var timeDomainStart = projects[0].startDate;
+                                            var timeDomainEnd = d3.timeYear.offset(timeDomainStart,+4);
+                                        
+                                            var timeDomainMode = "fit";// fixed or fit
+                                        
+                                            var d0 = new Date();
+                                            d1 = d3.timeMonth.offset(new Date(),+1);
+                                            
+                                            var projectTypes = [];
+                                            
+                                            var wrapper = document.getElementById("ganttChart");
+                                        
+                                            var height = wrapper.clientHeight - margin.top - margin.bottom;
+                                            
+                                            var width = wrapper.clientWidth - margin.right - margin.left;
+                                        
+                                            var ganttHeight=height - margin.top - margin.bottom;
+                                        
+                                            var x = d3.scaleTime()
+                                            .domain([timeDomainStart, timeDomainEnd])
+                                            .range([0, width])
+                                            .clamp(true);
+                                        
+                                            var y = d3.scaleBand()
+                                            .domain(projectTypes)
+                                            .rangeRound([ 0, ganttHeight], .1);
+                                        
+                                            var xAxis = d3.axisTop(x)
+                                            .ticks(6)
+                                            .tickSize(ganttHeight)
+                                            .tickPadding(10);
+                                        
+                                            var yAxis = d3.axisLeft(y).tickPadding(10);
+                                        
+                                            var rectScale=0.045;
+                                        
+                                            var keyFunction = function(d) {
+                                            return d.startDate + d.projectName + d.endDate;
+                                            };
+                                        
+                                            var rectTransform = function(d) {
+                                            return "translate(" + x(d.startDate) + "," + y(d.projectName) + ")";
+                                            };
+                                        
+                                            function gantt(projects) {
+                                            initAxis();
+                                        
+                                            var svg = d3.select('#ganttChart')
+                                            .append("svg")
+                                            .attr("class", "chart")
+                                            .attr("width", wrapper.clientWidth)
+                                            .attr("height", wrapper.clientHeight)
+                                            .append("g")
+                                            .attr("class", "gantt-chart")
+                                            .attr("width", wrapper.clientWidth)
+                                            .attr("height", wrapper.clientHeight)
+                                            .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+                                        
+                                            var gX = svg.append("g")
+                                            .attr("class", "x axis")
+                                            .attr("transform", "translate(0, " + (ganttHeight) + ")")
+                                            .call(xAxis);
+                                        
+                                            var rect = svg.selectAll(".chart")
+                                            .data(projects, keyFunction).enter()
+                                            .append("rect")
+                                            .attr("rx", 5)
+                                            .attr("ry", 5)
+                                            .attr("class", function(d){ 
+                                                if(d.status == null){ return "project";}
+                                                return d.status;
+                                            }) 
+                                            .attr("y", (y.range()[1]*(1/projects.length-rectScale)*.5))
+                                            .attr("transform", rectTransform)
+                                            .attr("height", function(d) { return y.range()[1]*rectScale; })
+                                            .attr("width", function(d) { 
+                                                return (x(d.endDate) - x(d.startDate)); 
+                                            });
+                                        
+                                            var gY=svg.append("g")
+                                            .attr("class", "y axis")
+                                            .transition()
+                                            .call(yAxis);
+                                        
+                                            zoom();
+                                        
+                                            tooltip();
+                                        
+                                            return gantt;
+                                        
+                                            };
+                                        
+                                            var zoom = function() {
+                                            var svg = d3.select(".chart");
+                                            var zoom = d3.zoom()
+                                            .scaleExtent([1,1500])
+                                            .translateExtent([[0,0], [width, height]])
+                                            .extent([[0, 0], [width, height]])
+                                            .on("zoom", zoomed);
+                                        
+                                            function zoomed() {
+                                                var t = d3.event.transform, xt=t.rescaleX(x);
+                                        
+                                                svg.selectAll("rect")
+                                                .attr("transform", function(d){
+                                                return "translate(" + xt(d.startDate) + "," + y(d.projectName) + ")";
+                                                })
+                                                .attr("width",function(d) { 
+                                                return (xt(d.endDate) - xt(d.startDate));
+                                                });
+                                                svg.selectAll(".x").call(xAxis.scale(xt));
+                                            };
+                                        
+                                            d3.select(".chart")
+                                            .call(zoom)
+                                            .call(zoom.transform, d3.zoomIdentity
+                                                .scale(width / (x(d1) - x(d0)))
+                                                .translate(-x(d0), 0));
+                                            };
+                                        
+                                            gantt.redraw=function(projects){
+                                        
+                                            initAxis();
+                                        
+                                            yAxis = d3.axisLeft(y).tickPadding(10);
+                                        
+                                            var svg = d3.select(".chart");
+                                        
+                                            var ganttChartGroup = svg.select(".gantt-chart");
+                                            var rect = ganttChartGroup.selectAll("rect").data(projects, keyFunction);
+                                        
+                                            zoom();
+                                            
+                                            rect.enter()
+                                            .insert("rect",":first-child")
+                                            .attr("rx", 5)
+                                            .attr("ry", 5)
+                                            .attr("class", function(d){ 
+                                                if(projectStatus[d.status] == null){ return "project";}
+                                                return projectStatus[d.status];
+                                            }) 
+                                            .transition()
+                                            .attr("y", 0)
+                                            .attr("transform", rectTransform)
+                                            .attr("height", function(d) { return y.range()[1]*rectScale; })
+                                            .attr("width", function(d) { 
+                                                return (x(d.endDate) - x(d.startDate)); 
+                                            });
+                                        
+                                            rect.exit().remove();
+                                        
+                                            svg.select(".x").transition().call(xAxis);
+                                            svg.select(".y").transition().call(yAxis);
+                                        
+                                            return gantt;
+                                            };
+                                            
+                                            var initAxis=function(){
+                                            x = d3.scaleTime()
+                                            .domain([timeDomainStart, timeDomainEnd])
+                                            .range([0, width])
+                                            .clamp(true);
+                                        
+                                            y = d3.scaleBand()
+                                            .domain(projectTypes)
+                                            .rangeRound([ 0, ganttHeight], .1);
+                                        
+                                            xAxis = d3.axisTop(x)
+                                            .ticks(6)
+                                            .tickSize(ganttHeight)
+                                            .tickPadding(10);
+                                        
+                                            yAxis = d3.axisLeft(y).tickPadding(10);
+                                            };
+                                        
+                                            var tooltip = function(){
+                                            var svg = d3.select(".chart");
+                                        
+                                            var tooltip = d3.select("#ganttChart")
+                                            .append("div")
+                                            .attr("class","tooltip");
+                                        
+                                            tooltip.append("div").attr("class", "t_project");
+                                            tooltip.append("div").attr("class", "t_startDate");
+                                            tooltip.append("div").attr("class", "t_endDate");
+                                        
+                                            svg.selectAll(".bar")
+                                            .on("mouseover", function(d) {
+                                        
+                                                tooltip.select(".t_project").html("<b>" + d.projectName + "</b>");
+                                                tooltip.select(".t_startDate").html("<b>"+d.startDate.toDateString()+"</b>" + "  to  " + "<b>"+d.endDate.toDateString()+"</b>");
+                                        
+                                                tooltip.style("display", "block");
+                                                tooltip.style("opacity",.8);
+                                        
+                                            })
+                                            .on("mousemove", function(d) {
+                                                tooltip.style("top", (d3.event.layerY + 10) + "px")
+                                                .style("left", (d3.event.layerX - 25) + "px");
+                                            })
+                                            .on("mouseout", function() {
+                                                tooltip.style("display", "none");
+                                                tooltip.style("opacity",0);
+                                            });
+                                            }
+                                        
+                                            gantt.margin = function(value) {
+                                            if (!arguments.length)
+                                                return margin;
+                                            margin = value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.d1=function(value){
+                                            if (!arguments.length)
+                                                return d1;
+                                            d1 = value;
+                                            return gantt;
+                                            }
+                                        
+                                            gantt.timeDomain = function(value) {
+                                            if (!arguments.length)
+                                                return [ timeDomainStart, timeDomainEnd ];
+                                            timeDomainStart = +value[0], timeDomainEnd = +value[1];
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.timeDomainMode = function(value) {
+                                            if (!arguments.length)
+                                                return timeDomainMode;
+                                            timeDomainMode = value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.projectTypes = function(value) {
+                                            if (!arguments.length)
+                                                return projectTypes;
+                                            projectTypes = value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.projectStatus = function(value) {
+                                            if (!arguments.length)
+                                                return projectStatus;
+                                            projectStatus = value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.width = function(value) {
+                                            if (!arguments.length)
+                                                return width;
+                                            width = +value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.height = function(value) {
+                                            if (!arguments.length)
+                                                return height;
+                                            height = +value;
+                                            return gantt;
+                                            };
+                                        
+                                            gantt.tickFormat = function(value) {
+                                            if (!arguments.length)
+                                                return tickFormat;
+                                            tickFormat = value;
+                                            return gantt;
+                                            };
+                                        
+                                            return gantt;
+                                        };
+                                        
+                                        var projectNames = [];
+                                        var projects = [];
+                                        
+                                        dataLink();
+                                        
+                                        function dataLink() {
+                                            d3.json("d3-timeline-data.json", function(error, json) {
+                                            if (error)
+                                                return console.warn(error);
+                                            
+                                            for ( var i = 0; i < json.length; i++) {
+                                                var title = json[i]["Title"];
+                                                projectNames.push(title);
+                                                projects.push({
+                                                "projectName" : title,
+                                                "startDate" : new Date(json[i]["StartDate"]),
+                                                "endDate" : new Date(json[i]["EndDate"]),
+                                                "status": "bar project-"+(i%6)
+                                                });
+                                            }      
+                                        
+                                            var gantt = d3.gantt().projectTypes(projectNames);
+                                            
+                                            var timeDomainString = "Day";
+                                        
+                                            gantt(projects);
+                                        
+                                            });
+                                        };
+                                        
+                                        function changeTimeDomain(timeDomainString) {
+                                        
+                                            var gantt = d3.gantt().projectTypes(projectNames);
+                                            this.timeDomainString = timeDomainString;
+                                            switch (timeDomainString) {
+                                            case 'Day':
+                                            gantt.d1 ( d3.timeDay.offset(new Date(),+1));
+                                            break;
+                                        
+                                            case 'Week':
+                                            gantt.d1 ( d3.timeWeek.offset(new Date(),+1));
+                                            break;
+                                        
+                                            case 'Month':
+                                            gantt.d1 ( d3.timeMonth.offset(new Date(),+1));
+                                            break;
+                                        
+                                            case 'Year':
+                                            gantt.d1 ( d3.timeYear.offset(new Date(),+1));
+                                            break;
+                                            }
+                                            gantt.redraw(projects);
+                                        };
+                                    </script>
+
+                                </div>
+
+                            <style>
+                                .space-row
+                                {
+                                    float: center;
+                                    width: 100%;
+                                }
+
+                                .space-column
+                                {
+                                    float: left;
+                                    width: 20%;
+                                }
+                                
+                                .space-column a
+                                {
+                                    text-decoration: none;
+                                }
+
+                                .gallery 
+                                {
+                                    padding: 10px;
+
+                                }
+
+                                .gallery:hover 
+                                {
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    background: white;
+                                    color: black;
+                                    transform: scale(1.01);
+
+                                }
+
+                                .gallery img 
+                                {
+                                    width: 100%;
+                                    height: auto;
+                                }
+
+                                .gallery svg 
+                                {
+                                    width: 100%;
+                                    height: auto;
+                                }
+
+                                @media only screen and (max-width: 700px) {
+                                    .space-column {
+                                        width: 49.99999%;
+                                        margin: 6px 0;
+                                    }
+                                }
+
+                                @media only screen and (max-width: 500px) {
+                                    .space-column  {
+                                        width: 100%;
+                                    }
+                                }
+                            </style> 
+
+                            <!-- Space Main Project View Activity-->
+                            <div id='projects-view-activity'class='display-none'>
+                                <button onclick="transition()">Update</button>
+                                <svg 
+                                    id="chart" 
+                                    width="960" 
+                                    height="500"
+                                    viewBox="0 0 960 500"
+                                    preserveAspectRatio="xMidYMid meet">
+                                </svg>
+                                <style>
+                                    svg {
+                                    width: 100%;
+                                    height: 100%;
+                                    }
+                                </style>                               
+                                <script>
+    
+                                    var n = 20, // number of layers
+                                        m = 200, // number of samples per layer
+                                        k = 10; // number of bumps per layer
+                                    
+                                    var stack = d3.stack().keys(d3.range(n)).offset(d3.stackOffsetWiggle),
+                                        layers0 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
+                                        layers1 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
+                                        layers = layers0.concat(layers1);
+                                    
+                                    var svg = d3.select("svg"),
+                                        width = +svg.attr("width"),
+                                        height = +svg.attr("height");
+                                    
+                                    var x = d3.scaleLinear()
+                                        .domain([0, m - 1])
+                                        .range([0, width]);
+                                    
+                                    var y = d3.scaleLinear()
+                                        .domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
+                                        .range([height, 0]);
+                                    
+                                    var z = d3.interpolateCool;
+                                    
+                                    var area = d3.area()
+                                        .x(function(d, i) { return x(i); })
+                                        .y0(function(d) { return y(d[0]); })
+                                        .y1(function(d) { return y(d[1]); });
+                                    
+                                    svg.selectAll("path")
+                                    .data(layers0)
+                                    .enter().append("path")
+                                        .attr("d", area)
+                                        .attr("fill", function() { return z(Math.random()); });
+                                    
+                                    function stackMax(layer) {
+                                    return d3.max(layer, function(d) { return d[1]; });
+                                    }
+                                    
+                                    function stackMin(layer) {
+                                    return d3.min(layer, function(d) { return d[0]; });
+                                    }
+                                    
+                                    function transition() {
+                                    var t;
+                                    d3.selectAll("path")
+                                        .data((t = layers1, layers1 = layers0, layers0 = t))
+                                        .transition()
+                                        .duration(2500)
+                                        .attr("d", area);
+                                    }
+                                    
+                                    // Inspired by Lee Byron’s test data generator.
+                                    function bumps(n, m) {
+                                    var a = [], i;
+                                    for (i = 0; i < n; ++i) a[i] = 0;
+                                    for (i = 0; i < m; ++i) bump(a, n);
+                                    return a;
+                                    }
+                                    
+                                    function bump(a, n) {
+                                    var x = 1 / (0.1 + Math.random()),
+                                        y = 2 * Math.random() - 0.5,
+                                        z = 10 / (0.1 + Math.random());
+                                    for (var i = 0; i < n; i++) {
+                                        var w = (i / n - y) * z;
+                                        a[i] += x * Math.exp(-w * w);
+                                    }
+                                    }
+                                    
+                                    </script>
+        
+        
+        
+    
+                            </div>
+                        </div>
+                        <style>
+                            .space-main
+                            {
+                                padding: 0 0 0 20px;
+                                text-align: left;
+                                position: relative;
+                                z-index: 0;
+                            }
+                        </style>
+
+                        <!-- Space Action --> 
+                        <div class='space-action'>
+                            <!-- Action Primary -->
+                            <div class='action-primary'>
+                                <div class='primary-box'>
+                                    <div id='button-search'>
+                                        <button class='button tooltip' onclick='select_search()'>
+                                            <i class="fal fa-search"></i>
+                                            <span class="tooltiptext">Search</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-change-view'>
+                                        <button class='button tooltip' onclick='select_change_view()'>
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltiptext">Change View</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-add'>
+                                        <button class='button tooltip' onclick='select_add()'>
+                                            <i class="fal fa-plus"></i>
+                                            <span class="tooltiptext">Add</span>
+                                        </button>
+                                    </div>
+                                    <div id='button-edit'>                      
+                                        <button class='button tooltip' onclick='select_edit()'>
+                                            <i class="fal fa-edit"></i>
+                                            <span class="tooltiptext">Edit</span>
+                                        </button>
+                                    </div>  
+                                    <div id='button-more'>                      
+                                        <button class='button tooltip' onclick='select_more()'>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                            <span class="tooltiptext">More</span>
+                                        </button>
+                                    </div>  
+                                </div>
+                                <style>
+                                .primary-box
+                                    {
+                                        margin: 0px auto;
+                                        width: 32px;
+                                        height: auto;
+                                    }
+                                </style>
+                            </div>
+                            <style>
+                            .action-primary
+                                {
+                                    width: 32px;
+                                    padding: 10px 10px;
+                                    position: fixed;
+                                    top: 0px;
+                                    right: 0px;
+                                    z-index: 2;
+                                }
+
+                            </style>
+                            <script>   
+                                function select_search(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
+                                    document.getElementById("button-search").classList.toggle("button-selected");
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none");
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_add(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected");
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none");
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_change_view(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected");
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none");
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_edit(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected");
+                                    document.getElementById("button-more").classList.toggle("button-selected", false);
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none");
+                                    document.getElementById("action-more").classList.toggle("display-none", true);
+                                }
+
+                                function select_more(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
+                                    document.getElementById("button-search").classList.toggle("button-selected", false);
+                                    document.getElementById("button-add").classList.toggle("button-selected", false);
+                                    document.getElementById("button-change-view").classList.toggle("button-selected", false);
+                                    document.getElementById("button-edit").classList.toggle("button-selected", false);
+                                    document.getElementById("button-more").classList.toggle("button-selected");
+
+                                    document.getElementById("action-search").classList.toggle("display-none", true);
+                                    document.getElementById("action-add").classList.toggle("display-none", true);
+                                    document.getElementById("action-change-view").classList.toggle("display-none", true);
+                                    document.getElementById("action-edit").classList.toggle("display-none", true);
+                                    document.getElementById("action-more").classList.toggle("display-none");
+                                }
+                            </script>
+
+                            <!-- Action Secondary -->
+                            <div id='action-secondary' class='action-secondary display-none'>
+                                <div class='secondary-box'>
+                                    <div class='display-none' id='action-search'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Search
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-add'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Add
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                Project
+                                            </p>
+                                            <p>
+                                                Organization
+                                            </p>
+                                            <p>
+                                                Space
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-change-view'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Change View 
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+
+                                            <a href="space-personal-grid.html"id='button-view-grid'>
+                                                <p>
+                                                        Grid
+                                                </p>
+                                            </a>
+
+                                            <a href="space-personal-timeline.html"id='button-view-timeline'>
+                                                <p>
+                                                    Timeline
+                                                </p>
+                                            </a>
+
+                                            <a href="space-personal-activity.html"id='button-view-activity'>
+                                                <p>
+                                                    Activity
+                                                </p>
+                                            </a>
+                                            <a href="space-personal-mapglobe.html"id='button-view-mapglobe'>
+                                                <p>
+                                                    Map
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class='display-none' id='action-edit'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                Edit
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class='display-none' id='action-more'>
+                                        <div class="secondary-header">
+                                            <h1>
+                                                More
+                                            </h1>
+                                        </div>
+                                        <div class="secondary-list">
+                                            <p>
+                                                List item
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <style>
+                                    .secondary-box
+                                    {
+                                        margin:25px 50px 80px 20px;
+                                        height:100%
+                                    }
+                                    .secondary-header 
+                                    {
+                                        background:transparent;
+                                        text-align: left;
+                                        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                                    }
+                                    .secondary-list
+                                    {
+                                        padding: 0 10px;
+                                    }
+                                </style>
+                            </div>
+                            <style>
+                                .action-secondary
+                                {
+                                    background: linear-gradient(90deg, rgba(29, 29, 29, 0), rgba(29, 29, 29, .8));
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    position: fixed;
+                                    width: 15%;
+                                    height:100%;
+                                    top: 0px;
+                                    right: 0px;
+                                    z-index: 1;
+                                }
+                                .secondary-list p:hover
+                                {
+                                    color: rgba(255, 255, 255, 1);
+                                    transform: scale(1.05);
+                                } 
+                        
+                            </style>
+                        </div>
+
+                    <style>        
+                        .space-content
+                        {   
+                            height: 100%;
+                            width: 100%;
+                            padding: 40px 10px;
+                            box-sizing: border-box;
+                            overflow: auto;
+                            position: fixed;
+                            
+                            background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/space-background-02.jpg"); 
+                            background-size:cover;                
+                            background-repeat:no-repeat;
+                            background-position: center center;  
+                        }
+                    </style>
+                </div>
+                <style>
+                    #space
+                    {   
+                        height: 100%;
+                        width: 100%;
+                    }
+                </style>
+            </div>
+
+            <!-- component.static { component.client.foreground } -->
+            <div class='component' id='client-foreground'>
+                <!-- Stella Button Reaction -->
+            </div>
+
+            <!-- component.static { component.client.navigation } -->
+            <div class='component' id='client-navigation'>
+                <!-- NAVIGATION FOOTER -->                   
+                <div id='client-navigation-footer'>
+                    <!-- Button Stella-->
+                    <div class='client-navigation-float-left'id='button-stella'>
+                        <button class='button' onclick="select_stella()">
+                                <img src="image/button-stella-w.png"
+                                onmouseover="this.src='image/button-stella-b.png'"
+                                onmouseout="this.src='image/button-stella-w.png'"
+                                >
+                        </button>
+                    </div>
+                    <script>
+                        function select_stella(){
+                            document.getElementById("button-stella").classList.toggle("button-selected");
+                        }
+                    </script>
+
+                    <a href="space-personal-grid.html">
+                        <div id='button-my-stella'>           
+                            <h2>
+                                My Stella
+                            </h2>
+                        </div>
+                    </a>
+                    <i class="fal fa-chevron-right" style="font-size: 11; float:left; margin:21px 2px"></i>
+
+                    <div id='button-all-projects'>
+                        <h2>
+                            All Projects
+                        </h2>
+                    </div>
+                    <style>
+                        #button-my-stella{
+                            display: block;
+                            float: left;
+                            width: auto;
+                            padding: 10px 5px;
+
+                        }
+
+                        #button-my-stella h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
+                        #button-all-projects{
+                            display: block;
+                            float: left;
+                            width: auto;
+                            padding: 10px 5px;
+                        }
+
+                        #button-all-projects h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
+                                
+                    </style>
+
+
+                    <!-- User Personal-->
+                    <div class='client-navigation-float-right'id='button-user'>
+                        <a href="space-user-personal.html">
+                            <button class='button-text' onclick="select_user()" onmouseover="appear()"onmouseout="appear()">
+                                SB
+                            </button>
+                        </a>
+                    </div>
+                    <script>
+                        function select_user(){
+                            document.getElementById("button-user").classList.toggle("button-selected");
+                            document.getElementById("user-button-details").classList.toggle("display-none");
+                        }
+                        function appear(){
+                            document.getElementById("user-button-details").classList.toggle("display-none");
+                        }
+                    </script>
+                    <div id=user-button-details class=display-none>
+                        <div id='button-account' >
+                            <h2> My Account   
+                            </h2>
+                        </div>
+
+
+
+                        <div id='button-profile'>
+                            <h2> Profile
+                            </h2>
+                        </div>
+                    </div>
+                    <style>
+                        #button-account{
+                            display: block;
+                            float: right;
+                            width: auto;
+                            padding: 10px 5px;
+                        }
+
+                        #button-account h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
+                        #button-profile{
+                            display: block;
+                            float: right;
+                            width: auto;
+                            padding: 10px 5px;
+                            
+                        }
+                        #button-profile h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+                        
+                    </style>
+
+                    <script>
+                    </script>
+                    <style>        
+                       div#client-navigation-footer
+                        {
+                            background: transparent;                 
+                            bottom: 0px;
+                            display: block;
+                            height: 52px;
+                            overflow: visible;
+                            position: fixed;
+                            width: 100%;
+                            z-index: 10;
+
+
+                        }
+                        div.client-navigation-float-right a 
+                        {
+                            text-decoration: none;
+                        }
+                    </style>
+                </div>
+
+                 <!-- NAVIGATION HEADER -->
+                 <div id='client-navigation-header'>
+                    <div class='client-navigation-float-left'>
+                        <button class='button' id='button-open-menu'onclick="open_menu()">
+                                <i class="fal fa-angle-double-right"></i>
+                        </button>
+                        <button class='button display-none' id='button-close-menu'onclick="open_menu()">
+                                <i class="fal fa-angle-double-left"></i>
+                        </button>
+                    </div>
+
+                    <script>
+                        function open_menu() {
+                            document.getElementById("button-open-menu").classList.toggle("display-none");
+                            document.getElementById("button-close-menu").classList.toggle("display-none");
+                            document.getElementById("space-menu").classList.toggle("display-none");
+                        }
+
+                    </script>
+                </div>
+                <style>
+                    div#client-navigation-header
+                        {
+                            background: transparent;                
+                            display: block;                  
+                            height: 32px;
+                            overflow: visible;
+                            position: fixed;
+                            top: 0px;
+                            width: 100%;
+                            z-index: 10;
+                        }
+
+                </style>
+            </div>
+            <style>
+                div.client-navigation-float-left
+                {
+                    display: block;
+                    float: left;
+                    width: auto;
+                    padding: 10px 10px;
+                }
+
+                div.client-navigation-float-right
+                {
+                    display: block;
+                    float: right;
+                    width: auto;
+                    padding: 10px 10px;
+                }
+            </style>
+        </div>
+    </body>
+</html>

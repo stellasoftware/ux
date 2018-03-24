@@ -23,13 +23,20 @@
             div#client
             {
                 
-                background: #1D1D1D;
+                background: rgb(29,29,29);
                 height: 100%;
                 position: fixed;
                 width: 100%;
                 z-index: 10;
-            
             }
+
+            text
+            {
+                font-weight: 500;
+                font-size: 15px; 
+                
+            }
+
             h0
             {
                 font-weight: 100;
@@ -49,6 +56,18 @@
             p{
                 font-size: 13px;
             }
+
+            a 
+            {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .vl {
+                border-left: 2px solid rgba(255, 255, 255, 0.5);
+                height: 23%;
+            }
+
             .text-selected
             {
                 color: rgba(255, 255, 255, 1);
@@ -166,7 +185,8 @@
 
 
         <script type="text/javascript" src="./fontawesome-all.min.js"></script>
-        
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
 
         
     </head>
@@ -185,9 +205,9 @@
                         <!-- Space Menu--> 
                         <div class='space-menu display-none' id=space-menu>
                             <div class="menu-header">
-                                <h1>
-                                    Glossier:Summer 2018 
-                                </h1>
+                                <h0>
+                                    My Stella  
+                                </h0>
                             </div>
                             <style>
                                 .menu-header 
@@ -215,84 +235,230 @@
 
                         <!-- Space Main -->
                         <div class='space-main'>
-                            <h0>
-                            </h0>
-                            <div class='space-row'>
-                                <div class='space-column'> 
-                                    <div class='gallery'>
-                                        <a href="space-project-01.html">
-                                            <img src="image/project-01.jpg" width="600" height="400">
-                                        </a>    
-                                        <h1>Glossier: Summer 2018</h1>
-                                        <h2>
-                                            Development I Branded Content
-                                        </h2> 
+                             <!-- Space Main Project View Grid-->
+                            <div id='projects-view-grid'>            
+                                <h0>
+                                </h0>
+                                <div class='space-row'>
+                                    <div class='space-column'> 
+                                        <div class='gallery'>
+                                            <a href="space-project-01.html">
+                                                <img src="image/project-01.jpg" width="600" height="400">
+                                            </a>    
+                                            <h1>Glossier: Summer 2018</h1>
+                                            <h2>
+                                                Development I Branded Content
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <svg width="600" height="400">
+                                                <rect width="600" height="400" style="fill:rgb(255, 255, 255)"/>
+                                                <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" style="text-transform: uppercase">Nike: Soar</text> 
+                                                </svg>
+                                            <h1>Nike: Soar</h1>
+                                            <h2>
+                                                    Developement I Short Documentary
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-02.jpg" width="600" height="400">
+                                            <h1>The Last Track</h1>
+                                            <h2>
+                                                    Production I Scripted Feature 
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                            <div class='gallery'>
+                                                <img src="image/project-03.jpg"width="600" height="400" >
+                                                <h1>Synthwave</h1>
+                                                <h2>
+                                                    Preproduction I Immersive
+                                                </h2> 
+                                            </div>
+                                        </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-04.jpg"width="600" height="400">
+                                            <h1>Brooklyn Culinary</h1>
+                                            <h2>
+                                                Postproduction I Documentary Short
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-05.jpg" width="600" height="400">
+                                            <h1>CNN: One Way Ticket</h1>
+                                            <h2>
+                                                Production I Documentary Series
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-06.jpg" width="600" height="400">
+                                            <h1>Calisthenics</h1>
+                                            <h2>
+                                                Development I Scripted Short
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-07.jpg"width="600" height="400" >
+                                            <h1>Nelly T.: One Hundred</h1>
+                                            <h2>
+                                                Preproduction I Music Video
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-08.jpg"width="600" height="400" >
+                                            <h1>Reformation: Fall 2018</h1>
+                                            <h2>
+                                                Development I Branded Content
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-09.jpg" width="600" height="400">
+                                            <h1>Patagonia: Look Out</h1>
+                                            <h2>
+                                                Postproduction I TV Commercial
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-10.jpg" width="600" height="400">
+                                            <h1>UNDP: On the Road</h1>
+                                            <h2>
+                                                Production I Documentary Series
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-11.jpg" width="600" height="400">
+                                            <h1>Waveriders</h1>
+                                            <h2>
+                                                Distribution I Documentary Feature
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-12.jpg" width="600" height="400">
+                                            <h1>Billabong: Fall 2017</h1>
+                                            <h2>
+                                                Distribution I TV Commercial
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-13.jpg" width="600" height="400">
+                                            <h1>Monaco</h1>
+                                            <h2>
+                                                    Distribution I Scripted Short
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-14.jpg" width="600" height="400">
+                                            <h1>Breaking Point</h1>
+                                            <h2>
+                                                Postproduction I Scripted Feature
+                                            </h2> 
+                                        </div>
+                                    </div>
+                                    <div class='space-column'>
+                                        <div class='gallery'>
+                                            <img src="image/project-15.jpg" width="600" height="400">
+                                            <h1>Net Geo: Hidden Palace</h1>
+                                            <h2>
+                                                    Distribution I Documentary Series
+                                            </h2> 
+                                        </div>
                                     </div>
                                 </div>
-                                
                             </div>
                             <style>
-                            .space-row
-                            {
-                                float: center;
-                                width: 100%;
-                            }
-
-                            .space-column
-                            {
-                                float: left;
-                                width: 20%;
-                            }
-                            
-                            .space-column a
-                            {
-                                text-decoration: none;
-                            }
-
-                            .gallery 
-                            {
-                                padding: 10px;
-
-                            }
-
-                            .gallery:hover 
-                            {
-                                box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-                                background: white;
-                                color: black;
-                                transform: scale(1.01);
-
-                            }
-
-                            .gallery img 
-                            {
-                                width: 100%;
-                                height: auto;
-                            }
-
-                            @media only screen and (max-width: 700px) {
-                                .space-column {
-                                    width: 49.99999%;
-                                    margin: 6px 0;
-                                }
-                            }
-
-                            @media only screen and (max-width: 500px) {
-                                .space-column  {
+                                .space-row
+                                {
+                                    float: center;
                                     width: 100%;
                                 }
-                            }
-                            
+
+                                .space-column
+                                {
+                                    float: left;
+                                    width: 20%;
+                                }
+                                
+                                .space-column a
+                                {
+                                    text-decoration: none;
+                                }
+
+                                .gallery 
+                                {
+                                    padding: 10px;
+
+                                }
+
+                                .gallery:hover 
+                                {
+                                    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+                                    background: white;
+                                    color: black;
+                                    transform: scale(1.01);
+
+                                }
+
+                                .gallery img 
+                                {
+                                    width: 100%;
+                                    height: auto;
+                                }
+
+                                .gallery svg 
+                                {
+                                    width: 100%;
+                                    height: auto;
+                                }
+
+                                @media only screen and (max-width: 700px) {
+                                    .space-column {
+                                        width: 49.99999%;
+                                        margin: 6px 0;
+                                    }
+                                }
+
+                                @media only screen and (max-width: 500px) {
+                                    .space-column  {
+                                        width: 100%;
+                                    }
+                                }
                             </style> 
+
                         </div>
                         <style>
-                        .space-main
-                        {
-                            padding: 0 0 0 20px;
-                            text-align: left;
-                            position: relative;
-                            z-index: 0;
-                        }
+                            .space-main
+                            {
+                                padding: 0 0 0 20px;
+                                text-align: left;
+                                position: relative;
+                                z-index: 0;
+                            }
                         </style>
 
                         <!-- Space Action --> 
@@ -354,6 +520,8 @@
                             </style>
                             <script>   
                                 function select_search(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected");
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -368,6 +536,8 @@
                                 }
 
                                 function select_add(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected");
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -382,6 +552,8 @@
                                 }
 
                                 function select_change_view(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected");
@@ -396,6 +568,8 @@
                                 }
 
                                 function select_edit(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -410,6 +584,8 @@
                                 }
 
                                 function select_more(){
+                                    document.getElementById("action-secondary").classList.toggle("display-none");
+
                                     document.getElementById("button-search").classList.toggle("button-selected", false);
                                     document.getElementById("button-add").classList.toggle("button-selected", false);
                                     document.getElementById("button-change-view").classList.toggle("button-selected", false);
@@ -425,7 +601,7 @@
                             </script>
 
                             <!-- Action Secondary -->
-                            <div class='action-secondary'>
+                            <div id='action-secondary' class='action-secondary display-none'>
                                 <div class='secondary-box'>
                                     <div class='display-none' id='action-search'>
                                         <div class="secondary-header">
@@ -464,20 +640,35 @@
                                             </h1>
                                         </div>
                                         <div class="secondary-list">
-                                            <p>
-                                                Grid
-                                            </p>
-                                            <p>
-                                                Activity
-                                            </p>
-                                            <p>
-                                                Timeline
-                                            </p>
-                                            <p>
-                                                Map
-                                            </p>
+
+                                            <a href="space-personal-grid.html"id='button-view-grid'>
+                                                <p>
+                                                        Grid
+                                                </p>
+                                            </a>
+
+                                            <a href="space-personal-timeline.html"id='button-view-timeline'>
+                                                <p>
+                                                    Timeline
+                                                </p>
+                                            </a>
+
+                                            <a href="space-personal-activity.html"id='button-view-activity'>
+                                                <p>
+                                                    Activity
+                                                </p>
+                                            </a>
+                                            <a href="space-personal-mapglobe.html"id='button-view-mapglobe'>
+                                                <p>
+                                                    Map
+                                                </p>
+                                            </a>
                                         </div>
+                                        <script>
+                                        </script>
                                     </div>
+
+
                                     <div class='display-none' id='action-edit'>
                                         <div class="secondary-header">
                                             <h1>
@@ -542,8 +733,6 @@
                         
                             </style>
                         </div>
-                        <style>
-                        </style>
 
                     <style>        
                         .space-content
@@ -555,7 +744,7 @@
                             overflow: auto;
                             position: fixed;
                             
-                            background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/project-01.jpg"); 
+                            background: linear-gradient(0deg, rgba(29, 29, 29, .6), rgba(29, 29, 29, 1)),url("./image/space-background-02.jpg"); 
                             background-size:cover;                
                             background-repeat:no-repeat;
                             background-position: center center;  
@@ -591,17 +780,22 @@
                     </div>
                     <script>
                         function select_stella(){
-                            document.getElementById("butt0n-stella").classList.toggle("button-selected");
+                            document.getElementById("button-stella").classList.toggle("button-selected");
                         }
                     </script>
-                    <div id='button-my-stella'>
-                        <h2>
-                            My Stella  /
-                        </h2>
-                    </div>
+
+                    <a href="space-personal-grid.html">
+                        <div id='button-my-stella'>           
+                            <h2>
+                                My Stella
+                            </h2>
+                        </div>
+                    </a>
+                    <i class="fal fa-chevron-right" style="font-size: 11; float:left; margin:21px 2px"></i>
+
                     <div id='button-all-projects'>
                         <h2>
-                         Glossier: Summer 2018
+                            All Projects
                         </h2>
                     </div>
                     <style>
@@ -612,13 +806,23 @@
                             padding: 10px 5px;
 
                         }
+
+                        #button-my-stella h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
                         #button-all-projects{
                             display: block;
                             float: left;
                             width: auto;
                             padding: 10px 5px;
                         }
-                                 
+
+                        #button-all-projects h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
+                                
                     </style>
 
 
@@ -630,8 +834,6 @@
                             </button>
                         </a>
                     </div>
-                    <style>
-                    </style>
                     <script>
                         function select_user(){
                             document.getElementById("button-user").classList.toggle("button-selected");
@@ -646,7 +848,10 @@
                             <h2> My Account   
                             </h2>
                         </div>
-                        <div id='button-profile' >
+
+
+
+                        <div id='button-profile'>
                             <h2> Profile
                             </h2>
                         </div>
@@ -658,12 +863,22 @@
                             width: auto;
                             padding: 10px 5px;
                         }
+
+                        #button-account h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+
                         #button-profile{
                             display: block;
                             float: right;
                             width: auto;
                             padding: 10px 5px;
+                            
                         }
+                        #button-profile h2{
+                            background-color: rgba(29,29,29, .2); 
+                        }
+                        
                     </style>
 
                     <script>
@@ -680,6 +895,7 @@
                             width: 100%;
                             z-index: 10;
 
+
                         }
                         div.client-navigation-float-right a 
                         {
@@ -690,11 +906,6 @@
 
                  <!-- NAVIGATION HEADER -->
                  <div id='client-navigation-header'>
-                    <div class='client-navigation-float-left'>
-                        <button class='button' id='button-close'onclick="goBack()">
-                            <i class="fal fa-times"></i>
-                        </button>
-                    </div>
                     <div class='client-navigation-float-left'>
                         <button class='button' id='button-open-menu'onclick="open_menu()">
                                 <i class="fal fa-angle-double-right"></i>
